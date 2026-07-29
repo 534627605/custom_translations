@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2025-07-29 12:00:00.000000",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "fields": [
+  {
+   "fieldname": "source_text",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Source Text",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "translated_text",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Translated Text"
+  },
+  {
+   "fieldname": "language",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Language",
+   "options": "Language",
+   "reqd": 1
+  },
+  {
+   "fieldname": "app",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "App"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "default": "Open",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nTranslated\nReviewed\nIgnored"
+  },
+  {
+   "fieldname": "translation_source",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Translation Source",
+   "options": "Auto\nManual",
+   "depends_on": "eval:doc.status!=='Open'"
+  },
+  {
+   "fieldname": "detected_on",
+   "fieldtype": "Datetime",
+   "label": "Detected On"
+  },
+  {
+   "fieldname": "translated_on",
+   "fieldtype": "Datetime",
+   "label": "Translated On",
+   "depends_on": "eval:doc.status!=='Open'"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2025-07-29 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Custom Translations",
+ "name": "Missing Translation Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

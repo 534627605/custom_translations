@@ -1,0 +1,2 @@
+# Patches for custom_translations app
+# Format: [version].[patch_name] | path.to.patch_file

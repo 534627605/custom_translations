@@ -1,0 +1,10 @@
+{
+    "_comment": "Copy this file to config.json and fill in your API key. config.json is gitignored.",
+    "provider": "nvidia",
+    "api_key": "YOUR_API_KEY_HERE",
+    "api_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "deepseek-ai/deepseek-v4-flash",
+    "batch_size": 10,
+    "max_length": 500,
+    "auto_translate": true
+}
