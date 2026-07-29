@@ -9,6 +9,7 @@ from custom_translations.utils import (
     _log_missing_translations,
     _auto_translate_via_api,
     apply_manual_corrections,
+    fix_batch_terminology,
 )
 from custom_translations.config import load_config, get_setup_instructions, get_config_file_path
 from custom_translations.professional_glossary import apply_professional_glossary, PROFESSIONAL_GLOSSARY
@@ -282,6 +283,39 @@ def apply_glossary(ctx):
     click.echo(f"Optional: `bench --site {site} custom-translations-sync` to sync to .po files")
 
 
+@click.command("custom-translations-fix-terminology")
+@click.pass_context
+def fix_terminology(ctx):
+    """Fix systematic translation errors across all zh.csv entries.
+
+    Scans every translation and corrects widespread mistranslations:
+    - 储存 → 保存 (Save)
+    - 报告 → 报表 (Report)
+    - 大师 → 主数据 (Masters)
+    - 设定 → 设置 (Settings)
+
+    Run this after updates or imports to fix Taiwan-style translations
+    to mainland China standard terminology.
+    """
+    import frappe
+    from frappe.commands import get_site
+
+    site = get_site(ctx.obj)
+    frappe.init(site=site)
+    frappe.connect()
+
+    count = fix_batch_terminology()
+    if count > 0:
+        click.echo(f"Fixed {count} entries with systematic terminology corrections")
+        click.echo(f"  - 储存 → 保存 (Save)")
+        click.echo(f"  - 报告 → 报表 (Report)")
+        click.echo(f"  - 大师 → 主数据 (Masters)")
+        click.echo(f"  - 设定 → 设置 (Settings)")
+        click.echo(f"Run `bench --site {site} clear-cache` to apply changes in browser.")
+    else:
+        click.echo("No terminology errors found - all entries are correct.")
+
+
 commands = [
     sync_translations,
     show_stats,
@@ -291,4 +325,5 @@ commands = [
     auto_translate,
     apply_corrections,
     apply_glossary,
+    fix_terminology,
 ]

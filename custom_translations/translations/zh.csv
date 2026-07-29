@@ -255,12 +255,12 @@ ${values.doctype_name} has been added to queue for optimization,${values.doctype
 "<pre><h5>Message Example</h5>\n\n&lt;p&gt;Dear {{ doc.contact_person }},&lt;/p&gt;\n\n&lt;p&gt;Requesting payment for {{ doc.doctype }}, {{ doc.name }} for {{ doc.grand_total }}.&lt;/p&gt;\n\n&lt;a href=""{{ payment_url }}""&gt; click here to pay &lt;/a&gt;\n\n</pre>\n","<pre><h5>消息示例</h5>\n\n&lt;p&gt;亲爱的 {{ doc.contact_person }}，&lt;/p&gt;\n\n&lt;p&gt;请求支付 {{ doc.doctype }}、 {{ doc.name }} 和 {{ doc.grand_total }}的费用。&lt;/p&gt;\n\n&lt;a href=""{{ payment_url }}""&gt; 点击此处支付 &lt;/a&gt;\n\n</pre>\n"
 "<span class=""h2"">Hi,</span>","<span class=""h2"">您好，</span>"
 "<span class=""h4""><b>Masters &amp; Reports</b></span>","<span class=""h4""><b>主数据 &amp; 报表</b></span>"
-"<span class=""h4""><b>Reports &amp; Masters</b></span>","<span class=""h4""><b>报告 &amp; 大师</b></span>"
+"<span class=""h4""><b>Reports &amp; Masters</b></span>","<span class=""h4""><b>报表 &amp; 主数据</b></span>"
 "<span class=""h4""><b>Subcontracting Inward and Outward</b></span>","<span class=""h4""><b>委外加工入库与出库</b></span>"
-"<span class=""h4""><b>Transactions &amp; Reports</b></span>","<span class=""h4""><b>交易 &amp; 报告</b></span>"
+"<span class=""h4""><b>Transactions &amp; Reports</b></span>","<span class=""h4""><b>交易 &amp; 报表</b></span>"
 "<span class=""h4""><b>Your Shortcuts\n			\n		\n			\n		\n			\n		</b></span>","<span class=""h4""><b>快速访问\n			\n		\n			\n		\n			\n		</b></span>"
 "<span class=""h4""><b>Your Shortcuts</b></span>","<span class=""h4""><b>快捷方式</b></span>"
-"<span style=""font-size: 18px;""><b>Masters &amp; Reports</b></span>","<span style=""font-size: 18px;""><b>雇主 &amp; 报告</b></span>"
+"<span style=""font-size: 18px;""><b>Masters &amp; Reports</b></span>","<span style=""font-size: 18px;""><b>雇主 &amp; 报表</b></span>"
 <strong>Grand Total:</strong> {0},<strong>总计：</strong> {0}
 <strong>Outstanding Amount:</strong> {0},<strong>未清金额：</strong> {0}
 <strong>Warning:</strong> This field is system generated and may be overwritten by a future update. Modify it using {0} instead.,<strong>警告：</strong> 此字段由系统生成，可能会在未来的更新中被覆盖。请改用 {0} 修改。
@@ -489,7 +489,7 @@ Accounting Onboarding,会计入门
 Accounting Period,会计期间
 Accounting Period cannot be created for a future date. End Date {0} is after today.,不能为未来日期创建会计期间。结束日期 {0} 在今天之后。
 Accounting Period overlaps with {0},会计期间与{0}重叠
-Accounting Reports,会计报告
+Accounting Reports,会计报表
 Accounting Statement,会计报表
 Accounting entries are frozen up to this date. Only users with the specified role can create or modify entries before this date.,会计凭证在此日期之前被冻结。只有具有指定角色的用户才能在此日期之前创建或修改凭证。
 Accounts,会计
@@ -523,7 +523,7 @@ Accrual Journal Entry for salaries from {0} to {1},{0}至{1}期间工资的应�
 Accrue and payout at end of payroll period,在薪资期末计提并支付
 "Accrue per cycle, pay only on claim",按周期计提，仅报销时支付
 Accrued Benefits,计提福利
-Accrued Earnings Report,计提收入报告
+Accrued Earnings Report,计提收入报表
 Accrued Expenses,应计费用
 Accrued amount {0} is less than paid amount {1} for Benefit {2} in payroll period {3},在薪资期间{3}中，福利{2}的计提金额{0}小于已付金额{1}
 Accumulated Depreciation,累计折旧
@@ -540,7 +540,7 @@ Achieved ({}),达到（{}）
 Acquisition Date,购买日期
 Acre,英亩
 Acre (US),美制英亩
-Action,行动
+Action,操作
 Action / Route,操作/路由
 Action Complete,操作完成
 Action Failed,操作失败
@@ -584,6 +584,7 @@ Activity Cost per Employee,员工作业成本
 Activity Log,活动日志
 Activity Name,活动名称
 Activity Type,作业类型
+Activity View,活动视图
 Actual,实际
 Actual Amount,实际金额
 Actual Balance Qty,实际结存数量
@@ -620,7 +621,7 @@ Actual balances aren't available because the leave application spans over differ
 Actual qty in stock,实际库存数量
 Actual type tax cannot be included in Item rate in row {0},实际税额不能包含在第{0}行的物料单价中
 Ad-hoc Qty,临时数量
-Add,新增
+Add,添加
 Add / Edit Prices,添加/编辑价格
 Add / Remove Columns,添加/移除列
 Add / Update,添加/更新
@@ -635,6 +636,7 @@ Add Chart to Dashboard,添加图表到仪表板
 Add Child,新增子项目
 Add Column,添加栏
 Add Columns in Transaction Currency,显示交易货币金额
+Add Comment,添加评论
 Add Contact,增加联系人
 Add Contacts,添加联系人
 Add Container,添加容器
@@ -893,7 +895,7 @@ Age (Days),账龄天数
 Age ({0}),天数 ({0})
 Ageing Based On,账龄基于
 Ageing Range,账龄区间
-Ageing Report based on {0} up to {1},基于{0}至{1}的账龄报告
+Ageing Report based on {0} up to {1},基于{0}至{1}的账龄报表
 Agenda,议程
 Agent,代理商
 Agent Busy Message,代理忙线提示
@@ -937,7 +939,7 @@ All Parties,所有参与方
 All Records,所有记录
 All Sales Partner Contact,所有业务伙伴联系人
 All Sales Person,所有业务员
-All Sales Transactions can be tagged against multiple Sales Persons so that you can set and monitor targets.,所有销售交易可标记多个销售人员以便设定和监控目标
+All Sales Transactions can be tagged against multiple Sales Persons so that you can set and monitor targets.,所有销售交易可标记多个销售人员以便设置和监控目标
 All Submissions,所有提交
 All Supplier Contact,所有供应商
 All Supplier Groups,所有供应商
@@ -1166,8 +1168,9 @@ Always BCC Address,始终密送地址
 "Always add ""Draft"" Heading for printing draft documents",随时添加“草案”标题打印文件草案
 Always use this email address as sender address,始终使用此邮箱地址作为发件人地址
 Always use this name as sender name,始终使用此名称作为发件人名称
-Amend,修改
+Amend,修订
 Amend Counter,修订计数
+Amended,已修订
 Amended Document Naming Settings,修订单据命名设置
 Amended Documents,已修订单据
 Amended From,从修订
@@ -1624,9 +1627,10 @@ At row {0}: Serial and Batch Bundle {1} has already created. Please remove the v
 At row {0}: set Parent Row No for item {1},行{0}：请为物料{1}设置父行号
 Atleast one raw material for Finished Good Item {0} should be customer provided.,产成品物料{0}至少应有一种原材料由客户提供。
 Atmosphere,标准大气压
-Attach,附加档案
+Attach,附加
 Attach CSV File,上传CSV文件
 Attach Document Print,附加文件打印
+Attach File,附加文件
 Attach Files,附加文件
 Attach Image,附上图片
 Attach Package,附加包
@@ -1731,7 +1735,7 @@ Auto Create Exchange Rate Revaluation,自动创建汇率重估
 Auto Created,自动创建
 Auto Created Serial and Batch Bundle,自动创建序列号/批号
 Auto Creation of Contact,自动创建联系人
-Auto Email Report,自动电子邮件报告
+Auto Email Report,自动邮件报表
 Auto Fetch,自动获取
 Auto Fetch Serial Numbers,自动获取序列号
 Auto Leave Encashment,自动假期折现
@@ -1754,6 +1758,7 @@ Auto Repeat created for this document,已为此单据创建自动重复
 Auto Repeat failed for {0},{0} 的自动重复失败
 Auto Reply,自动回复
 Auto Reply Message,自动回复留言
+Auto Save,自动保存
 Auto Tax Settings Error,自动税务设置错误
 Auto assignment failed: {0},自动分配失败：{0}
 Auto close Opportunity Replied after the no. of days mentioned above,在上述天数之后自动关闭已回复商机
@@ -2191,6 +2196,7 @@ Block Supplier,临时冻结供应商
 Blog Subscriber,博客订阅者
 Blood Group,血型
 Blue,蓝色
+Board View,看板视图
 Body Text,正文文本
 Body and Closing Text Help,正文和结束文本帮助
 Bold,加粗
@@ -2423,7 +2429,7 @@ Cancel Subscription After Grace Period,宽限期后取消订阅
 Cancel {0} documents?,取消 {0} 份单据？
 Cancelation Date,取消日期
 Cancellation Queued,取消已排队
-Cancelled,注销
+Cancelled,已取消
 Cancelled Document restored as Draft,已取消的文档已恢复为草稿
 Cancelling,取消中
 Cancelling documents,取消单据中
@@ -2512,7 +2518,7 @@ Cannot disassemble more than produced quantity.,拆解数量不得超过产出�
 Cannot edit Standard Dashboards,无法编辑标准仪表板
 "Cannot edit Standard Notification. To edit, please disable this and duplicate it",无法编辑标准通知。要进行编辑，请禁用并复制它
 Cannot edit Standard charts,无法编辑标准图表
-Cannot edit a standard report. Please duplicate and create a new report,不能编辑标准的报告。请复制并创建一个新的报告
+Cannot edit a standard report. Please duplicate and create a new report,不能编辑标准的报表。请复制并创建一个新的报表
 Cannot edit cancelled document,无法编辑已取消文件
 Cannot edit filters for standard charts,无法编辑标准图表的筛选条件
 Cannot edit filters for standard number cards,无法编辑标准数字卡片的筛选条件
@@ -2547,7 +2553,7 @@ Cannot set Notification with event {0} on Document Type {1},无法在单据类�
 Cannot set as Lost as Sales Order is made.,已有销售订单时不能更改其状态为未成交。
 Cannot set authorization on basis of Discount for {0},不能为{0}设置折扣授权
 Cannot set multiple Item Defaults for a company.,无法为公司设置多个物料默认值。
-Cannot set quantity less than delivered quantity.,无法设定数量小于出货数量.
+Cannot set quantity less than delivered quantity.,无法设置数量小于出货数量.
 Cannot set quantity less than received quantity.,数量不可小于已接收数量.
 Cannot set the field <b>{0}</b> for copying in variants,无法设置允许字段<b>{0}</b>复制到多规格物料
 Cannot share {0} with submit permission as the doctype {1} is not submittable,无法共享 {0} 的提交权限，因为单据类型 {1} 不可提交
@@ -2698,7 +2704,7 @@ Check if material transfer entry is not required,如不需从工单触发工单�
 Check the Error Log for more information: {0},查看错误日志以获取更多信息：{0}
 Check this if the Update Value is a formula or expression (e.g. doc.amount * 2). Leave unchecked for plain text values.,如果更新值是公式或表达式（例如 doc.amount * 2），请勾选此项。对于纯文本值则不勾选。
 Check this if you don't want users to sign up for an account on your site. Users won't get desk access unless you explicitly provide it.,如果您不希望用户在您的站点上注册账户，请勾选此项。除非您明确提供，否则用户不会获得桌面访问权限。
-Check this if you want to force the user to select a series before saving. There will be no default if you check this.,如果要强制用户在储存之前选择了一系列，则勾选此项。如果您勾选此项，则将没有预设值。
+Check this if you want to force the user to select a series before saving. There will be no default if you check this.,如果要强制用户在保存之前选择了一系列，则勾选此项。如果您勾选此项，则将没有预设值。
 Check this to disallow fractions. (for Nos),禁止使用小数，请勾选此项(针对个，支，片等整数单位)。
 "Check to display the full numeric value (e.g., 1,234,567 instead of 1.2M).","勾选以显示完整数字（例如：1,234,567 而非 1.2M）。"
 Check {0} for more details,查看{0}获取详情
@@ -2769,13 +2775,15 @@ Clauses and Conditions,条款和条件
 Clear,清除
 Clear & Add Template,清除并添加模板
 Clear & Add template,清除并添加模板
-Clear All,全部清除
+Clear All,清除全部
 Clear Assignment,清除分配
 Clear Error Logs,清除错误日志
+Clear Filter,清除筛选
 Clear Filters,清除筛选条件
 Clear Link,清除链接
 Clear Logs After (days),清除日志（天后）
 Clear Notifications,清空通知
+Clear Selection,清除选择
 Clear Table,清除表格
 Clear User Permissions,清除用户权限
 Clear all filters,清除所有筛选
@@ -2797,7 +2805,7 @@ Click on Import Invoices button once the zip file has been attached to the docum
 Click on a file to select it.,点击文件以选择它。
 Click on the button to log in to {0},点击按钮以登录 {0}
 Click on the link below to approve the request,点击下方链接以批准请求
-Click on the link below to complete your registration and set a new password,点击下面的链接完成注册，并设定新密码
+Click on the link below to complete your registration and set a new password,点击下面的链接完成注册，并设置新密码
 Click on the link below to download your data,点击下方链接以下载您的数据
 Click on the link below to verify your email and confirm the appointment,点击下方链接验证邮箱并确认预约
 Click on the link below to verify your request,点击下方链接以验证您的请求
@@ -2832,7 +2840,7 @@ Close Loan,偿还借款
 Close Replied Opportunity After Days,自动关闭已回复商机天数
 Close properties,关闭属性
 Close the POS,关闭POS
-Closed,关闭
+Closed,已关闭
 Closed Document,封闭文件
 Closed Documents,已关闭单据类型
 Closed On,关闭日期
@@ -3024,6 +3032,7 @@ Conditions will be applied on all the selected items combined. ,条件将应用�
 Conference,会议
 Config,配置
 Configuration,配置
+Configurations,配置
 Configure,配置
 Configure Chart,配置图表
 Configure Columns,配置列
@@ -3119,7 +3128,7 @@ Contact Person does not belong to the {0},联系人不属于{0}
 Contact Phone,联系人电话
 Contact Synced with Google Contacts.,已与 Google 通讯录同步联系人。
 Contact Us,联系我们
-Contact Us Settings,联络我们的设定
+Contact Us Settings,联络我们的设置
 "Contact options, like ""Sales Query, Support Query"" etc each on a new line or separated by commas.",联络人选项，如“销售查询，支持查询”等每一个新行或以逗号分隔。
 Contact:,联系人:
 Contacts,联系人
@@ -3270,7 +3279,7 @@ Coupon Type,优惠券类型
 Course,课程
 Cover Letter,求职信
 Cr,贷方
-Create,建立
+Create,创建
 Create & Continue,创建并继续
 Create Account,创建账户
 Create Additional Salary,创建附加薪资
@@ -3359,7 +3368,7 @@ Create or Edit Workflow,创建或编辑工作流
 Create your first {0},创建您的第一个 {0}
 Create your workflow visually using the Workflow Builder.,使用工作流构建器可视化地创建工作流。
 Create {0} {1} ?,是否创建{0}{1}？
-Created,创建
+Created,已创建
 Created At,创建时间
 Created By,建立者
 Created By You,由您创建
@@ -3367,6 +3376,7 @@ Created By {0},由 {0} 创建
 Created Custom Field {0} in {1},创建自定义字段{0} {1}
 Created On,创建于
 Created {0} scorecards for {1} between:,已为{1}创建{0}张计分卡，时间范围：
+Creating,创建中
 Creating Accounts...,创建科目......
 Creating Appraisals,正在创建绩效考核
 Creating Delivery Note ...,正在创建交货单...
@@ -3403,7 +3413,7 @@ Credit ({0}),贷方（{0}）
 Credit Account,贷方科目
 Credit Amount,贷方
 Credit Amount in Account Currency,贷方(科目货币)
-Credit Amount in Reporting Currency,贷方金额（报告货币）
+Credit Amount in Reporting Currency,贷方金额（报表货币）
 Credit Amount in Transaction Currency,贷方(交易货币)
 Credit Balance,剩余信用额度
 Credit Card,信用卡
@@ -3541,7 +3551,7 @@ Custom Overrides,自定义覆盖
 Custom Range,自定义范围
 Custom Remarks,自定义备注
 Custom Report,自定义报表
-Custom Reports,自定义报告
+Custom Reports,自定义报表
 Custom Role,自定义角色
 Custom SCSS,自定义 SCSS
 Custom Script,自定义脚本
@@ -3661,7 +3671,7 @@ Danger,危险
 Dark,深色
 Dark Color,深色
 Dark Theme,深色主题
-Dashboard,仪表板
+Dashboard,仪表盘
 Dashboard Chart,仪表板图表
 Dashboard Chart Field,仪表板图表字段
 Dashboard Chart Link,仪表板图表链接
@@ -3669,7 +3679,7 @@ Dashboard Chart Source,仪表板图表来源
 Dashboard Manager,仪表板管理器
 Dashboard Name,仪表板名称
 Dashboard Settings,仪表板设置
-Dashboard View,仪表板视图
+Dashboard View,仪表盘视图
 Dashboards,仪表板
 Data,数据
 Data Based On,数据依据
@@ -3697,7 +3707,7 @@ Date Format,日期格式
 Date Of Retirement,退休日期
 Date Range,日期范围
 Date Range Exceeded,日期范围超出
-Date Settings,日期设定
+Date Settings,日期设置
 Date after which this security.txt should be considered stale. Expires timestamp is converted to UTC.,此 security.txt 在此日期后应被视为过期。过期时间戳转换为 UTC。
 Date and Number Format,日期和数字格式
 Date is repeated,日期重复
@@ -3754,7 +3764,7 @@ Debit A/C Number,借方账号
 Debit Account,借方科目
 Debit Amount,借方
 Debit Amount in Account Currency,借方(科目货币)
-Debit Amount in Reporting Currency,借方金额（报告货币）
+Debit Amount in Reporting Currency,借方金额（报表货币）
 Debit Amount in Transaction Currency,借方(交易货币)
 Debit Note,扣款
 Debit Note Amount,扣款金额
@@ -3789,12 +3799,12 @@ Deduct Tax For Unsubmitted Tax Exemption Proof,为未提交免税证明的情况
 Deductee Details,扣除方明细
 Deduction,扣除项
 Deduction Arrears,扣款欠薪
-Deduction Reports,扣除项报告
+Deduction Reports,扣除项报表
 Deduction from Salary,薪资扣除
 Deductions,扣除项
 Deductions before tax calculation,税前扣除项
 Deductions or Loss,扣除或损失
-Default,预设
+Default,默认
 Default Account,默认科目
 Default Accounts,默认科目
 Default Activity Cost exists for Activity Type - {0},作业类型 -  {0}的默认作业成本已存在
@@ -3895,7 +3905,7 @@ Default Unit of Measure for Variant '{0}' must be same as in Template '{1}',多�
 Default User Role,默认用户角色
 Default User Type,默认用户类型
 Default Valuation Method,默认成本价计算方法
-Default Value,预设值
+Default Value,默认值
 Default View,默认视图
 Default Warehouse,默认仓库
 Default Warehouse for Sales Return,默认销售退货仓
@@ -3936,7 +3946,7 @@ Delay in payment (Days),付款逾期（天）
 Delayed,延迟
 Delayed Days,延迟天数
 Delayed Item Report,迟交物料报表
-Delayed Order Report,延迟订单报告
+Delayed Order Report,延迟订单报表
 Delayed Tasks Summary,逾期任务汇总
 Delete,删除
 Delete Account,删除账户
@@ -3950,6 +3960,7 @@ Delete Dimension,删除辅助核算
 Delete Gravatar URLs,删除 Gravatar URL
 Delete Kanban Board,删除看板
 Delete Leads and Addresses,删除销售线索与地址
+Delete Report,删除报表
 Delete Section,删除节
 Delete Tab,删除标签页
 Delete Transactions,删除业务单据(交易)
@@ -3969,13 +3980,14 @@ Delete {0},删除{0}
 Delete {0} item permanently?,永久删除 {0} 项？
 Delete {0} items permanently?,删除{0}项目永久？
 Delete {0} rows,删除 {0} 行
-Deleted,删除
+Deleted,已删除
 Deleted DocType,删除的DocType
 Deleted Document,删除的文档
 Deleted Documents,已删除文档
 Deleted Name,删除名称
 Deleted all documents successfully,已成功删除所有单据
 Deleted!,已删除！
+Deleting,删除中
 Deleting {0},删除{0}
 Deleting {0} and all associated Common Code documents...,正在删除{0}及其所有关联通用代码单据...
 Deleting {0} records...,正在删除 {0} 条记录...
@@ -4097,7 +4109,7 @@ Desktop Icon,桌面图标
 Desktop Layout,桌面布局
 Desktop Settings,桌面设置
 Detailed Reason,详细原因说明
-Details,详细资讯
+Details,详情
 "Details of Sponsor (Name, Location)",担保人详细信息（姓名，所在地）
 Detect CSV type,检测 CSV 类型
 Determine Check-in and Check-out,确定签到/签退规则
@@ -4145,7 +4157,7 @@ Disable Document Sharing,禁用单据共享
 Disable In Words,不显示大写金额
 Disable Prepared Report Automation,禁用预备报表自动化
 Disable Product Suggestion,禁用产品建议
-Disable Report,禁用报告
+Disable Report,禁用报表
 Disable Rounded Total,禁用小数精度尾差
 Disable SMTP server authentication,禁用 SMTP 服务器认证
 Disable Scrolling,禁用滚动
@@ -4172,8 +4184,11 @@ Disassemble Qty cannot be less than or equal to 0.,拆解数量不能小于或�
 Disassembled Qty,拆解数量
 Disburse Loan,发放借款
 Disbursed,借款已发放
-Discard,丢弃
+Discard,放弃更改
 Discard Changes and Load New Invoice,放弃更改并加载新发票
+Discard changes,放弃更改
+Discard unsaved changes,放弃未保存的更改
+Discard unsaved changes?,放弃未保存的更改？
 Discard {0},放弃 {0}
 Discard?,作废？
 Discarded,已作废
@@ -4384,7 +4399,7 @@ Download Files Backup,下载文件备份
 Download Link,下载链接
 Download PDF,下载PDF
 Download PDF for Supplier,为供应商下载PDF
-Download Report,下载报告
+Download Report,下载报表
 Download Required Materials,下载物料需求清单
 Download Template,下载模板
 Download Your Data,下载您的数据
@@ -4462,6 +4477,7 @@ Duplicate row {0} with same {1},重复的行{0}同{1}
 Duplicate rows,重复行
 Duplicate {0} found in the table,表中找到重复的{0}
 Duplicate {0} rows,复制 {0} 行
+Duplicated,已复制
 Duration,时长
 Duration (Days),工期(天）
 Duration in Days,持续时间天数
@@ -4498,7 +4514,7 @@ Earned Leave,带薪休假
 Earned Leave Frequency,带薪休假分配频率
 Earned Leaves,累计休假
 Earned Leaves are allocated as per the configured frequency via scheduler.,带薪休假按配置频率通过调度程序自动分配
-Earned Leaves are auto-allocated via scheduler based on the annual allocation set in the Leave Policy: {0},根据休假政策{0}设定的年度分配，带薪休假通过调度程序自动分配
+Earned Leaves are auto-allocated via scheduler based on the annual allocation set in the Leave Policy: {0},根据休假政策{0}设置的年度分配，带薪休假通过调度程序自动分配
 Earned Leaves are leaves earned by an Employee after working with the company for a certain amount of time. Enabling this will allocate leaves on pro-rata basis by automatically updating Leave Allocation for leaves of this type at intervals set by 'Earned Leave Frequency.,带薪休假是员工在公司工作一定时间后获得的假期。启用后，系统将按'分配频率'定期自动按比例更新此类假期分配
 Earnest Money,保证金
 Earning,收入项
@@ -4509,7 +4525,7 @@ Earnings,收入项
 Earnings & Deductions,收入与扣除项
 Edit,编辑
 Edit Address in Form,在表单中编辑地址
-Edit Auto Email Report Settings,修改电子邮件报告设置
+Edit Auto Email Report Settings,修改电子邮件报表设置
 Edit BOM,编辑物料清单
 Edit Capacity,编辑产能
 Edit Cart,返回购物车
@@ -4554,6 +4570,7 @@ Edit your workflow visually using the Workflow Builder.,使用工作流构建器
 Edit {0},编辑{0}
 Edit {0} rows,编辑 {0} 行
 Editable Grid,编辑网格
+Editing,编辑中
 Editing Row,正在编辑行
 Editing {0},正在编辑 {0}
 Editing {0} is not allowed as per POS Profile settings,根据POS配置设置，不允许编辑{0}
@@ -4620,7 +4637,7 @@ Email Sent,邮件发送
 Email Sent At,邮件发送于
 Email Sent To,邮件接收人
 Email Sent to Supplier {0},邮件已发送至供应商{0}
-Email Settings,电子邮件设定
+Email Settings,邮件设置
 Email Signature,电子邮件签名
 Email Status,电子邮件状态
 Email Sync Option,电子邮件同步选项
@@ -4816,7 +4833,7 @@ Enable Push Notification Relay,启用推送通知中继
 Enable Push Notifications,启用推送通知
 Enable Rate Limit,启用速率限制
 Enable Raw Printing,启用原始打印
-Enable Report,启用报告
+Enable Report,启用报表
 Enable Scheduled Jobs,启用预定作业
 Enable Scheduler,启用调度器
 Enable Security,启用安全
@@ -5099,7 +5116,7 @@ Exit Questionnaire Pending,待处理离职问卷
 Exit Questionnaire Web Form,离职问卷Web表单
 Exits (This Month),离职人数（本月）
 Expand,展开
-Expand All,展开全部
+Expand All,全部展开
 Expected,预期金额
 "Expected 'and' or 'or' operator, found: {0}",期望'and'或'or'运算符，找到：{0}
 Expected Amount,预期金额
@@ -5176,7 +5193,7 @@ Expiry time of QR Code Image Page,QR码图像页面的到期时间
 Explanation,说明
 Exploded Items,底层物料
 Exponential Smoothing Forecasting,指数平滑法预测
-Export,出口
+Export,导出
 Export 1 record,导出 1 条记录
 Export Custom Permissions,导出自定义权限
 Export Customizations,导出自定义
@@ -5185,7 +5202,8 @@ Export E-Invoices,出口电子发票
 Export Errored Rows,导出错误行
 Export From,导出自
 Export Import Log,导出导入日志
-Export Report: {0},出口报告：{0}
+Export Report,导出报表
+Export Report: {0},出口报表：{0}
 Export Type,导出类型
 Export all matching rows?,导出所有匹配的行？
 Export all {0} rows?,导出全部 {0} 行？
@@ -5353,7 +5371,7 @@ Fieldname,字段名称
 Fieldname '{0}' conflicting with a {1} of the name {2} in {3},字段名 '{0}' 与 {3} 中名为 {2} 的 {1} 冲突
 Fieldname called {0} must exist to enable autonaming,必须存在名为 {0} 的字段名才能启用自动命名
 Fieldname is limited to 64 characters ({0}),字段名被限制为64个字符（{0}）
-Fieldname not set for Custom Field,自定义字段之字段名称未设定
+Fieldname not set for Custom Field,自定义字段之字段名称未设置
 Fieldname which will be the DocType for this link field.,字段名这将是在DOCTYPE这个链接字段。
 Fieldname {0} appears multiple times,字段名 {0} 出现多次
 Fieldname {0} cannot have special characters like {1},字段名 {0} 不能包含特殊字符如 {1}
@@ -5394,7 +5412,7 @@ Filename,文件名
 Files,档
 Fill the form and save it,填写表单并保存
 Filled,已填写
-Filter,过滤器
+Filter,筛选
 Filter Area,筛选区域
 Filter Based On,过滤基于
 Filter Data,过滤数据
@@ -5417,7 +5435,7 @@ Filtered By,筛选者
 Filtered Records,已筛选记录
 "Filtered by ""{0}""",通过过滤“{0}”
 Filtered by: {0}.,筛选条件：{0}。
-Filters,筛选器
+Filters,筛选条件
 Filters Configuration,筛选条件配置
 Filters Display,显示过滤器
 Filters Editor,筛选条件编辑器
@@ -5496,7 +5514,7 @@ First Seen,首次出现
 First Success Message,第一个成功消息
 First data column must be blank.,第一个数据列必须为空。
 First set the name and save the record.,首先设置名称并保存记录。
-"Fiscal Regime is mandatory, kindly set the fiscal regime in the company {0}",财政制度是强制性的，请在公司{0}设定财政制度
+"Fiscal Regime is mandatory, kindly set the fiscal regime in the company {0}",财政制度是强制性的，请在公司{0}设置财政制度
 Fiscal Year,会计年度
 Fiscal Year (requires ERPNext to be installed),会计年度（需要安装 ERPNext）
 Fiscal Year Company,公司财年
@@ -5861,8 +5879,9 @@ Generate E-Invoice,生成电子发票
 Generate Invoice At,发票生成时机
 Generate Keys,生成密钥
 Generate New Invoices Past Due Date,为逾期订单生成新发票
-Generate New Report,生成新报告
+Generate New Report,生成新报表
 Generate Random Password,生成随机密码
+Generate Report,生成报表
 Generate Schedule,生成排期表
 Generate Separate Documents For Each Assignee,为每个受理人生成单独的单据
 Generate Stock Closing Entry,生成库存结算分录
@@ -6063,7 +6082,7 @@ Gross Weight,毛重
 Gross Weight UOM,毛重单位
 Gross Year To Date,年度累计总收入
 Gross Year To Date(Company Currency),年度累计总收入（公司币种）
-Gross and Net Profit Report,净毛利报告
+Gross and Net Profit Report,净毛利报表
 Group,组
 Group By,分组
 Group By Based On,分组基于
@@ -6090,7 +6109,7 @@ Grouped by <span style='font-weight:600;'>{0}</b>,按 <span style='font-weight:6
 Groups,组
 Growth View,增长视图
 Guests are not allowed to upload files for {0} Doctype,访客不允许为 {0} 单据类型上传文件
-Guidelines and policies on vulnerability reporting. Defaults to `https://frappe.io/security`,关于漏洞报告的指南和政策。默认为 `https://frappe.io/security`
+Guidelines and policies on vulnerability reporting. Defaults to `https://frappe.io/security`,关于漏洞报表的指南和政策。默认为 `https://frappe.io/security`
 H - F,H - F
 HEAD,HEAD
 HERE,此处
@@ -6166,7 +6185,7 @@ Health Insurance,健康保险
 Health Insurance Name,健康保险名称
 Health Insurance No,健康保险编号
 Health Insurance Provider,健康保险提供商
-Health Report,健康报告
+Health Report,健康报表
 Heatmap,热力图
 Hectare,公顷
 Hectogram/Litre,百克/升
@@ -6206,6 +6225,7 @@ Hidden Fields,隐藏字段
 Hidden columns include: <br> {0},隐藏的列包括：<br> {0}
 Hidden list maintaining the list of contacts linked to Shareholder,隐藏列表维护链接到股东的联系人列表
 Hide,隐藏
+Hide All,隐藏全部
 Hide Block,隐藏块
 Hide Border,隐藏边框
 Hide Buttons,隐藏按钮
@@ -6230,7 +6250,7 @@ Hide Weekends,隐藏周末
 Hide descendant records of <b>For Value</b>.,隐藏 <b>针对值</b> 的后代记录。
 Hide details,隐藏详情
 Hide footer,隐藏页脚
-Hide footer in auto email reports,在自动电子邮件报告中隐藏页脚
+Hide footer in auto email reports,在自动电子邮件报表中隐藏页脚
 Hide footer signup,隐藏页脚注册
 Hide navbar,隐藏导航栏
 Hide timesheets,隐藏工时表
@@ -6252,7 +6272,7 @@ Holiday List for Optional Leave,可选假期节假日列表
 Holidays,假期
 Holidays this Month.,本月节假日
 Holidays this Week.,本周节假日
-Home,家
+Home,首页
 Home Page,首页
 Home Settings,首页设置
 Home/Test Folder 1,首页/测试文件夹1
@@ -6276,7 +6296,7 @@ House rented dates required for exemption calculation,房租免税计算需提�
 House rented dates should be atleast 15 days apart,房租起止日期至少间隔15天
 How Pricing Rule is applied?,定价规则如何应用？
 How frequently?,频率？
-"How should this currency be formatted? If not set, will use system defaults",此货币使用何种格式？如果没有设定，将使用系统预设值。
+"How should this currency be formatted? If not set, will use system defaults",此货币使用何种格式？如果没有设置，将使用系统预设值。
 Hrs,时长(小时)
 Human Resources,人力资源
 Human-readable name intended for display to the end user.,用于显示给最终用户的可读名称。
@@ -6288,7 +6308,7 @@ I - K,I - K
 IBAN,IBAN
 ID,ID
 ID (name),ID（名称）
-ID (name) of the entity whose property is to be set,其属性是要设定的实体的ID（名称）
+ID (name) of the entity whose property is to be set,其属性是要设置的实体的ID（名称）
 "IDs must contain only alphanumeric characters, not contain spaces, and should be unique.",ID 必须只包含字母数字字符，不包含空格，并且应该是唯一的。
 IFSC,IFSC代码
 IFSC Code,IFSC代码
@@ -6370,7 +6390,7 @@ If enabled then system won't override the picked qty / batches / serial numbers 
 "If enabled, system will allow user to deliver the entire quantity of the finished goods produced against the Subcontracting Inward Order. If disabled, system will allow delivery of only the ordered quantity.",若启用，系统将允许用户交付针对外包收货订单生产的全部产成品数量。若禁用，系统仅允许交付订购数量。
 "If enabled, the amount will be excluded from accounting entries during Journal Entry creation.",若启用，该金额将在日记账凭证创建时排除在会计分录入账之外。
 "If enabled, the component will be considered as a tax component and the amount will be auto-calculated as per the configured income tax slabs",启用后，该组件视为税务组件并按配置的所得税税级自动计算金额
-"If enabled, the component will be considered in the Income Tax Deductions report",启用后，该组件将计入所得税扣除报告
+"If enabled, the component will be considered in the Income Tax Deductions report",启用后，该组件将计入所得税扣除报表
 "If enabled, the component will not be displayed in the salary slip if the amount is zero",启用后，当金额为零时该组件不显示在工资条中
 "If enabled, the consolidated invoices will have rounded total disabled",如勾选合并后的发票禁用小数精度尾差
 "If enabled, the document is marked as seen, the first time a user opens it",如果启用，单据将在用户首次打开时标记为已查看
@@ -6445,7 +6465,7 @@ If user is the owner,如果用户是所有者
 "If you have any questions, reach out to your system administrator.",如有任何问题，请联系您的系统管理员。
 "If you have recently restored the site, you may need to copy the site_config.json containing the original encryption key.",如果您最近恢复了站点，可能需要复制包含原始加密密钥的 site_config.json。
 "If you need to reconcile particular transactions against each other, then please select accordingly. If not, all the transactions will be allocated in FIFO order.",可以手工勾选匹配，否则按时间先后自动匹配
-"If you set this, this Item will come in a drop-down under the selected parent.",如果您设定此项，这个项目会存在于选定的父物件的下拉选单中。
+"If you set this, this Item will come in a drop-down under the selected parent.",如果您设置此项，这个项目会存在于选定的父物件的下拉选单中。
 "If you still want to proceed, please enable {0}.",请勾选{0}后继续
 "If you think this is unauthorized, please change the Administrator password.",如果你认为这是未经授权的，请更改管理员密码。
 "If you {0} {1} quantities of the item {2}, the scheme {3} will be applied on the item.",如果增加物料 {2} 数量 {0} {1}，则可适用动态定价规则 {3}
@@ -6494,7 +6514,7 @@ Impersonating {0},正在模拟 {0}
 Implement `clear_old_logs` method to enable auto error clearing.,实现 `clear_old_logs` 方法以启用自动错误清除。
 Implementation Partner,实施服务商
 Implicit,含蓄
-Import,输入
+Import,导入
 Import Attendance,导入考勤
 Import Chart of Accounts from a csv file,从csv文件导入科目表
 Import Data,导入数据
@@ -6700,8 +6720,9 @@ Individual GL Entry cannot be cancelled.,单个总账分录无法取消
 Individual Stock Ledger Entry cannot be cancelled.,单个库存分类账分录无法取消
 Industry,行业
 Industry Type,行业类型
-Info,资讯
+Info,信息
 Info:,资讯：
+Information,信息
 Initial Email Notification Sent,第一封电子邮件通知已发送
 Initial Sync Count,初始同步计数
 Initialize Summary Table,初始化汇总表
@@ -6711,7 +6732,7 @@ Input existing role name if you would like to extend it with access of another r
 Insert,插入
 Insert Above,在上方插入
 Insert After,于后方插入
-Insert After cannot be set as {0},插入不能设定为后{0}
+Insert After cannot be set as {0},插入不能设置为后{0}
 "Insert After field '{0}' mentioned in Custom Field '{1}', with label '{2}', does not exist",插入自定义字段“{0}”提到的后场“{1}”，标记为“{2}”不存在
 Insert Below,在下方插入
 Insert Column Before {0},在 {0} 之前插入列
@@ -6768,7 +6789,7 @@ Integration Details,系统集成信息
 Integration ID,集成ID
 Integration Request,集成请求
 Integrations,整合
-Integrations can use this field to set email delivery status,整合可以使用此字段来设定邮件发送状态
+Integrations can use this field to set email delivery status,整合可以使用此字段来设置邮件发送状态
 Inter,内部
 Inter Company Invoice Reference,关联公司发票参考
 Inter Company Journal Entry,关联公司日记账凭证
@@ -7489,7 +7510,7 @@ Landed Cost Help,到岸成本帮助
 Landed Cost Id,到岸成本ID
 Landed Cost Item,到岸成本明细
 Landed Cost Purchase Receipt,到岸成本采购入库
-Landed Cost Report,到岸成本报告
+Landed Cost Report,到岸成本报表
 Landed Cost Taxes and Charges,到岸成本税费
 Landed Cost Vendor Invoice,到岸成本供应商发票
 Landed Cost Voucher,到岸成本凭证
@@ -7799,12 +7820,12 @@ Load Balancing,负载均衡
 Load More,加载更多
 Load More Communications,加载更多沟通
 Load more,加载更多
-Loading,载入中
+Loading,加载中
 Loading Filters...,正在加载筛选条件...
 Loading Invoices! Please Wait...,正在加载发票，请稍候...
 Loading error stats...,正在加载错误统计...
 Loading import file...,正在加载导入文件...
-Loading...,载入中...
+Loading...,加载中...
 Loan,借款
 Loan Account,贷款账户
 Loan End Date,借款结束日期
@@ -8068,6 +8089,8 @@ Mark as In Progress,标记为进行中
 Mark as Read,标记为已读
 Mark as Spam,标记为垃圾邮件
 Mark as Unread,标记为未读
+Mark as read,标记为已读
+Mark as unread,标记为未读
 Mark as {0},标记为{0}
 Mark attendance as {0} for {1} on selected dates?,确认将{1}在所选日期标记为{0}？
 Mark attendance based on 'Employee Checkin' for Employees assigned to this shift.,根据'员工签到'记录为该班次员工标记考勤
@@ -8088,10 +8111,12 @@ Marking Attendance,正在记录考勤
 Married,已婚
 Mask,掩码
 Mass Mailing,简讯
-Master,主
+Master,主数据
+Master Data,主数据
 Master Production Schedule,主生产计划
 Master Production Schedule Item,主生产计划项
 Masters,主数据
+Masters & Reports,主数据与报表
 Material,物料
 Material Consumption,工单耗用
 Material Consumption for Manufacture,工单耗用
@@ -8115,7 +8140,7 @@ Material Requests,物料需求
 Material Requests Required,需要物料申请
 Material Requests for which Supplier Quotations are not created,无报价物料需求
 Material Requirements Planning,物料需求计划
-Material Requirements Planning Report,物料需求计划报告
+Material Requirements Planning Report,物料需求计划报表
 Material Returned from WIP,原材料已退回
 Material Transfer,直接调拨
 Material Transfer (In Transit),直接调拨(在途)
@@ -8440,7 +8465,7 @@ Must be a publicly accessible Google Sheets URL,必须是公开访问的 Google 
 Must be a publicly accessible Google Sheets URL and adding Bank Account column is necessary for importing via Google Sheets,必须是可公开访问的Google表格URL，且需添加银行账户列以便通过Google表格导入
 "Must be enclosed in '()' and include '{0}', which is a placeholder for the user/login name. i.e. (&(objectclass=user)(uid={0}))",必须用 '()' 括起来并包含 '{0}'，这是用户/登录名的占位符。例如 (&(objectclass=user)(uid={0}))
 "Must be of type ""Attach Image""",类型必须为“附加图片”
-Must have report permission to access this report.,必须具有报告权限访问此报告。
+Must have report permission to access this report.,必须具有报表权限访问此报表。
 Must specify a Query to run,必须指定一个欲执行查询
 Mute Email,静音电子邮件
 Mute Sounds,关闭声音
@@ -8475,8 +8500,9 @@ Names and surnames by themselves are easy to guess.,姓名本身容易被猜到�
 Naming,命名
 "Naming Options:\n<ol><li><b>field:[fieldname]</b> - By Field</li><li><b>naming_series:</b> - By Naming Series (field called naming_series must be present)</li><li><b>Prompt</b> - Prompt user for a name</li><li><b>[series]</b> - Series by prefix (separated by a dot); for example PRE.#####</li>\n<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - Replace all braced words (fieldnames, date words (DD, MM, YY), series) with their value. Outside braces, any characters can be used.</li></ol>",命名选项：\n<ol><li><b>field:[字段名]</b> - 按字段</li><li><b>naming_series:</b> - 按命名系列（必须存在名为 naming_series 的字段）</li><li><b>Prompt</b> - 提示用户输入名称</li><li><b>[系列]</b> - 按前缀的系列（以点分隔）；例如 PRE.#####</li>\n<li><b>format:EXAMPLE-{MM}morewords{字段名1}-{字段名2}-{#####}</b> - 将所有带括号的词（字段名、日期词（DD、MM、YY）、系列）替换为其值。括号外可以使用任何字符。</li></ol>
 Naming Rule,命名规则
-Naming Series,命名系列
+Naming Series,命名规则
 Naming Series Prefix,单据编号模板前缀
+Naming Series Settings,命名规则设置
 Naming Series is mandatory,命名规则为必填项
 Naming Series mandatory,命名系列强制性
 Naming Series updated,命名系列已更新
@@ -8542,7 +8568,7 @@ Net pay cannot be negative,净工资不可为负数
 Net total calculation precision loss,净总计计算精度损失
 Network Printer Settings,网络打印机设置
 Never,从不
-New,新增
+New,新建
 New Account Name,新科目名称
 New Activity,新活动
 New Address,新建地址
@@ -8600,7 +8626,8 @@ New Purchase Orders,新采购订单
 New Quality Procedure,新的质量程序
 New Quick List,新建快速列表
 New Quotations,新报价
-New Report name,新的报告名称
+New Report,新建报表
+New Report name,新的报表名称
 New Role,新角色
 New Sales Invoice,新销售发票
 New Sales Orders,新销售订单
@@ -8625,7 +8652,7 @@ New shift assignments will be created after this date.,新班次分配将在此�
 New task,新任务
 New updates are available,有可用更新
 New users will have to be manually registered by system managers.,新用户需要由系统管理员手动注册。
-New value to be set,被设定的新值
+New value to be set,被设置的新值
 New {0},新的{0}
 New {0} Created,已创建新 {0}
 New {0} pricing rules are created,创建新{0}动态规则
@@ -8637,7 +8664,7 @@ Newly created user {0} has no roles enabled.,新创建的用户 {0} 未启用任
 Newsletter Manager,通讯经理
 Newspaper Publishers,报纸出版商
 Newton,牛顿
-Next,下一个
+Next,下一步
 Next 14 Days,未来 14 天
 Next 30 Days,未来 30 天
 Next 6 Months,未来 6 个月
@@ -8671,6 +8698,7 @@ No Copy,没有复制
 No Customer found for Inter Company Transactions which represents company {0},未找到代表公司{0}的关联公司交易客户
 No Customers found with selected options.,无满足筛选条件的客户
 No Data,无数据
+No Data Found,未找到数据
 No Data...,无数据...
 No Delivery Note selected for Customer {},没有为客户{}选择销售出库
 No Email Account,没有电子邮件账户
@@ -8711,8 +8739,10 @@ No Preview Available,无可用预览
 No Printer is Available.,无可用打印机。
 No Purchase Orders were created,未创建采购订单
 No RQ Workers connected. Try restarting the bench.,无 RQ 工作进程连接。请尝试重启 bench。
+No Records Found,未找到记录
 No Records for these settings.,无满足筛选条件的数据
-No Results,没有结果
+No Results,无结果
+No Results Found,未找到结果
 No Results found,未找到结果
 No Roles Specified,未指定角色
 No Salary Slip found for Employee: {0},未找到员工{0}的工资条
@@ -8816,6 +8846,7 @@ No more updates,无更多更新
 No naming series defined,未定义命名系列
 "No need for symbols, digits, or uppercase letters.",无需符号，数字和大写字母。
 No new Google Contacts synced.,未同步新的 Google 通讯录。
+No notifications,无通知
 No of Columns,无柱
 No of Deliveries,交货次数
 No of Docs,单据数量
@@ -8885,7 +8916,7 @@ No.,序号
 No. of Employees,员工数
 No. of parallel job cards which can be allowed on this workstation. Example: 2 would mean this workstation can process production for two Work Orders at a time.,本工作站允许的并行作业卡数量。例如：2表示该工作站可同时处理两个工单的生产
 Nomatim,Nomatim
-Non Conformance,不合格报告单
+Non Conformance,不合格报表单
 Non Depreciable Category,非折旧类目
 Non Diary,非日志
 Non Negative,非负
@@ -8923,7 +8954,7 @@ Not Permitted,不允许
 Not Permitted to read {0},无权读取 {0}
 Not Published,未发布
 Not Requested,未请求
-Not Saved,未储存
+Not Saved,未保存
 Not Seen,没见过
 Not Sent,未发送
 Not Set,未设置
@@ -8955,7 +8986,7 @@ Not permitted,无权限
 Not permitted to make Purchase Orders,无权创建采购订单
 Not permitted to view {0},无权查看 {0}
 Not permitted. {0}.,无权限。{0}。
-Note,注释
+Note,备注
 Note Seen By,注意看通过
 Note:,备注：
 Note: Automatic log deletion only applies to logs of type <i>Update Cost</i>,注：自动日志删除仅适用于<i>更新成本</i>类型的日志
@@ -9149,7 +9180,7 @@ Onboarding Status,入门引导状态
 Onboarding Step,入门引导步骤
 Onboarding Step Map,入门引导步骤映射
 Onboarding complete,入门引导完成
-"Once set, this invoice will be on hold till the set date",一旦设置，该发票将被临时冻结至设定的日期
+"Once set, this invoice will be on hold till the set date",一旦设置，该发票将被临时冻结至设置的日期
 "Once submitted, submittable documents cannot be changed. They can only be Cancelled and Amended.",提交后，可提交的单据无法更改。只能取消和修订。
 "Once you have set this, the users will only be able access documents (eg. Blog Post) where the link exists (eg. Blogger).",设置此项后，用户将只能访问存在链接（例如博客作者）的单据（例如博客文章）。
 One Last Step,最后一步
@@ -9163,7 +9194,7 @@ Only 'Payment Entries' made against this advance account are supported.,仅支�
 Only 200 inserts allowed in one request,只有200将允许一个请求
 Only Administrator can delete Email Queue,只有管理员可以删除邮件队列
 Only Administrator can edit,只有管理员可以编辑
-Only Administrator can save a standard report. Please rename and save.,只有管理员可以保存一个标准的报告。请重新命名并保存。
+Only Administrator can save a standard report. Please rename and save.,只有管理员可以保存一个标准的报表。请重新命名并保存。
 Only Administrator is allowed to use Recorder,仅管理员允许使用记录器
 Only Allow Edit For,只允许编辑
 Only Approvers can Approve this Request.,仅审批人可批准此请求
@@ -9210,7 +9241,7 @@ Only {0} Goals can be {1},仅{0}类型目标可{1}
 Only {0} are supported,仅支持{0}
 Only {0} emailed reports are allowed per user.,每用户只允许 {0} 个邮件报表。
 Oops! Something went wrong.,哎呀！出了点问题。
-Open,开
+Open,打开
 Open & Approved,开放且已批准
 Open Activities HTML,打开活动HTML
 Open Awesomebar,打开智能搜索栏
@@ -9259,7 +9290,7 @@ Open {0},打开{0}
 OpenID Configuration,OpenID 配置
 OpenID Configuration fetched successfully!,成功获取 OpenID 配置！
 OpenLDAP,OpenLDAP
-Opened,开业
+Opened,已打开
 Opening,期初
 Opening & Closing,POS机交接班
 Opening (Cr),期初（贷方 ）
@@ -10085,7 +10116,7 @@ Please Set Chart,请设置图表
 Please Set Priority,请设置优先级
 Please Set Supplier Group in Buying Settings.,请设置供应商组采购设置。
 Please Specify Account,请指定账户
-Please Update SMS Settings,请更新简讯设定
+Please Update SMS Settings,请更新简讯设置
 Please add 'Supplier' role to user {0}.,请为用户{0}添加'供应商'角色
 Please add Mode of payments and opening balance details.,请添加付款方式和期初余额明细
 Please add Request for Quotation to the sidebar in Portal Settings.,请在门户设置中将报价请求添加到侧边栏
@@ -10244,7 +10275,7 @@ Please reduce {0} to avoid shift time overlapping with itself,请调整{0}以避
 Please refresh or reset the Plaid linking of the Bank {}.,请刷新或重置银行{}的Plaid链接
 Please refresh to get the latest document.,请更新以取得最新的文档。
 Please remove the printer mapping in Printer Settings and try again.,请在打印机设置中移除打印机映射后重试。
-Please save before attaching.,请安装前储存。
+Please save before attaching.,附加前请先保存。
 Please save before proceeding.,请先保存
 Please save first,请先保存
 Please save the document before assignment,请保存转让前的文件
@@ -10416,8 +10447,8 @@ Please set default template for Leave Approval Notification in HR Settings.,请�
 Please set default template for Leave Status Notification in HR Settings.,请在HR设置中设置假期状态通知默认模板
 Please set default {0} in Company {1},请在公司{1}主数据中设置默认科目{0}
 Please set filter based on Item or Warehouse,根据物料或仓库请设置过滤条件
-Please set filters,请设定筛选条件
-Please set filters value in Report Filter table.,请设置在报告过滤表过滤器值。
+Please set filters,请设置筛选条件
+Please set filters value in Report Filter table.,请设置在报表过滤表过滤器值。
 Please set one of the following:,请设置以下其中一项：
 Please set opening number of booked depreciations,请设置已登记折旧的期初数量。
 Please set recurring after saving,请保存后设置自动重复参数
@@ -10427,7 +10458,7 @@ Please set the Customer Address,请设置客户地址
 Please set the Date Of Joining for employee {0},请设置员工{0}的入职日期
 Please set the Default Cost Center in {0} company.,请在{0}公司中设置默认成本中心。
 Please set the Holiday List.,请设置节假日列表
-Please set the Item Code first,请先设定物料代码
+Please set the Item Code first,请先设置物料代码
 Please set the Target Warehouse in the Job Card,请在工单中设置目标仓库
 Please set the WIP Warehouse in the Job Card,请在工单中设置在制品仓库
 Please set the cost center field in {0} or setup a default Cost Center for the Company.,请在{0}设置成本中心字段或为公司设置默认成本中心
@@ -10485,6 +10516,7 @@ Please update {} before continuing.,请在继续前更新 {}。
 Please use a valid LDAP search filter,请使用有效的 LDAP 搜索过滤器
 Please use following links to download file backup.,请使用以下链接下载文件备份。
 Please visit https://frappecloud.com/docs/sites/migrate-an-existing-site#encryption-key for more information.,请访问 https://frappecloud.com/docs/sites/migrate-an-existing-site#encryption-key 获取更多信息。
+Please wait...,请稍候...
 Point of Sale,销售点
 Point-of-Sale Profile,POS配置
 Policy,策略
@@ -10550,7 +10582,7 @@ Preferred Email,首选邮箱
 Preferred Language,首选语言
 Preferred Shipping Address,偏好的送货地址
 Prefix,前缀
-Prepared Report,准备报告
+Prepared Report,准备报表
 Prepared Report Analytics,预备报表分析
 Prepared Report User,预备报表用户
 Prepared report render failed,预备报表渲染失败
@@ -10581,7 +10613,7 @@ Preview of generated names,生成名称的预览
 Preview on {0},在 {0} 上预览
 Preview type,预览类型
 Preview:,预览：
-Previous,上一笔
+Previous,上一步
 Previous Document,上一单据
 Previous Financial Year is not closed,上一财年未关闭
 Previous Submission,上次提交
@@ -10648,7 +10680,7 @@ Print Format For,打印格式用于
 Print Format Help,打印格式求助
 Print Format Type,打印格式类型
 Print Format Type should be Jinja.,打印格式类型应为Jinja
-Print Format must be an enabled Report Print Format matching the selected Report.,打印格式必须是已启用且与所选报告匹配的报告打印格式
+Print Format must be an enabled Report Print Format matching the selected Report.,打印格式必须是已启用且与所选报表匹配的报表打印格式
 Print Format not found,未找到打印格式
 Print Format {0} is disabled,打印格式{0}被禁用
 Print Heading,打印标题
@@ -10732,12 +10764,12 @@ Process leave encashment via a separate Payment Entry instead of Salary Slip,通
 Process {0} Shift Request(s) as <b>{1}</b>?,是否将{0}个班次申请处理为<b>{1}</b>？
 Processed BOMs,已处理物料清单
 Processes,流程
-Processing,处理
+Processing,处理中
 Processing Requests,处理请求
 Processing Requests...,正在处理请求...
 Processing XML Files,处理XML文件
 Processing of Shift Requests has been queued. It may take a few minutes.,班次申请处理已加入队列，可能需要几分钟
-Processing...,处理...
+Processing...,处理中...
 Procurement,采购
 Procurement Tracker,物料供应追踪表
 Produce Qty,生产数量
@@ -10796,6 +10828,7 @@ Project Manager,项目经理
 Project Name,项目名称
 Project Profitability,项目盈利能力
 Project Progress:,项目进度：
+Project Settings,项目设置
 Project Start Date,项目开始日期
 Project Status,项目状态
 Project Summary,项目汇总
@@ -11242,7 +11275,7 @@ Receivable Account,应收账款
 Receivable/Payable Account,应收/应付科目
 Receivable/Payable Account: {0} doesn't belong to company {1},应收/应付账户：{0}不属于公司{1}
 Receivables,应收账款
-Receive,收款
+Receive,接收
 Receive from Customer,从客户处接收
 Received,已接收
 Received Amount,收款金额
@@ -11265,7 +11298,7 @@ Receiver By Role,按角色的收件人
 Receiver List,接收人列表
 Receiver List is empty. Please create Receiver List,接收人列表为空。请创建接收人列表
 Receiver Parameter,收受方参数
-Receiving,接收
+Receiving,接收中
 Recent Attendance Requests,最近考勤申请
 Recent Expenses,最近费用
 Recent Leaves,最近假期
@@ -11384,7 +11417,7 @@ Referrer,来源
 Referrer Details,推荐人详情
 Referrer Name,推荐人姓名
 Reflections,总结
-Refresh,重新载入
+Refresh,刷新
 Refresh All,全部刷新
 Refresh Google Sheet,刷新 Google Sheet
 Refresh List,刷新列表
@@ -11427,7 +11460,7 @@ Relieving Date Missing,缺失离职日期
 Relink,重新链接
 Relink Communication,重新链接通讯
 Relinked,重新链接
-Reload,重新载入
+Reload,重新加载
 Reload File,重新加载文件
 Reload List,重新加载列表
 Reload Report,重新加载报表
@@ -11523,46 +11556,49 @@ Reply All,全部回复
 Reply To Address,回复地址
 Reply To email is required,需要回复邮件
 Reply-To Addresses,回复地址
-Report,报告
+Report,报表
 Report Builder,报表生成器
 Report Column,报表列
+Report Customization,报表定制
 Report Date,报表日期
 Report Description,报表描述
 Report Document Error,报表单据错误
 Report Error,出错提示
 Report Filter,报表筛选条件
-Report Filters,报告过滤器
-Report Hide,报告隐藏
+Report Filters,报表过滤器
+Report Hide,报表隐藏
 Report Information,报表信息
-Report Manager,报告管理
-Report Name,报告名称
+Report Manager,报表管理
+Report Name,报表名称
 "Report Name, Report Field and Fucntion are required to create a number card",创建数字卡片需要报表名称、报表字段和函数
 Report Ref DocType,报表参考单据类型
+Report Reference,报表引用
 Report Reference Doctype,报表参考单据类型
-Report Type,报告类型
+Report Tree,报表树
+Report Type,报表类型
 Report Type is mandatory,报表类型必填
 Report View,报表视图
 Report an Issue,提交一个问题
-Report bug,报告错误
-Report cannot be set for Single types,报告不能单类型设置
+Report bug,报表错误
+Report cannot be set for Single types,报表不能单类型设置
 "Report has no data, please modify the filters or change the Report Name",报表无数据，请修改筛选条件或更改报表名称
 "Report has no numeric fields, please change the Report Name",报表无数值字段，请更改报表名称
 "Report initiated, click to view status",报表已启动，点击查看状态
 Report limit reached,已达到报表限制
 Report timed out.,报表超时。
 Report updated successfully,报表更新成功
-Report was not saved (there were errors),报告没有被保存（有错误）
+Report was not saved (there were errors),报表没有被保存（有错误）
 Report with more than 10 columns looks better in Landscape mode.,超过 10 列的报表在横向模式下显示更好。
-Report {0},报告{0}
+Report {0},报表{0}
 Report {0} deleted,报表 {0} 已删除
-Report {0} is disabled,报告{0}无效
+Report {0} is disabled,报表{0}无效
 Report {0} saved,报表 {0} 已保存
-Report:,报告：
-Reporting Currency,报告货币
-Reporting Currency Exchange Not Found,未找到报告货币汇率
-Reporting Currency Exchange Rate,报告货币汇率
-Reports,报告
-Reports & Masters,报表和主数据
+Report:,报表：
+Reporting Currency,报表货币
+Reporting Currency Exchange Not Found,未找到报表货币汇率
+Reporting Currency Exchange Rate,报表货币汇率
+Reports,报表
+Reports & Masters,报表与主数据
 Reports To,汇报对象
 Reports already in Queue,已在队列中的报表
 Reports to,上级主管
@@ -11684,7 +11720,7 @@ Reserved for manufacturing,工单发料预留
 Reserved for sale,销售出库预留
 Reserved for sub contracting,委外发料预留
 Reserving Stock...,正在预留库存...
-Reset,重启
+Reset,重置
 Reset All,全部重置
 Reset All Customizations,重置所有自定义
 Reset Changes,重置更改
@@ -11744,8 +11780,9 @@ Restart Subscription,重新启动订阅
 Restore,恢复
 Restore Asset,恢复资产
 Restore Original Permissions,恢复原始权限
+Restore Version,恢复版本
 Restore to default settings?,恢复到默认设置？
-Restored,恢复
+Restored,已恢复
 Restoring Deleted Document,正在恢复已删除的单据
 Restrict,限制
 Restrict Backdated Leave Application,限制补请假申请
@@ -11841,7 +11878,7 @@ Role 'Desk User' will be given to all system users.,角色'桌面用户'将授�
 Role Allowed to Create Backdated Leave Application,允许创建补请假申请的角色
 Role Allowed to Over Deliver/Receive,允许超量出/入库的角色
 Role Name,角色名称
-Role Permission for Page and Report,角色权限页和报告
+Role Permission for Page and Report,角色权限页和报表
 Role Permissions,角色权限
 Role Permissions Manager,角色权限管理
 Role Profile,角色配置
@@ -12200,7 +12237,7 @@ SMS Center,短信中心
 SMS Gateway URL,短信闸道的URL
 SMS Log,短信日志
 SMS Parameter,短信参数
-SMS Settings,简讯设定
+SMS Settings,简讯设置
 SMS sent successfully,短信发送成功
 SMS was not sent. Please contact Administrator.,短信未发送。请联系管理员。
 SMTP Server is required,需要 SMTP 服务器
@@ -12391,18 +12428,24 @@ Sanctioned,核准
 Sanctioned Amount,批准金额
 Sanctioned Amount cannot be greater than Claim Amount in Row {0}.,行号{0}中批准金额不可超过报销金额
 Saturday,星期六
-Save,储存
+Save,保存
 Save Anyway,仍然保存
 Save As,另存为
 Save Changes and Load New Invoice,保存更改并载入新发票
 Save Customizations,保存自定义
+Save Draft,保存草稿
 Save Report,保存报表
+Save and Close,保存并关闭
+Save and New,保存并新建
+Save and Next,保存并下一个
+Save as,另存为
+Save changes,保存更改
 Save filters,保存筛选条件
 Save on Completion,完成时保存
 Save the document.,保存单据。
-Saved,已储存
+Saved,已保存
 Saved Filters,已保存的筛选条件
-Saving,储存中
+Saving,保存中
 Saving Changes...,正在保存更改...
 Saving Customization...,正在保存自定义...
 Saving Sidebar,正在保存侧边栏
@@ -12472,7 +12515,7 @@ Scrap date cannot be before purchase date,废料日期不能早于购买日期
 Scrapped,已报废
 Script,脚本
 Script Manager,脚本管理器
-Script Report,脚本报告
+Script Report,脚本报表
 Script Type,脚本类型
 Script to attach to all web pages.,附加到所有网页的脚本。
 Scripting,脚本
@@ -12541,6 +12584,7 @@ Seen By Table,通过看表
 Select,选择
 Select Accounting Dimension.,选择会计维度。
 Select All,全选
+Select All Rows,选择所有行
 Select Alternate Item,选替代物料
 Select Alternative Items for Sales Order,选择供销售订单使用的替代项目
 Select Applicable Components for Overtime Type,选择加班类型适用的组件
@@ -12601,6 +12645,7 @@ Select Mandatory,选择必填
 Select Module,选择模块
 Select Month for LWP Reversal,选择LWP冲销月份
 Select Network Printer,选择网络打印机
+Select None,取消选择
 Select Page,选择页面
 Select Payment Account to make Bank Entry,选择支付账户以创建银行分录
 Select Payroll Frequency.,选择薪资频率
@@ -12690,6 +12735,7 @@ Select your Leave Approver i.e. the person who approves or rejects your leaves.,
 Select your weekly off day,选择每周休息日
 Select {0},选择{0}
 "Select, to make the customer searchable with these fields",设置客户首选联系人后，可以使用手机号过滤客户
+Selected,已选择
 Selected POS Opening Entry should be open.,选定的POS期初条目应为开启状态。
 Selected Price List should have buying and selling fields checked.,价格表主数据中应勾选采购和销售。
 Selected Print Format does not exist.,所选打印格式不存在。
@@ -12774,9 +12820,9 @@ Sender Field should have Email in options,发件人字段的选项中应包含�
 Sender Name,发件人姓名
 Sender Name Field,发件人姓名字段
 Sendgrid,Sendgrid
-Sending,发出
+Sending,发送中
 Sending Failed due to missing email information for employee(s): {1},发送失败，缺失员工邮箱信息：{1}
-Sent,已送出
+Sent,已发送
 Sent Folder Name,已发送文件夹名称
 Sent On,发送时间
 Sent Read Receipt,发送阅读回执
@@ -12845,8 +12891,9 @@ Serial and Batch Reservation,序列号与批号预留
 Serial and Batch Summary,序列号与批号报表
 Serial number {0} entered more than once,序列号{0}已多次输入
 Serial numbers unavailable for Item {0} under warehouse {1}. Please try changing warehouse.,仓库{1}下物料{0}的序列号不可用，请尝试更换仓库。
-Series,系列
+Series,编号前缀
 Series List for this Transaction,本交易系列表
+Series Settings,编号前缀设置
 Series Updated for {},{} 的系列已更新
 Series counter for {} updated to {} successfully,{} 的系列计数器已成功更新为 {}
 Series for Asset Depreciation Entry (Journal Entry),固定资产折旧凭证号模板（日记账凭证）
@@ -12928,7 +12975,7 @@ Set Leave Details,设置休假明细
 Set Level,设置级别
 Set Loyalty Program,设置忠诚度计划
 Set Naming Series options on your transactions.,在您的交易上设置命名系列选项。
-Set New Password,设定新密码
+Set New Password,设置新密码
 Set New Release Date,设置解除冻结日期
 Set Number of Backups,设置备份数量
 Set Operating Cost Based On BOM Quantity,工费成本基于产出数量
@@ -12949,9 +12996,9 @@ Set Role For,集角色
 Set Serial and Batch Bundle Naming Based on Naming Series,启用序列号/批号编号模板
 Set Source Warehouse,发料仓
 Set Target Warehouse,收料仓
-Set User Permissions,设定用户权限
+Set User Permissions,设置用户权限
 Set Valuation Rate Based on Source Warehouse,成本价基于发料仓
-Set Value,设定值
+Set Value,设置值
 Set Warehouse,仓码
 Set all private,全部设为私有
 Set all public,全部设为公开
@@ -13007,7 +13054,7 @@ Setting up Global Search documents.,正在设置全局搜索单据。
 Setting up company,创建公司
 Setting up your system,设置您的系统
 Setting {0} is required,必须设置{0}
-Settings,设定
+Settings,设置
 Settings Dropdown,设置下拉菜单
 Settings Missing,缺失配置
 Settings for Contact Us Page,联系我们页面设置
@@ -13016,7 +13063,7 @@ Settings for the About Us Page,关于我们页面设置
 Settle against Advances,冲抵预支款
 Settle all Payables and Receivables before submission,提交前需结清所有应收应付
 Settled,已结清
-Setup,设定
+Setup,初始化
 Setup > Customize Form,设置 > 自定义表单
 Setup > User,设置 > 用户
 Setup > User Permissions,设置 > 用户权限
@@ -13144,7 +13191,7 @@ Show Failed Logs,显示出错信息
 Show Fieldname (click to copy on clipboard),显示字段名（点击复制到剪贴板）
 Show First Document Tour,显示首个单据导览
 Show Form Tour,显示表单导览
-Show Full Error and Allow Reporting of Issues to the Developer,显示完整错误并允许向开发人员报告问题
+Show Full Error and Allow Reporting of Issues to the Developer,显示完整错误并允许向开发人员报表问题
 Show Full Form?,显示完整表单？
 Show Full Number,显示完整数字
 Show Future Payments,显示未来(报表记账日期后)付款金额
@@ -13176,7 +13223,7 @@ Show Preview Popup,显示预览弹窗
 Show Processlist,显示进程列表
 Show Protected Resource Metadata,显示受保护资源元数据
 Show Remarks,显示备注信息
-Show Report,显示报告
+Show Report,显示报表
 Show Return Entries,显示退货单
 Show Salary Slip,显示工资条
 Show Sales Person,显示业务员信息
@@ -13228,7 +13275,7 @@ Show zero values,显示零值
 Show {0},显示{0}
 Show {0} List,显示 {0} 列表
 Showing,显示中
-Showing only Numeric fields from Report,仅显示报告中的数字字段
+Showing only Numeric fields from Report,仅显示报表中的数字字段
 Showing only first {0} rows out of {1},仅显示 {1} 行中的前 {0} 行
 Sick Leave,病假
 Sidebar,侧边栏
@@ -13346,6 +13393,7 @@ Sorry! You are not permitted to view this page.,对不起！你不允许查看�
 "Sorry, this coupon code is no longer valid",抱歉，此优惠券代码已失效
 "Sorry, this coupon code's validity has expired",抱歉，此优惠券代码有效期已过
 "Sorry, this coupon code's validity has not started",抱歉，此优惠券代码尚未生效
+Sort,排序
 Sort Ascending,升序排序
 Sort Descending,降序排序
 Sort Field,排序字段
@@ -13430,6 +13478,7 @@ Standard Permissions,标准权限
 Standard Print Format cannot be updated,标准打印格式不能被更新
 Standard Print Style cannot be changed. Please duplicate to edit.,标准打印样式无法更改。请重复编辑。
 Standard Rated Expenses,标准税率费用
+Standard Report,标准报表
 Standard Reports cannot be deleted,标准报表无法删除
 Standard Reports cannot be edited,标准报表无法编辑
 Standard Selling,标准销售
@@ -13603,7 +13652,7 @@ Storage Usage By Table,按表的存储使用
 Store Attached PDF Document,存储附加的 PDF 单据
 Store the API secret securely. It won't be displayed again.,请安全地存储 API 密钥。它不会再次显示。
 Stores,仓库
-Stores the JSON of last known versions of various installed apps. It is used to show release notes.,储存最后安装版本之应用程序的JSON。用来显示发行说明。
+Stores the JSON of last known versions of various installed apps. It is used to show release notes.,保存最后安装版本之应用程序的JSON。用来显示发行说明。
 Stores the datetime when the last reset password key was generated.,存储上次生成密码重置密钥的日期时间。
 Straight Line,直线法
 Straight rows of keys are easy to guess,键的直排容易被猜中
@@ -13691,11 +13740,11 @@ Submit this document to confirm,提交该文件以确认
 Submit this to create the Employee record,提交以创建员工档案
 Submit your Quotation,提交您的报价单
 Submit {0} documents?,提交 {0} 个单据？
-Submitted,提交
+Submitted,已提交
 Submitted Document cannot be converted back to draft. Transition row {0},提交的文件不能被转换回起草。
 Submitted document cannot be converted back to draft while transitioning from <b>{0} State</b> to <b>{1} State</b>,从 <b>{0} 状态</b>转换到 <b>{1} 状态</b>时，已提交的单据无法转换回草稿
 Submitted via Payroll Entry,通过薪资录入提交
-Submitting,正在提交
+Submitting,提交中
 Submitting Salary Slips and creating Journal Entry...,提交工资条并创建日记账分录...
 Submitting Salary Slips...,正在提交工资条...
 Submitting {0},正在提交 {0}
@@ -13755,6 +13804,7 @@ Successfully updated {0} record.,成功更新{0}条记录
 "Successfully updated {0} records out of {1}. Click on Export Errored Rows, fix the errors and import again.",成功更新{1}条记录中的{0}条。单击“导出错误行”，修复错误后重新导入
 Successfully updated {0} records.,成功导入了{0}笔资料
 Successfully {0} {1} for the following employees:,成功为以下员工{0}{1}：
+Suffix,后缀
 Suggest Optimizations,建议优化
 Suggested Indexes,建议的索引
 Suggested Username: {0},建议用户名：{0}
@@ -13870,12 +13920,12 @@ System,系统
 System Console,系统控制台
 System Generated Fields can not be renamed,系统生成的字段无法重命名
 System Health,系统健康
-System Health Report,系统健康报告
-System Health Report Errors,系统健康报告错误
-System Health Report Failing Jobs,系统健康报告失败作业
-System Health Report Queue,系统健康报告队列
-System Health Report Tables,系统健康报告表
-System Health Report Workers,系统健康报告工作进程
+System Health Report,系统健康报表
+System Health Report Errors,系统健康报表错误
+System Health Report Failing Jobs,系统健康报表失败作业
+System Health Report Queue,系统健康报表队列
+System Health Report Tables,系统健康报表表
+System Health Report Workers,系统健康报表工作进程
 System In Use,使用中的系统
 System Logs,系统日志
 System Manager,系统管理器
@@ -14179,8 +14229,8 @@ The link you trying to login is invalid or expired.,您尝试登录的链接无�
 The lowest tier must have a minimum spent amount of 0. Customers need to be part of a tier as soon as they are enrolled in the program.,最低层级必须设置0消费金额。客户加入计划后即属于某个层级
 "The meta description is an HTML attribute that provides a brief summary of a web page. Search engines such as Google often display the meta description in search results, which can influence click-through rates.",元描述是 HTML 属性，提供网页的简短摘要。Google 等搜索引擎通常在搜索结果中显示元描述，这可能会影响点击率。
 "The meta image is unique image representing the content of the page. Images for this Card should be at least 280px in width, and at least 150px in height.",元图片是代表页面内容的唯一图片。此卡片的图片宽度应至少为 280px，高度至少为 150px。
-The metrics for this report are calculated based on the {0}. Please set {0} in {1}.,本报告指标基于{0}计算，请在{1}设置{0}
-The metrics for this report are calculated based on {0}. Please set {0} in {1}.,本报告指标基于{0}计算，请在{1}设置{0}
+The metrics for this report are calculated based on the {0}. Please set {0} in {1}.,本报表指标基于{0}计算，请在{1}设置{0}
+The metrics for this report are calculated based on {0}. Please set {0} in {1}.,本报表指标基于{0}计算，请在{1}设置{0}
 The name that will appear in Google Calendar,将显示在Google日历中的名称
 The net weight of this package. (calculated automatically as sum of net weight of items),包裹净重。（根据包裹内物料净重自动计算）
 The new BOM after replacement,替换后的物料清单
@@ -14301,7 +14351,7 @@ There were errors,有错误
 There were errors while creating the document. Please try again.,创建文档时出错。请再试一次。
 There were errors while sending email. Please try again.,还有在发送电子邮件是错误的。请再试一次。
 There were issues unlinking payment entry {0}.,无法取消付款凭证{0}核销
-"There were some errors setting the name, please contact the administrator",有一些错误设定的名称，请与管理员联络
+"There were some errors setting the name, please contact the administrator",有一些错误设置的名称，请与管理员联络
 There's no Employee with Salary Structure: {0}. Assign {1} to an Employee to preview Salary Slip,无员工使用薪资结构{0}。分配{1}给员工以预览工资条
 These announcements will appear inside a dismissible alert below the Navbar.,这些公告将显示在导航栏下方的可关闭提醒中。
 "These fields are used to provide resource server metadata to clients querying the ""well known protected resource"" end point.","这些字段用于向查询""已知受保护资源""端点的客户端提供资源服务器元数据。"
@@ -14407,7 +14457,7 @@ This module is scheduled for deprecation,此模块计划弃用
 This month,这个月
 This option can be checked to edit the 'Posting Date' and 'Posting Time' fields.,勾选此选项可编辑'过账日期'和'过账时间'字段
 "This report contains {0} rows and is too big to display in browser, you can {1} this report instead.",此报表包含 {0} 行，太大无法在浏览器中显示，您可以改为 {1} 此报表。
-This report was generated on {0},此报告是在{0}上生成的
+This report was generated on {0},此报表是在{0}上生成的
 This report was generated {0}.,此报表生成于 {0}。
 This request has not yet been approved by the user.,此请求尚未被用户批准。
 This schedule was created when Asset {0} was adjusted through Asset Value Adjustment {1}.,因资产价值调整 {1}已创建固定资产 {0} 折旧计划
@@ -14897,7 +14947,8 @@ Transaction currency must be same as Payment Gateway currency,交易货币必须
 Transaction currency: {0} cannot be different from Bank Account({1}) currency: {2},交易货币{0}必须与银行账户{1}的货币{2}一致
 Transaction not allowed against stopped Work Order {0},生产工单 {0} 已停止，不允许操作
 Transaction reference no {0} dated {1},交易参考编号 {0} 日期 {1}
-Transactions,交易
+Transactions,业务交易
+Transactions & Reports,业务交易与报表
 Transactions Annual History,交易年历
 Transactions against the Company already exist! Chart of Accounts can only be imported for a Company with no transactions.,该公司已有业务交易，科目表导入仅限尚无业务交易的公司代码
 Transactions cannot be created for an Inactive Employee {0}.,无法为离职员工{0}创建交易记录
@@ -14955,7 +15006,7 @@ Travel Type,差旅类型
 Tree,树
 Tree Details,层级结构
 Tree Type,树类型
-Tree View,树形视图
+Tree View,树状视图
 Tree of Procedures,程序树
 Tree structures are implemented using Nested Set,树形结构使用嵌套集实现
 Tree view is not available for {0},{0} 不可用树形视图
@@ -15233,7 +15284,7 @@ Updating search index,正在更新搜索索引
 Updating {0},正在更新 {0}
 "Updating {0} of {1}, {2}",正在更新 {0}/{1}，{2}
 Updating...,更新中...
-Upload,上载
+Upload,上传
 Upload Attendance,上传考勤
 Upload Bank Statement,上传银行对账单
 Upload HTML,上传HTML
@@ -15379,7 +15430,7 @@ Utilization,利用率
 Utilization %,利用率 %
 VAT Accounts,增值税科目
 VAT Amount (AED),增值税金额（迪拉姆）
-VAT Audit Report,增值税审计报告
+VAT Audit Report,增值税审计报表
 VAT on Expenses and All Other Inputs,费用及所有其他投入的增值税
 VAT on Sales and All Other Outputs,销售及所有其他产出的增值税
 Vacancies,空缺职位
@@ -15524,12 +15575,13 @@ Vice President,副总裁
 Video,视频
 Video Settings,视频设置
 Video URL,视频 URL
-View,视图
+View,查看
 View All,查看全部
 View Audit Trail,查看审计追踪
 View BOM Update Log,查看物料清单更新日志
 View Chart of Accounts,查看会计科目表
 View Data Based on,数据查看依据
+View Details,查看详情
 View Docs,查看文档
 View Doctype Permissions,查看单据类型权限
 View Documentation,查看文档
@@ -15554,11 +15606,12 @@ View Sidebar,查看侧边栏
 View Switcher,视图切换器
 View Type,视图类型
 View Website,查看网站
+View all,查看全部
 View all {0} users,查看所有 {0} 个用户
 View attachments,查看附件
 View call log,查看通话记录
 View document,查看文档
-View report in your browser,在浏览器中查看报告
+View report in your browser,在浏览器中查看报表
 View this in your browser,查看该在你的浏览器
 View your response,查看您的回复
 View {0},查看 {0}
@@ -15717,7 +15770,7 @@ Website Route Redirect,网站路由重定向
 Website Script,网站脚本
 Website Search Field,网站搜索字段
 Website Search Field must be a valid fieldname,网站搜索字段必须是有效的字段名
-Website Settings,网站设定
+Website Settings,网站设置
 Website Sidebar,网站边栏
 Website Sidebar Item,网站侧栏项目
 Website Slideshow,网站连续播放
@@ -15731,7 +15784,7 @@ Website Themes Available,可用网站主题
 Website User,网站用户
 Website Users,网站用户
 Website Visits,网站访问
-"Website, email or phone where vulnerabilities can be reported. Defaults to `https://security.frappe.io`",可以报告漏洞的网站、邮件或电话。默认为 `https://security.frappe.io`
+"Website, email or phone where vulnerabilities can be reported. Defaults to `https://security.frappe.io`",可以报表漏洞的网站、邮件或电话。默认为 `https://security.frappe.io`
 Website:,网站:
 Websocket,Websocket
 Wednesday,星期三
@@ -15881,6 +15934,7 @@ Workspace Link,工作区链接
 Workspace Manager,工作区管理员
 Workspace Number Card,工作区数字卡片
 Workspace Quick List,工作区快速列表
+Workspace Settings,工作区设置
 Workspace Shortcut,工作区快捷方式
 Workspace Sidebar,工作区侧边栏
 Workspace Sidebar Item,工作区侧边栏项
@@ -15897,7 +15951,7 @@ Workstation Operating Component Account,工作站运营组件科目
 Workstation Status,工站状态
 Workstation Type,工站类型
 Workstation Working Hour,工站工作时时
-Workstation is closed on the following dates as per Holiday List: {0},工站的假期表{0}设定以下日期停工
+Workstation is closed on the following dates as per Holiday List: {0},工站的假期表{0}设置以下日期停工
 Workstations,工作站列表
 Would you like to publish this comment? This means it will become visible to website/portal users.,您想发布此评论吗？这意味着它将对网站/门户用户可见。
 Would you like to unpublish this comment? This means it will no longer be visible to website/portal users.,您想取消发布此评论吗？这意味着它将不再对网站/门户用户可见。
@@ -15963,7 +16017,7 @@ You are not allowed to delete a standard Notification. You can disable it instea
 You are not allowed to delete a standard Website Theme,你不允许删除标准的网站主题
 You are not allowed to edit the report.,您不能编辑此报表。
 You are not allowed to export {} doctype,您不能导出 {} 单据类型
-You are not allowed to print this report,您不允许打印此报告
+You are not allowed to print this report,您不允许打印此报表
 You are not allowed to send emails related to this document,你不被允许发送与此相关的文档的电子邮件
 You are not allowed to update as per the conditions set in {} Workflow.,根据{}工作流设置的条件，您无权更新
 You are not allowed to update attendance for another user.,您不能为其他用户更新考勤。
@@ -15972,7 +16026,7 @@ You are not allowed to view events for another user.,您不能查看其他用户
 You are not authorized to add or update entries before {0},你未被授权在会计设置->会计关账 中设置的冻结记账截止日 {0} 前新增或变更会计凭证。
 You are not authorized to approve leaves on Block Dates,您无权批准禁假日期内的请假
 You are not authorized to make/edit Stock Transactions for Item {0} under warehouse {1} before this time.,您此时无权在仓库{1}下为物料{0}创建/编辑库存交易
-You are not authorized to set Frozen value,您没有权限设定冻结值
+You are not authorized to set Frozen value,您没有权限设置冻结值
 You are not authorized to undo this email,您无权撤销此邮件
 You are not connected to Internet. Retry after sometime.,你没有连接到互联网。在某个时间后重试。
 You are not permitted to access this page without login.,未登录不允许访问此页面。
@@ -16065,14 +16119,14 @@ You do not have permission to create or restore documents of type {0}.,您无权
 You do not have permission to restore this document.,您无权恢复此单据。
 You do not have permissions to cancel all linked documents.,您无权取消所有关联单据。
 You do not have permissions to {} items in a {}.,您无权{} {}。
-You don't have access to Report: {0},您没有访问报告：{0}
+You don't have access to Report: {0},您没有访问报表：{0}
 You don't have enough Loyalty Points to redeem,您的忠诚度积分不足
 You don't have enough points to redeem.,您的积分不足以兑换
 You don't have permission to access the {0} DocType.,您无权访问 {0} 单据类型。
 You don't have permission to access this file,您没有权限访问该文件
 You don't have permission to create Report records.,您无权创建报表记录。
 You don't have permission to create report for {0},您无权为 {0} 创建报表
-You don't have permission to get a report on: {0},你无权得到一份报告：{0}
+You don't have permission to get a report on: {0},你无权得到一份报表：{0}
 You don't have permission to read/attach the file {0}.,您无权读取/附加文件 {0}。
 You don't have the permissions to access this document,您没有访问此文件的权限
 You had {} errors while creating opening invoices. Check {} for more details,创建期初发票时出现{}个错误，请检查{}获取详情
@@ -16174,7 +16228,7 @@ Your password has been changed and you might have been logged out of all systems
 Your password has expired. Please reset your password to continue,密码已过期，请重置密码以继续
 Your password has expired. Please set a new password.,您的密码已过期。请设置新密码。
 "Your query has been received. We will reply back shortly. If you have any additional information, please reply to this mail.",查询已收到。我们将尽快回复邮件。如果您有任何其他的讯息，请回复此邮件。
-Your report is being generated in the background. You will receive an email on {0} with a download link once it is ready.,您的报告正在后台生成。准备就绪后，您将收到一封发送至 {0} 的电子邮件，其中包含下载链接。
+Your report is being generated in the background. You will receive an email on {0} with a download link once it is ready.,您的报表正在后台生成。准备就绪后，您将收到一封发送至 {0} 的电子邮件，其中包含下载链接。
 "Your session has expired, please login again to continue.",您的会话已过期，请再次登录以继续。
 Your tickets,您的客服工单
 Your verification code is {0},您的验证码是 {0}
@@ -16267,6 +16321,7 @@ grey,灰色
 gzip not found in PATH! This is required to take a backup.,在 PATH 中找不到 gzip！备份需要它。
 h,h
 hidden,隐
+home,主界面
 hours,小时
 hub,hub
 icon,图标
@@ -16332,7 +16387,7 @@ received from,收款自
 reconciled,已核销
 red,红色
 renamed from {0} to {1},从更名{0}到{1}
-report,报告
+report,报表
 response,响应
 restored {0} as {1},恢复{0}为{1}
 result,结果
@@ -16346,6 +16401,7 @@ rows,行
 s,s
 s256,s256
 sandbox,沙盒环境
+save,保存
 scheduled,已计划
 select,选择
 share,DocShare
@@ -16447,7 +16503,7 @@ yyyy-mm-dd,年 - 月 - 日
 {0} Number {1} is already used in {2} {3},{0} 代码 {1} 已被 {2} {3} 占用
 {0} Operating Cost for operation {1},工序{1}的{0}运营成本
 {0} Operations: {1},{0} 工序：{1}
-{0} Report,{0}报告
+{0} Report,{0}报表
 {0} Reports,{0} 报表
 {0} Request for {1},{0}申请{1}
 "{0} Retain Sample is based on batch, please check Has Batch No to retain sample of item",{0}保留样品基于批号，请在物料主数据中勾选启用批号管理
@@ -16629,7 +16685,7 @@ yyyy-mm-dd,年 - 月 - 日
 {0} must be negative in return document,{0}在退货凭证中必须为负
 {0} must be none of {1},{0} 必须不是 {1} 中的任何一个
 {0} must be one of {1},{0}必须是{1} 之一
-{0} must be set first,{0}必须先设定
+{0} must be set first,{0}必须先设置
 {0} must be submitted,必须提交{0}
 {0} must be unique,{0}必须是独特的
 {0} must be {1} {2},{0} 必须是 {1} {2}
@@ -16764,9 +16820,9 @@ yyyy-mm-dd,年 - 月 - 日
 {0}: Cannot set Assign Amend if not Submittable,{0} ：如果不可提交的话，便无法设为指定修改
 {0}: Cannot set Assign Submit if not Submittable,{0} ：如果不可提交的话，便无法设为指定提交
 {0}: Cannot set Cancel without Submit,{0} ：没有提交便无法设为取消
-{0}: Cannot set Import without Create,{0} ：没有建立则无法设定导入
-"{0}: Cannot set Submit, Cancel, Amend without Write",{0} ：没有写入则无法设定提交，取消，修改
-{0}: Cannot set import as {1} is not importable,{0} ：无法设定导入，因为{1}不是可导入的
+{0}: Cannot set Import without Create,{0} ：没有建立则无法设置导入
+"{0}: Cannot set Submit, Cancel, Amend without Write",{0} ：没有写入则无法设置提交，取消，修改
+{0}: Cannot set import as {1} is not importable,{0} ：无法设置导入，因为{1}不是可导入的
 "{0}: Employee email not found, hence email not sent",{0}：未找到员工邮箱，邮件未发送
 "{0}: Failed to attach new recurring document. To enable attaching document in the auto repeat notification email, enable {1} in Print Settings",{0}：附加新的重复文档失败。要在自动重复通知邮件中启用附加文档，请在打印设置中启用 {1}。
 {0}: Field '{1}' cannot be set as Unique as it has non-unique values,{0}：字段 '{1}' 具有非唯一值，无法设为唯一
@@ -16775,13 +16831,13 @@ yyyy-mm-dd,年 - 月 - 日
 {0}: Fieldname {1} appears multiple times in rows {2},{0}：字段名 {1} 在行 {2} 中出现多次
 {0}: Fieldtype {1} for {2} cannot be unique,{0}：{2} 的字段类型 {1} 不能为唯一
 {0}: From {0} of type {1},{0}：类型为{1}的{0}
-{0}: No basic permissions set,{0} ：无基本权限设定
+{0}: No basic permissions set,{0} ：无基本权限设置
 "{0}: Only one rule allowed with the same Role, Level and {1}",{0}：只具允许有一个同的角色，级别和{1}
 {0}: Options must be a valid DocType for field {1} in row {2},{0}：行 {2} 中字段 {1} 的选项必须是有效的单据类型
 {0}: Options required for Link or Table type field {1} in row {2},{0}：行 {2} 中的链接或表类型字段 {1} 需要选项
 {0}: Options {1} must be the same as doctype name {2} for the field {3},{0}：字段 {3} 的选项 {1} 必须与单据类型名 {2} 相同
 {0}: Other permission rules may also apply,{0}：其他权限规则可能也适用
-{0}: Permission at level 0 must be set before higher levels are set,{0} ：权限在0水平必须于更高级别前设定
+{0}: Permission at level 0 must be set before higher levels are set,{0} ：权限在0水平必须于更高级别前设置
 {0}: You can increase the limit for the field if required via {1},{0}：如有需要，可以通过 {1} 增加字段的限制
 {0}: fieldname cannot be set to reserved field {1} in DocType,{0}：在单据类型中字段名不能设为保留字段 {1}
 {0}: fieldname cannot be set to reserved keyword {1},{0}：字段名不能设为保留关键字 {1}

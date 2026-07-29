@@ -569,3 +569,61 @@ def sync_to_po_files():
         print("Done.")
     else:
         print("\nNothing to sync - all translations already in place.")
+
+
+# ---------- Batch terminology fix ----------
+# Word-level replacements to fix systematic translation errors across the
+# entire CSV. These correct widespread mistranslations that affect many
+# sentence-level entries (e.g. "储存" should be "保存", "报告" should be "报表").
+#
+# Format: (wrong_substring, correct_substring, description)
+# Order matters: longer/more-specific replacements run first.
+BATCH_TERM_REPLACEMENTS = [
+    # Save - 储存 → 保存 (台湾用语 → 大陆规范)
+    ("储存", "保存", "Save: 储存→保存"),
+    # Report - 报告 → 报表 (in ERP context, Report = 报表 not 报告)
+    ("报告", "报表", "Report: 报告→报表"),
+    # Masters - 大师 → 主数据 (Master Data, not "大师")
+    ("大师", "主数据", "Masters: 大师→主数据"),
+    # Settings - 设定 → 设置 (台湾用语 → 大陆规范)
+    ("设定", "设置", "Settings: 设定→设置"),
+    # Note: "家" 单字替换太危险（影响"家庭"、"家具"等正确翻译），
+    # 所以 "Home → 家" 的修正通过 professional_glossary 覆盖处理。
+]
+
+
+def fix_batch_terminology():
+    """
+    Fix systematic translation errors across the entire zh.csv.
+
+    Scans all translations and applies word-level replacements to correct
+    widespread mistranslations:
+    - 储存 → 保存 (Save)
+    - 报告 → 报表 (Report)
+    - 大师 → 主数据 (Masters)
+    - 设定 → 设置 (Settings)
+
+    Returns: number of entries modified
+    """
+    csv_path = get_csv_path()
+    existing = load_app_translations()
+
+    modified = {}
+    count = 0
+    for key, value in existing.items():
+        new_value = value
+        for wrong, correct, _desc in BATCH_TERM_REPLACEMENTS:
+            new_value = new_value.replace(wrong, correct)
+        if new_value != value:
+            modified[key] = new_value
+            count += 1
+
+    if count > 0:
+        # Merge modified entries back (overwrite=True to replace wrong values)
+        _append_to_csv(modified, overwrite=True)
+        frappe.logger(APP_NAME).info(
+            f"Fixed {count} entries with batch terminology replacements"
+        )
+
+    return count
+
