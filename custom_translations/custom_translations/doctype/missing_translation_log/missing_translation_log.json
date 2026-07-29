@@ -83,7 +83,7 @@
    "write": 1
   }
  ],
- "sort_field": "modified",
+ "sort_field": "translated_on",
  "sort_order": "DESC",
  "track_changes": 1
 }
