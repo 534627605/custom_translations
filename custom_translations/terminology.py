@@ -145,16 +145,20 @@ TERM_RULES: Tuple[TermRule, ...] = (
 
 #: Exact fixes for entries a generic rule cannot repair (audited by hand).
 KNOWN_FIXES: Dict[str, str] = {
-    "Ignore Is Opening check for reporting": "忽略开账检查（用于报告）",
+    # Wording aligned with the upstream frappe zh.po where it exists, so this
+    # app never diverges from the official translation without a reason.
+    "Ignore Is Opening check for reporting": "忽略期初检查用于报表",
     "Folio no.": "Folio no.",
     "Fieldtype": "字段类型",
     "AB+": "AB+",
-    "Prepared Report": "预备报表",
-    "Prepared report": "预备报表",
+    "Prepared Report": "预生成报表",
+    "Prepared report": "预生成报表",
+    "Prepared Report Analytics": "预生成报表分析",
+    "Prepared Report User": "预生成报表用户",
     "Reporting Currency": "报告货币",
     "Report bug": "报告缺陷",
     "Stores the JSON of last known versions of various installed apps. It is used to show release notes.": (
-        "存储各已安装应用最新已知版本的 JSON，用于显示发行说明。"
+        "存储已安装应用最后已知版本的JSON数据，用于显示版本说明"
     ),
     "You don't have permission to get a report on: {0}": "您无权获取 {0} 的报表",
     "Credit Amount in Reporting Currency": "贷方金额（报告货币）",
@@ -162,7 +166,7 @@ KNOWN_FIXES: Dict[str, str] = {
     "Reporting Currency Exchange Rate": "报告货币汇率",
     "Reporting Currency Exchange Not Found": "未找到报告货币汇率",
     "Show Full Error and Allow Reporting of Issues to the Developer": (
-        "显示完整错误并允许向开发人员报告问题"
+        "显示完整错误并允许向开发者报告问题"
     ),
     "Guidelines and policies on vulnerability reporting. Defaults to `https://frappe.io/security`": (
         "关于漏洞报告的指南和政策。默认为 `https://frappe.io/security`"
