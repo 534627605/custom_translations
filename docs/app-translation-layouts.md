@@ -628,3 +628,59 @@ Every place where the current hardcoded `locale/zh.po` assumption breaks, with t
 | `commands.py:102` `export_from_frappe` | `<app>/locale/zh.po` | same break as `utils.py:128` |
 | `SUPPORTED_LANG = "zh"` (`utils.py:26`) | single Chinese locale | upstream also has `zh_TW.po` / `zh-TW.csv`; MO lookup normalises `-`→`_` |
 
+
+---
+
+## 附录：版本与迁移矩阵（主 Agent 复核，含对前文 1 处更正）
+
+> 以下数据于本次会话重新用 `gh api` 逐项核对，覆盖前文表述。
+
+### A. 各仓库当前版本
+
+| 仓库 | 最新 release | 默认分支 | 说明 |
+|------|-------------|---------|------|
+| frappe/frappe | **v16.51.0**（2026-10-07） | `develop` | 有 version-14 / 15 / 16 三条线 |
+| frappe/erpnext | **v15.122.0**（2026-10-07） | `develop` | `develop` 即 v16 开发线；正式线仍在 v15 |
+| frappe/hrms | **v15.64.3**（2026-10-07） | `develop` | 同上 |
+| frappe/helpdesk | **v1.30.2**（2026-10-10） | `develop` | 另有 `main` 线，zh.po 与 develop 一致 |
+| frappe/wiki | **v3.4.0**（2026-10-08） | `develop` | 无 locale 目录 |
+| frappe/payments | 无 release | `develop` | 无任何中文文件 |
+| frappe/webshop | 无 release | `develop` | 无任何中文文件 |
+| frappe/telephony | 无 release | `develop` | 无任何中文文件 |
+
+### B. 中文翻译文件位置（逐分支实测，`gh api .../contents/<path>?ref=<branch>`）
+
+| App | version-14 | version-15 | version-16 / develop |
+|-----|-----------|-----------|---------------------|
+| frappe | `translations/zh.csv` (236 KB) | **两者都有**：`locale/zh.po` (1.27 MB) + `translations/zh.csv` (238 KB) | 仅 `locale/zh.po` (1.33 MB) |
+| erpnext | `translations/zh.csv` (489 KB) | `translations/zh.csv` (724 KB)，**无 locale 目录** | 仅 `locale/zh.po` (2.83 MB) |
+| hrms | `translations/zh.csv` (88 KB) | `translations/zh.csv` (55 KB)，**无 locale 目录** | 仅 `locale/zh.po` (447 KB) |
+| helpdesk | — | — | `locale/zh.po` (230 KB) |
+| payments / webshop / telephony / wiki | 无 | 无 | **无** |
+
+> **更正前文**：前文「frappe version-15 → `frappe/locale` 404」不成立。
+> 实测 `frappe/locale/zh.po` 在 **version-15 上存在**（1,271,306 字节），v15 同时保留了旧的
+> `translations/zh.csv`（双轨）。真正只有 CSV 的是 **erpnext / hrms 的 v14 与 v15**。
+
+### C. 变更事项（翻译机制迁移）
+
+| 事项 | 内容 |
+|------|------|
+| frappe 迁移 PR | **#22732「feat: translations via gettext」**，2024-01-10 合入 `develop` |
+| frappe v15 移植 PR | **#25982「feat: gettext translations (v15 port)」**，2024-04-17 合入（base `version-15-hotfix`）→ 所以 v15 双轨 |
+| erpnext 迁移 PR | **#39313「chore: migrate translations to gettext」**，2024-01-11 合入 `develop`，**未回移 version-15** |
+| 格式 | `translations/<lang>.csv` → `locale/<lang>.po` + `locale/main.pot`，编译为 `sites/assets/locale/<lang>/LC_MESSAGES/<app>.mo` |
+| 新模块/命令 | `frappe/gettext/`（`translate.py` + `extractors/`）；`bench generate-pot-file`、`bench compile-po-to-mo`、`bench new-po` |
+| 加载顺序 | 同一 App 内先 CSV 后 MO，**MO 覆盖 CSV**（`frappe/translate.py: get_translations_from_apps`） |
+| 文件名 | v16：`zh.po` + `zh_TW.po`；v15：`zh.csv` + `zh-TW.csv` / `zh_tw.csv` |
+| 兼容性 | `<app>/translations/<lang>.csv` 仍然被支持（本 App 正是依赖它注入词条） |
+| 近期相关修复 | #43416（2026-09-28）JS 嵌套 `__()` 未进 POT；#38063（2026-03-16）模板字符串抽取行号 |
+
+### D. 对本 App 的影响（为什么必须双布局探测）
+
+- **v15 站点**：frappe 双轨（旧代码「碰巧」能用），**erpnext / hrms 只有 CSV**（旧代码静默返回 0）
+  —— 与用户反馈的「无法适配最新版本」完全吻合。
+- **v16 / develop 站点**：三者都是 `locale/*.po`（旧代码可用）。
+- 因此任何只认一种布局的实现都会在另一条版本线上失效；本 App 现已同时支持 CSV / PO / POT，
+  并对 payments / webshop / telephony / wiki（永无翻译文件）退化为源码扫描。
+

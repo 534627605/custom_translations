@@ -127,6 +127,7 @@ erpnext / hrms 完全失效；同时存在 1 个**会删除 16886 条人工词�
 | `export` 会破坏词条库 | **确认（HIGH）**，已按建议改为默认不动词条库。 |
 | `bench_commands` 是死配置 | **确认**，已删除。 |
 | 其余（B1/B3/B4/B6/B7/B8） | 全部确认并修复。 |
+| 「frappe version-15 无 `locale/` 目录」 | **更正**。实测 `frappe/locale/zh.po` 在 version-15 上存在（双轨：PO + CSV）；只有 CSV 的是 erpnext / hrms 的 v14、v15。详见 `docs/app-translation-layouts.md` 附录 D。 |
 
 ## 8. 未做 / 建议后续
 
