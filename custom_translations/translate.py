@@ -29,7 +29,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from custom_translations.terminology import fix_translation
-from custom_translations.validate import is_acceptable, normalize, validate
+from custom_translations.validate import normalize, validate
 
 __all__ = [
     "TranslationResult",

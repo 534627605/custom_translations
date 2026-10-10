@@ -6,5 +6,8 @@
     "model": "deepseek-ai/deepseek-v4-flash",
     "batch_size": 10,
     "max_length": 500,
-    "auto_translate": true
+    "auto_translate": true,
+    "_comment_scan": "scan_on_boot: log newly missing strings on desk boot (cached). scan_interval_seconds: how long that cache lives.",
+    "scan_on_boot": true,
+    "scan_interval_seconds": 21600
 }
