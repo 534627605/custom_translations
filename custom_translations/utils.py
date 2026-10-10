@@ -1,155 +1,246 @@
 """
-Custom Translations utilities.
+Custom Translations - core logic.
 
-Core strategies:
-1. translations/zh.csv in this app provides persistent translations that survive
-   framework upgrades (Frappe auto-loads CSV from every installed app).
-2. `sync_to_po_files()` writes translations back into frappe/erpnext/hrms .po files
-   so they get compiled into .mo binaries.
-3. `detect_missing_translations_bootinfo()` runs on every desk boot, scans all
-   installed apps' .po files for empty msgstr entries, and logs them to the
-   `Missing Translation Log` doctype for follow-up.
-4. `auto_fill_from_csv()` fills empty msgstr entries in any app's .po file from
-   this app's zh.csv (used by the sync command).
-5. Optional API translation hook: set `custom_translations_settings.api_endpoint`
-   in site_config.json to enable automatic translation of newly detected entries.
+Responsibilities
+----------------
+1. Own this app's curated ``translations/zh.csv`` (the override layer that
+   Frappe merges over every other app).
+2. Discover what every installed app actually ships (``locale/*.po``,
+   ``translations/*.csv``, ``locale/main.pot``) - see
+   :mod:`custom_translations.sources`.
+3. Report coverage per app and log untranslated strings to the
+   ``Missing Translation Log`` doctype.
+4. Fill the gaps with the AI engine (:mod:`custom_translations.translate`),
+   never overwriting an existing translation.
+5. Repair terminology with context-aware rules
+   (:mod:`custom_translations.terminology`) instead of blind replacement.
+
+Everything that needs a site is imported lazily so the pure helpers can be
+unit tested and used from the offline CLI.
 """
 
-import csv
+from __future__ import annotations
+
 import os
 from pathlib import Path
+from typing import Dict, Iterable, List, Optional, Sequence
 
 import frappe
-from frappe.utils import cstr, now_datetime
+from frappe.utils import now_datetime
+
+from custom_translations import csvio, po
+from custom_translations.csvio import CsvEntry
+from custom_translations.config import load_config
+from custom_translations.sources import (
+    SUPPORTED_LANG,
+    AppSources,
+    discover_app,
+    read_official_translations,
+    source_inventory,
+)
+from custom_translations.terminology import fix_translations
 
 APP_NAME = "custom_translations"
-SUPPORTED_LANG = "zh"
+
+#: Cache key / TTL defaults for the boot-time scan throttle
+SCAN_CACHE_KEY = "custom_translations:missing_scan"
+DEFAULT_SCAN_INTERVAL = 6 * 60 * 60  # 6 hours
+
+#: Never insert more than this many rows in a single scan run
+MAX_LOGGED_PER_RUN = 500
+
+__all__ = [
+    "APP_NAME",
+    "SUPPORTED_LANG",
+    "get_csv_path",
+    "load_app_translations",
+    "load_app_entries",
+    "_append_to_csv",
+    "get_coverage_report",
+    "scan_app",
+    "_scan_missing_translations",
+    "_log_missing_translations",
+    "_mark_logs_translated",
+    "_auto_translate_via_api",
+    "apply_manual_corrections",
+    "fix_batch_terminology",
+    "sync_to_po_files",
+    "detect_missing_translations_bootinfo",
+    "scheduled_translation_scan",
+    "on_translation_update",
+]
 
 
-# ---------- Translation source loading ----------
+# --------------------------------------------------------------------------- #
+# This app's own CSV (the override layer)
+# --------------------------------------------------------------------------- #
 
 def get_csv_path() -> Path:
-    """Path to this app's translations/zh.csv"""
+    """Path to this app's ``translations/zh.csv``."""
     return Path(frappe.get_app_path(APP_NAME)) / "translations" / f"{SUPPORTED_LANG}.csv"
 
 
-def load_app_translations() -> dict:
-    """Load translations from this app's zh.csv file."""
+def load_app_entries() -> List[CsvEntry]:
+    """Load this app's CSV as raw entries (context columns preserved)."""
+    return csvio.read_csv_entries(get_csv_path())
+
+
+def load_app_translations() -> Dict[str, str]:
+    """Load this app's translations as ``{source: translation}``."""
+    return csvio.read_csv_translations(get_csv_path())
+
+
+def _append_to_csv(new_translations: Dict[str, str], overwrite: bool = False) -> int:
+    """Merge translations into this app's CSV (deduped by key).
+
+    Args:
+        new_translations: ``{source_text: translated_text}``
+        overwrite: ``False`` (default) preserves any existing translation, so
+            automatic results can never clobber curated or manual ones.
+            ``True`` replaces the value (used by the glossary, the manual
+            corrections command and the ``Translation`` doctype hook).
+
+    Returns the number of rows that actually changed. The file is left
+    untouched when nothing changed, so the command does not rewrite 16k lines
+    for a no-op.
+    """
     csv_path = get_csv_path()
-    translations = {}
-    if not csv_path.exists():
-        return translations
+    entries = csvio.read_csv_entries(csv_path)
+    position = {entry.key: index for index, entry in enumerate(entries)}
 
-    with open(csv_path, "r", encoding="utf-8") as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if len(row) >= 2 and row[0]:
-                # CSV stores literal "\n" as "\\n"; convert back
-                key = row[0].replace("\\n", "\n")
-                value = row[1].replace("\\n", "\n")
-                translations[key] = value
-    return translations
-
-
-# ---------- Boot hook: detect missing translations ----------
-
-def detect_missing_translations_bootinfo(bootinfo):
-    """
-    Called on desk boot via extend_bootinfo hook.
-    Scans all installed apps for empty msgstr entries in zh.po and logs new ones
-    to Missing Translation Log doctype.
-    """
-    try:
-        if frappe.session.user == "Guest":
-            return
-
-        lang = frappe.local.lang or frappe.db.get_default("language") or "zh"
-        if not lang.startswith("zh"):
-            return
-
-        missing = _scan_missing_translations()
-        if not missing:
-            return
-
-        _log_missing_translations(missing)
-
-        # Optional auto-translate via API
-        api_cfg = frappe.conf.get("custom_translations_settings") or {}
-        if api_cfg.get("auto_translate"):
-            _auto_translate_via_api(missing, api_cfg)
-    except Exception:
-        frappe.logger(APP_NAME).error("Failed to detect missing translations", exc_info=True)
-
-
-def _scan_missing_translations():
-    """Scan all installed apps' zh.po files for empty msgstr entries."""
-    try:
-        from babel.messages.pofile import read_po
-    except ImportError:
-        return []
-
-    missing = []
-    apps = frappe.get_installed_apps()
-    csv_translations = load_app_translations()
-
-    for app in apps:
-        if app == APP_NAME:
+    changed = 0
+    for key, value in new_translations.items():
+        if value is None:
             continue
-        po_path = _get_app_po_path(app)
-        if not po_path or not po_path.exists():
+        value = str(value)
+        if not value.strip():
             continue
-
-        try:
-            with open(po_path, "rb") as f:
-                catalog = read_po(f)
-            for msg in catalog:
-                if not msg.id:
-                    continue
-                msgid = msg.id[0] if isinstance(msg.id, tuple) else msg.id
-                if not msg.string or not str(msg.string).strip():
-                    # Skip if we already have translation in our CSV
-                    if msgid in csv_translations:
-                        continue
-                    missing.append({"app": app, "msgid": msgid})
-        except Exception:
-            frappe.logger(APP_NAME).error(
-                f"Failed to scan {app} po file", exc_info=True
+        index = position.get(key)
+        if index is None:
+            position[key] = len(entries)
+            entries.append(CsvEntry(msgid=key, msgstr=value))
+            changed += 1
+        elif overwrite and entries[index].msgstr != value:
+            entries[index] = CsvEntry(
+                msgid=entries[index].msgid, msgstr=value, context=entries[index].context
             )
+            changed += 1
 
+    if changed:
+        entries.sort(key=lambda entry: entry.msgid)
+        csvio.write_csv_entries(csv_path, entries)
+    return changed
+
+
+# --------------------------------------------------------------------------- #
+# Coverage: what does every installed app ship, and what is missing?
+# --------------------------------------------------------------------------- #
+
+def get_installed_apps(include_self: bool = False) -> List[str]:
+    """Installed apps, excluding this one by default."""
+    try:
+        apps = list(frappe.get_installed_apps())
+    except Exception:
+        return []
+    if not include_self:
+        apps = [app for app in apps if app != APP_NAME]
+    return apps
+
+
+def scan_app(app: str, ours: Optional[Dict[str, str]] = None) -> Dict:
+    """Return coverage facts for a single app.
+
+    ``missing`` is the list of source strings the app does not translate and
+    that this app does not translate either - i.e. the real work list.
+    """
+    ours = load_app_translations() if ours is None else ours
+    sources: AppSources = discover_app(app)
+    official = read_official_translations(app) if sources.has_any else {}
+    inventory = source_inventory(app) if sources.module_dir else None
+
+    msgids = set(inventory.msgids) if inventory else set()
+    missing = sorted(
+        msgid for msgid in msgids if not official.get(msgid) and not ours.get(msgid)
+    )
+    return {
+        "app": app,
+        "format": sources.format,
+        "inventory_origin": inventory.origin if inventory else "none",
+        "inventory": len(msgids),
+        "translated_by_app": len(official),
+        "covered_by_us": len([m for m in msgids if ours.get(m)]),
+        "missing": missing,
+        "missing_count": len(missing),
+    }
+
+
+def get_coverage_report(apps: Optional[Sequence[str]] = None) -> List[Dict]:
+    """Coverage report for every installed app (or an explicit list)."""
+    ours = load_app_translations()
+    targets = list(apps) if apps is not None else get_installed_apps()
+    return [scan_app(app, ours=ours) for app in targets]
+
+
+def _scan_missing_translations(apps: Optional[Sequence[str]] = None) -> List[Dict]:
+    """Return ``[{"app": app, "msgid": text}, ...]`` for every untranslated string.
+
+    Works for PO based apps (frappe, hrms, helpdesk) *and* CSV based apps
+    (erpnext, payments, webshop, telephony, wiki) - the layout is discovered,
+    not assumed.
+    """
+    missing: List[Dict] = []
+    for report in get_coverage_report(apps):
+        for msgid in report["missing"]:
+            if msgid:
+                missing.append({"app": report["app"], "msgid": msgid})
     return missing
 
 
-def _get_app_po_path(app: str) -> Path:
-    """Return path to app's zh.po file."""
+# --------------------------------------------------------------------------- #
+# Missing Translation Log
+# --------------------------------------------------------------------------- #
+
+def _row(record, field, default=None):
+    """Read a field from a query row (frappe._dict, dict or object)."""
+    if isinstance(record, dict):
+        return record.get(field, default)
+    return getattr(record, field, default)
+
+
+def _existing_log_keys() -> set:
+    """Every source_text already present in the log, whatever its status."""
     try:
-        app_path = frappe.get_app_path(app)
+        rows = frappe.get_all("Missing Translation Log", fields=["source_text"], limit_page_length=0)
     except Exception:
-        return None
-    return Path(app_path) / "locale" / "zh.po"
+        return set()
+    return {row.get("source_text") for row in rows if row.get("source_text")}
 
 
-def _log_missing_translations(missing):
-    """Log missing translations to Missing Translation Log doctype (deduped)."""
-    existing = set(
-        frappe.get_all(
-            "Missing Translation Log",
-            filters={"status": "Open"},
-            pluck="source_text",
-        )
-    )
+def _log_missing_translations(missing: Iterable[Dict], limit: int = MAX_LOGGED_PER_RUN) -> int:
+    """Insert new missing translations into the log (deduped, capped).
 
+    De-duplication is done against *every* record, not just the ``Open`` ones:
+    Frappe does not enforce ``unique`` on Text columns, so the previous
+    ``status="Open"`` filter allowed a string to be logged again as soon as it
+    was marked Translated/Reviewed/Ignored.
+    """
+    existing = _existing_log_keys()
+    inserted = 0
     for item in missing:
+        if inserted >= limit:
+            frappe.logger(APP_NAME).warning(
+                f"Missing Translation Log cap of {limit} rows reached, remaining entries skipped"
+            )
+            break
         msgid = item["msgid"]
-        if len(msgid) > 2000:
-            continue  # skip overly long entries
-        if msgid in existing:
+        if len(msgid) > 2000 or msgid in existing:
             continue
         try:
             doc = frappe.get_doc(
                 {
                     "doctype": "Missing Translation Log",
                     "source_text": msgid,
-                    "app": item["app"],
+                    "app": item.get("app"),
                     "language": SUPPORTED_LANG,
                     "status": "Open",
                     "detected_on": now_datetime(),
@@ -157,237 +248,18 @@ def _log_missing_translations(missing):
             )
             doc.insert(ignore_permissions=True)
             existing.add(msgid)
-        except Exception as e:
-            # Schema not migrated yet - log and skip
+            inserted += 1
+        except Exception as exc:  # noqa: BLE001
             frappe.logger(APP_NAME).error(
-                f"Failed to log missing translation '{msgid[:50]}': {e}"
+                f"Failed to log missing translation {msgid[:50]!r}: {exc}"
             )
+    return inserted
 
 
-# ---------- Optional API auto-translation ----------
-
-def _auto_translate_via_api(missing, api_cfg=None):
-    """
-    Auto-translate new entries via configured provider.
-    Supported providers: "deepseek", "nvidia", "openai" (all OpenAI-compatible).
-
-    Configuration is loaded automatically from:
-    1. Environment variables (CUSTOM_TRANSLATIONS_API_KEY, etc.)
-    2. config.json in app directory (user-managed, gitignored)
-    3. site_config.json (legacy support)
-
-    See config.example.json for configuration template.
-    See README.md for detailed setup instructions.
-    """
-    from custom_translations.config import load_config, get_setup_instructions
-
-    if api_cfg is None:
-        api_cfg = load_config()
-
-    # Validate configuration
-    if not api_cfg.get("is_configured"):
-        instructions = get_setup_instructions()
-        frappe.logger(APP_NAME).warning(
-            "Auto-translation skipped: API not configured.\n" + instructions
-        )
-        return
-
-    provider = (api_cfg.get("provider") or "nvidia").lower()
-    max_length = int(api_cfg.get("max_length") or 500)
-
-    # Filter entries by length (skip overly long code/HTML docs)
-    # IMPORTANT: Skip entries that already have translations in CSV to avoid overwriting
-    existing_translations = load_app_translations()
-    new_entries = [
-        m["msgid"] for m in missing
-        if 0 < len(m["msgid"]) <= max_length
-        and m["msgid"] not in existing_translations
-    ]
-    if not new_entries:
-        frappe.logger(APP_NAME).info("No new entries to translate (all already have translations)")
-        return
-
-    try:
-        if provider in ("deepseek", "nvidia"):
-            # Both use OpenAI-compatible chat completions API
-            translations = _translate_via_openai_compat(new_entries, api_cfg)
-        else:
-            frappe.logger(APP_NAME).warning(f"Unknown provider: {provider}")
-            return
-
-        if translations and len(translations) == len(new_entries):
-            mapping = dict(zip(new_entries, translations))
-            # Filter out empty/None results
-            mapping = {k: v for k, v in mapping.items() if v and v.strip()}
-            if mapping:
-                # overwrite=False ensures existing translations are NEVER overwritten
-                _append_to_csv(mapping, overwrite=False)
-                _mark_logs_translated(mapping)
-                frappe.logger(APP_NAME).info(
-                    f"Auto-translated {len(mapping)} new entries via {provider} "
-                    f"(preserved {len(existing_translations)} existing translations)"
-                )
-    except Exception:
-        frappe.logger(APP_NAME).error(f"API auto-translation via {provider} failed", exc_info=True)
-
-
-def _translate_via_openai_compat(entries, api_cfg):
-    """
-    Translate a list of English strings to Simplified Chinese using any
-    OpenAI-compatible chat completions API (DeepSeek, NVIDIA NIM, OpenAI, etc.).
-    Uses batched requests (batch_size entries per API call) for efficiency.
-    Returns list of translated strings in same order as input.
-
-    API key is loaded securely from environment/config - never hardcoded.
-    """
-    import json
-    import re
-    import requests
-
-    provider = (api_cfg.get("provider") or "nvidia").lower()
-    api_key = api_cfg.get("api_key")
-    endpoint = api_cfg.get("api_endpoint")
-    model = api_cfg.get("model")
-    batch_size = int(api_cfg.get("batch_size") or 10)
-
-    if not api_key:
-        frappe.logger(APP_NAME).error(f"{provider} API key missing in config")
-        return []
-
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-
-    import time
-
-    system_prompt = (
-        "You are a professional software localization translator specializing in "
-        "ERP and enterprise management systems (Frappe/ERPNext framework). "
-        "Translate the user-provided English strings into Simplified Chinese (简体中文).\n\n"
-        "Domain context - these strings come from an ERP system covering:\n"
-        "- Accounting/Finance: 会计科目(Journal Entry=日记账分录, Ledger=分类账, "
-        "Reconciliation=对账, Petty Cash=备用金, Provision=计提, Write-off=核销)\n"
-        "- Inventory: 库存(Serial No=序列号, Batch=批次, Stock Ledger=库存分类账, "
-        "Valuation=估值, Bin=仓位)\n"
-        "- Sales/Purchase: 销售/采购(Quotation=报价单, Sales Order=销售订单, "
-        "Purchase Receipt=采购收货单, Delivery Note=送货单)\n"
-        "- HR: 人资(Payroll=工资单, Leave Application=请假申请, "
-        "Attendance=考勤, Appraisal=绩效考核)\n"
-        "- Manufacturing: 制造(Work Order=工单, BOM=物料清单, "
-        "Job Card=作业卡, Operation=工序)\n"
-        "- CRM: 客户关系管理(Lead=线索, Opportunity=商机, Prospect=潜在客户)\n"
-        "\n"
-        "Translation rules:\n"
-        "1. Keep placeholders like {0}, {1}, {{name}}, %s, %(name)s unchanged.\n"
-        "2. Keep HTML tags like <b>, <br>, <code>, <a href='...'> unchanged - only translate text content.\n"
-        "3. Keep technical terms unchanged: DocType, Frappe, ERPNext, OAuth, LDAP, IMAP, SMTP, "
-        "API, JSON, CSV, URL, PDF, HTML, CSS, SSH, SQL, WSDL, REST.\n"
-        "4. Return ONLY a JSON object with key \"translations\" containing an array of "
-        "translated strings, in the SAME ORDER as input. No explanation.\n"
-        "5. Preserve newlines (\\n) and special characters.\n"
-        "6. If a string is pure code/URL/email/identifier, return it unchanged.\n"
-        "7. Use formal business Chinese (e.g., 您 instead of 你, 请 instead of 帮我).\n"
-        "8. Be concise - UI labels should be short and clear."
-    )
-
-    results = []
-    for i in range(0, len(entries), batch_size):
-        batch = entries[i:i + batch_size]
-        # Build numbered prompt for reliable ordering
-        numbered = "\n".join(f"{idx+1}. {s}" for idx, s in enumerate(batch))
-        user_msg = (
-            f"Translate these {len(batch)} strings to Simplified Chinese. "
-            f'Return JSON {{"translations": ["...", "..."]}}:\n\n{numbered}'
-        )
-
-        payload = {
-            "model": model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_msg},
-            ],
-            "temperature": 0.1,
-            "max_tokens": 4096,
-        }
-        # Only DeepSeek supports response_format; NVIDIA NIM ignores it safely
-        if provider == "deepseek":
-            payload["response_format"] = {"type": "json_object"}
-
+def _mark_logs_translated(translations: Dict[str, str]) -> None:
+    """Mark the log records of freshly translated strings as Translated."""
+    for source_text, translated_text in translations.items():
         try:
-            # Retry logic for transient errors (503, timeout)
-            max_retries = 3
-            last_error = None
-            data = None
-            for attempt in range(max_retries):
-                try:
-                    resp = requests.post(endpoint, headers=headers, json=payload, timeout=120)
-                    resp.raise_for_status()
-                    data = resp.json()
-                    break
-                except Exception as retry_err:
-                    last_error = retry_err
-                    if attempt < max_retries - 1:
-                        wait = (attempt + 1) * 5  # 5s, 10s backoff
-                        frappe.logger(APP_NAME).warning(
-                            f"{provider} batch {i//batch_size+1} attempt {attempt+1} failed: {retry_err}, retrying in {wait}s"
-                        )
-                        time.sleep(wait)
-                    else:
-                        raise
-
-            content = data["choices"][0]["message"]["content"].strip()
-
-            # Parse response - may return {"translations": [...]} or [...]
-            try:
-                parsed = json.loads(content)
-                if isinstance(parsed, dict):
-                    translated = (
-                        parsed.get("translations")
-                        or parsed.get("data")
-                        or parsed.get("result")
-                        or list(parsed.values())[0]
-                    )
-                else:
-                    translated = parsed
-            except json.JSONDecodeError:
-                # Fallback: extract JSON array from text
-                match = re.search(r'\[.*\]', content, re.DOTALL)
-                if match:
-                    translated = json.loads(match.group(0))
-                else:
-                    frappe.logger(APP_NAME).error(
-                        f"Failed to parse {provider} response: {content[:200]}"
-                    )
-                    translated = [""] * len(batch)
-
-            # Validate length matches
-            if isinstance(translated, list) and len(translated) == len(batch):
-                results.extend(translated)
-            else:
-                frappe.logger(APP_NAME).warning(
-                    f"{provider} batch {i//batch_size+1} returned "
-                    f"{len(translated) if isinstance(translated, list) else 'non-list'} results, "
-                    f"expected {len(batch)}"
-                )
-                results.extend([""] * len(batch))
-        except Exception as e:
-            frappe.logger(APP_NAME).error(
-                f"{provider} batch {i//batch_size+1} failed after {max_retries} retries: {e}"
-            )
-            results.extend([""] * len(batch))
-
-    return results
-
-
-# Backward-compatible alias
-_translate_via_deepseek = _translate_via_openai_compat
-
-
-def _mark_logs_translated(translations: dict):
-    """Mark corresponding Missing Translation Log records as Translated (Auto)."""
-    try:
-        for source_text, translated_text in translations.items():
             logs = frappe.get_all(
                 "Missing Translation Log",
                 filters={"source_text": source_text, "status": "Open"},
@@ -405,48 +277,119 @@ def _mark_logs_translated(translations: dict):
                     },
                     update_modified=False,
                 )
-    except Exception:
-        pass
+        except Exception:  # noqa: BLE001 - logging must never break a boot
+            frappe.logger(APP_NAME).error(
+                f"Failed to mark log {source_text[:40]!r} as translated", exc_info=True
+            )
 
 
-# ---------- CSV management ----------
+# --------------------------------------------------------------------------- #
+# AI auto-fill
+# --------------------------------------------------------------------------- #
 
-def _append_to_csv(new_translations: dict, overwrite: bool = False):
-    """Append new translations to this app's zh.csv (deduped by key).
+def _app_memory(app: str) -> Dict[str, str]:
+    """Translation memory for an app: its own newest translations."""
+    try:
+        return read_official_translations(app)
+    except Exception:  # noqa: BLE001
+        return {}
 
-    Args:
-        new_translations: dict of {source_text: translated_text}
-        overwrite: If False (default), existing translations are NOT overwritten,
-                   so manual corrections and prior translations are preserved.
-                   If True, new values override existing ones (used by manual
-                   Translation doctype edits).
+
+def _auto_translate_via_api(missing, api_cfg: Optional[Dict] = None) -> Dict[str, str]:
+    """Translate the missing entries with the configured provider.
+
+    Configuration always comes from :func:`custom_translations.config.load_config`
+    (env vars > ``config.json`` > ``site_config.json`` > defaults). A partial
+    dict passed by a caller is merged over it rather than used as-is - that was
+    the bug which made the boot-time path a permanent no-op.
+
+    Existing translations are never overwritten (``overwrite=False``).
+    Returns the accepted ``{source: translation}`` mapping.
     """
-    csv_path = get_csv_path()
+    from custom_translations.professional_glossary import PROFESSIONAL_GLOSSARY
+    from custom_translations.translate import translate_entries
+
+    config = load_config()
+    if api_cfg:
+        config = {**config, **{k: v for k, v in api_cfg.items() if v is not None}}
+        config["is_configured"] = bool(
+            config.get("api_key") and config.get("api_endpoint") and config.get("model")
+        )
+
+    logger = frappe.logger(APP_NAME)
+    if not config.get("is_configured"):
+        from custom_translations.config import get_setup_instructions
+
+        logger.warning("Auto-translation skipped: API not configured.\n" + get_setup_instructions())
+        return {}
+
+    max_length = int(config.get("max_length") or 500)
     existing = load_app_translations()
+    entries: List[str] = []
+    for item in missing:
+        msgid = item["msgid"] if isinstance(item, dict) else str(item)
+        if not msgid or msgid in existing or len(msgid) > max_length:
+            continue
+        entries.append(msgid)
 
-    if overwrite:
-        existing.update(new_translations)
-    else:
-        # Only add entries that don't already exist - preserve existing translations
-        for k, v in new_translations.items():
-            if k not in existing or not existing[k]:
-                existing[k] = v
+    if not entries:
+        logger.info("No new entries to translate (all already translated)")
+        return {}
 
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(csv_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.writer(f)
-        for key, value in sorted(existing.items()):
-            # Store newlines as literal \n for CSV compatibility
-            k = key.replace("\n", "\\n")
-            v = value.replace("\n", "\\n")
-            writer.writerow([k, v])
+    # Translation memory: the app that owns the string knows its own vocabulary.
+    app_of = {}
+    for item in missing:
+        if isinstance(item, dict) and item.get("app"):
+            app_of.setdefault(item["app"], None)
+    memory: Dict[str, str] = {}
+    for app in app_of:
+        memory.update(_app_memory(app))
+
+    try:
+        result = translate_entries(
+            entries,
+            config,
+            glossary=PROFESSIONAL_GLOSSARY,
+            memory=memory,
+            logger=logger,
+        )
+    except Exception:  # noqa: BLE001
+        logger.error("API auto-translation failed", exc_info=True)
+        return {}
+
+    if result.translations:
+        _append_to_csv(result.translations, overwrite=False)
+        _mark_logs_translated(result.translations)
+        logger.info(
+            f"Auto-translated {len(result.translations)} entries "
+            f"({result.repaired} repaired, {result.rejected_count} rejected, "
+            f"{result.api_calls} API calls); preserved {len(existing)} existing translations"
+        )
+    return result.translations
 
 
-# ---------- Translation doctype change hook ----------
+def _translate_via_openai_compat(entries: Sequence[str], api_cfg: Dict) -> List[str]:
+    """Backwards-compatible helper: translate a list, return a list."""
+    from custom_translations.translate import translate_entries
 
-def on_translation_update(doc, method):
-    """When a Translation record is updated in DB, also persist to this app's CSV
-    so it survives cache clears and migrations. Manual edits always overwrite."""
+    result = translate_entries(list(entries), api_cfg)
+    return [result.translations.get(entry, "") for entry in entries]
+
+
+#: old name kept so third-party imports keep working
+_translate_via_deepseek = _translate_via_openai_compat
+
+
+# --------------------------------------------------------------------------- #
+# Manual corrections and terminology repair
+# --------------------------------------------------------------------------- #
+
+def on_translation_update(doc, method=None):
+    """Persist manual ``Translation`` records into this app's CSV.
+
+    Manual edits always win (``overwrite=True``), so they survive cache clears
+    and framework upgrades.
+    """
     if doc.language != SUPPORTED_LANG:
         return
     if not doc.source_text or not doc.translated_text:
@@ -454,176 +397,243 @@ def on_translation_update(doc, method):
     _append_to_csv({doc.source_text: doc.translated_text}, overwrite=True)
 
 
-def apply_manual_corrections():
-    """Apply manual corrections from Missing Translation Log to CSV.
+def apply_manual_corrections() -> int:
+    """Copy reviewed/manual log records into the CSV (overwriting auto results).
 
-    Extracts translations from records marked as 'Reviewed' (manually verified)
-    or 'Translated' with translation_source='Manual', and writes them to CSV
-    with overwrite=True so they override auto-translations.
-
-    Called by bench command: custom-translations-apply-corrections
+    A record qualifies when ``status == "Reviewed"`` **or**
+    ``translation_source == "Manual"``. The original code passed both
+    ``filters`` and ``or_filters``; Frappe ANDs those, so every record whose
+    status was not exactly ``Reviewed`` was silently dropped.
     """
-    # Get all records with manual translations (Reviewed status or Manual source)
     manual_records = frappe.get_all(
         "Missing Translation Log",
-        filters=[
-            {"status": "Reviewed"},
-        ],
         or_filters=[
             {"status": "Reviewed"},
             {"translation_source": "Manual"},
         ],
         fields=["source_text", "translated_text"],
+        limit_page_length=0,
     )
 
-    if not manual_records:
+    corrections = {
+        _row(record, "source_text"): _row(record, "translated_text")
+        for record in manual_records
+        if _row(record, "source_text") and _row(record, "translated_text")
+    }
+    if not corrections:
         return 0
 
-    corrections = {}
-    for r in manual_records:
-        if r.translated_text and r.source_text:
-            corrections[r.source_text] = r.translated_text
-
-    if corrections:
-        _append_to_csv(corrections, overwrite=True)
-        frappe.logger(APP_NAME).info(
-            f"Applied {len(corrections)} manual corrections to CSV"
-        )
-
-    return len(corrections)
+    changed = _append_to_csv(corrections, overwrite=True)
+    frappe.logger(APP_NAME).info(
+        f"Applied {changed} manual corrections to CSV ({len(corrections)} candidates)"
+    )
+    return changed
 
 
-# ---------- Sync command: write translations back to .po files ----------
+def fix_batch_terminology(dry_run: bool = False) -> int:
+    """Repair Taiwan wording / systematic mistranslations in this app's CSV.
 
-def sync_to_po_files():
+    Rules are guarded by the English source string (see
+    :mod:`custom_translations.terminology`), so - unlike the previous blind
+    ``str.replace`` - ``Reporting Currency`` is not turned into ``报表货币``
+    and ``... can be reported`` is not turned into ``报表漏洞``.
+
+    Returns the number of entries corrected.
     """
-    Bench command: `bench --site {site} custom-translations-sync`
+    existing = load_app_translations()
+    if not existing:
+        return 0
 
-    OPTIONAL: Writes this app's CSV translations into frappe/erpnext/hrms
-    zh.po files (filling empty msgstr entries only), then recompiles .mo
-    and clears cache.
+    fixed, changes = fix_translations(existing)
+    if changes and not dry_run:
+        _append_to_csv(fixed, overwrite=True)
+        frappe.logger(APP_NAME).info(f"Fixed {len(changes)} entries with terminology rules")
+    return len(changes)
 
-    NOTE: This modifies official framework .po files. It is OPTIONAL -
-    translations work out-of-the-box via this app's zh.csv (Frappe auto-loads
-    CSV from every installed app). Use this only if you want translations
-    compiled into .mo binaries for slight performance improvement.
 
-    After running this, official updates may show merge conflicts in .po files.
-    To avoid this, skip this command and rely on the app's CSV instead.
-    """
-    from babel.messages.pofile import read_po, write_po
+# --------------------------------------------------------------------------- #
+# Boot hook (throttled) + scheduler
+# --------------------------------------------------------------------------- #
 
-    print("WARNING: This will modify official frappe/erpnext/hrms .po files.")
-    print("This is OPTIONAL - translations already work via this app's zh.csv.")
-    print("Proceeding in 3 seconds... (Ctrl+C to cancel)\n")
-    import time
-    time.sleep(3)
-
-    csv_translations = load_app_translations()
-    if not csv_translations:
-        print("No translations found in custom_translations/translations/zh.csv")
-        return
-
-    print(f"Loaded {len(csv_translations)} translations from CSV")
-
-    apps = ["frappe", "erpnext", "hrms", "payments", "webshop"]
-    total_filled = 0
-
-    for app in apps:
-        po_path = _get_app_po_path(app)
-        if not po_path or not po_path.exists():
-            print(f"  [{app}] no zh.po found, skipping")
-            continue
-
+def _cache_get(key):
+    try:
+        return frappe.cache.get_value(key)
+    except Exception:  # noqa: BLE001
         try:
-            with open(po_path, "rb") as f:
-                catalog = read_po(f)
+            return frappe.cache().get_value(key)
+        except Exception:  # noqa: BLE001
+            return None
 
-            filled = 0
-            for msg in catalog:
-                if not msg.id:
-                    continue
-                msgid = msg.id[0] if isinstance(msg.id, tuple) else msg.id
-                if (not msg.string or not str(msg.string).strip()) and msgid in csv_translations:
-                    msg.string = csv_translations[msgid]
-                    filled += 1
 
-            if filled > 0:
-                with open(po_path, "wb") as f:
-                    write_po(f, catalog)
-                print(f"  [{app}] filled {filled} entries")
-                total_filled += filled
-            else:
-                print(f"  [{app}] nothing to fill")
-        except Exception as e:
-            print(f"  [{app}] error: {e}")
+def _cache_set(key, value, ttl: int) -> None:
+    try:
+        frappe.cache.set_value(key, value, expires_in_sec=ttl)
+    except Exception:  # noqa: BLE001
+        try:
+            frappe.cache().set_value(key, value, expires_in_sec=ttl)
+        except Exception:  # noqa: BLE001
+            pass
 
-    if total_filled > 0:
-        print(f"\nTotal filled: {total_filled}")
-        print("Recompiling .mo files...")
-        os.system("bench compile-po-to-mo --app frappe")
-        os.system("bench compile-po-to-mo --app erpnext")
-        os.system("bench compile-po-to-mo --app hrms")
+
+def _scan_cache_key(apps: Sequence[str]) -> str:
+    return SCAN_CACHE_KEY + ":" + ",".join(sorted(apps))
+
+
+def _get_missing_cached(config: Dict, apps: Optional[Sequence[str]] = None):
+    """Scan (and cache) the missing translations of the installed apps.
+
+    Parsing every app's PO/POT plus this app's 16k CSV on every desk boot is
+    far too expensive, so the result is cached for ``scan_interval_seconds``.
+    """
+    apps = list(apps) if apps is not None else get_installed_apps()
+    ttl = int(config.get("scan_interval_seconds") or DEFAULT_SCAN_INTERVAL)
+    key = _scan_cache_key(apps)
+    cached = _cache_get(key)
+    if cached is not None:
+        return cached
+    missing = _scan_missing_translations(apps)
+    _cache_set(key, missing, ttl)
+    return missing
+
+
+def invalidate_scan_cache() -> None:
+    """Drop the cached scan so the next boot rescans."""
+    for app in get_installed_apps(include_self=True):
+        _cache_set(_scan_cache_key([app]), None, 1)
+    _cache_set(_scan_cache_key(get_installed_apps()), None, 1)
+
+
+def _enqueue_auto_translate(missing) -> bool:
+    """Run the API translation in a background job (never inside a request)."""
+    try:
+        frappe.enqueue(
+            "custom_translations.utils._auto_translate_via_api",
+            queue="long",
+            timeout=3600,
+            job_name="custom_translations_auto_translate",
+            missing=missing,
+        )
+        return True
+    except Exception as exc:  # noqa: BLE001
+        frappe.logger(APP_NAME).warning(f"Could not enqueue auto-translation: {exc}")
+        return False
+
+
+def detect_missing_translations_bootinfo(bootinfo=None):
+    """``extend_bootinfo`` hook: log newly missing Chinese strings.
+
+    Cheap by design: the expensive scan is cached (default 6h) and the API is
+    never called synchronously - it is queued as a background job instead, so a
+    desk boot can never block on a 120s HTTP timeout.
+    """
+    try:
+        if frappe.session.user == "Guest":
+            return
+
+        lang = getattr(frappe.local, "lang", None) or frappe.db.get_default("language")
+        if not lang or not str(lang).startswith("zh"):
+            return
+
+        config = load_config()
+        if not config.get("scan_on_boot", True):
+            return
+
+        missing = _get_missing_cached(config)
+        if not missing:
+            return
+
+        _log_missing_translations(missing)
+
+        if config.get("auto_translate") and config.get("is_configured"):
+            _enqueue_auto_translate(missing)
+    except Exception:  # noqa: BLE001 - a boot hook must never break the desk
+        frappe.logger(APP_NAME).error("Failed to detect missing translations", exc_info=True)
+
+
+def scheduled_translation_scan() -> Dict:
+    """Daily scheduler job: scan, log and optionally auto-translate."""
+    config = load_config()
+    missing = _scan_missing_translations()
+    logged = _log_missing_translations(missing) if missing else 0
+    translated = {}
+    if missing and config.get("auto_translate") and config.get("is_configured"):
+        translated = _auto_translate_via_api(missing)
+    frappe.db.commit()
+    summary = {
+        "missing": len(missing),
+        "logged": logged,
+        "translated": len(translated),
+    }
+    frappe.logger(APP_NAME).info(f"Scheduled translation scan: {summary}")
+    return summary
+
+
+# --------------------------------------------------------------------------- #
+# Optional: fill the apps' own PO files
+# --------------------------------------------------------------------------- #
+
+def sync_to_po_files(
+    apps: Optional[Sequence[str]] = None,
+    force: bool = False,
+    wait_seconds: int = 3,
+) -> Dict[str, int]:
+    """OPTIONAL: fill empty ``msgstr`` entries of the apps' own PO files.
+
+    Translations already work through this app's CSV; this only compiles them
+    into the ``.mo`` binaries for a marginal speed-up. It edits official files,
+    so it is opt-in and never touches a file it cannot find.
+
+    The previous version hardcoded ``frappe, erpnext, hrms, payments, webshop``
+    and ``<app>/locale/zh.po``; it therefore did nothing for ERPNext/HRMS on
+    v14/v15 (which ship ``translations/zh.csv`` and no ``locale/`` at all) and
+    skipped helpdesk/wiki/telephony entirely. This version discovers the files.
+
+    Returns ``{po_path: filled_count}``.
+    """
+    import time
+
+    ours = load_app_translations()
+    if not ours:
+        print(f"No translations found in {get_csv_path()}")
+        return {}
+
+    targets = list(apps) if apps is not None else get_installed_apps()
+    po_targets = []
+    for app in targets:
+        sources = discover_app(app)
+        for po_path in sources.po_files:
+            po_targets.append((app, po_path))
+
+    if not po_targets:
+        print("No PO based translation files found for the installed apps.")
+        print("Nothing to do - translations are already served from this app's CSV.")
+        return {}
+
+    print(f"Loaded {len(ours)} translations from {get_csv_path()}")
+    print("Will fill empty msgstr entries in:")
+    for app, po_path in po_targets:
+        print(f"  [{app}] {po_path}")
+    if not force:
+        print(f"Proceeding in {wait_seconds} seconds... (Ctrl+C to cancel)\n")
+        time.sleep(wait_seconds)
+
+    results: Dict[str, int] = {}
+    touched_apps: List[str] = []
+    for app, po_path in po_targets:
+        filled = po.fill_po_file(po_path, ours)
+        results[str(po_path)] = filled
+        if filled:
+            touched_apps.append(app)
+            print(f"  [{app}] filled {filled} entries")
+        else:
+            print(f"  [{app}] nothing to fill")
+
+    if touched_apps:
+        print("\nRecompiling .mo files...")
+        for app in dict.fromkeys(touched_apps):
+            os.system(f"bench compile-po-to-mo --app {app}")
         print("Clearing cache...")
         os.system("bench --site all clear-cache")
-        print("Done.")
     else:
         print("\nNothing to sync - all translations already in place.")
-
-
-# ---------- Batch terminology fix ----------
-# Word-level replacements to fix systematic translation errors across the
-# entire CSV. These correct widespread mistranslations that affect many
-# sentence-level entries (e.g. "储存" should be "保存", "报告" should be "报表").
-#
-# Format: (wrong_substring, correct_substring, description)
-# Order matters: longer/more-specific replacements run first.
-BATCH_TERM_REPLACEMENTS = [
-    # Save - 储存 → 保存 (台湾用语 → 大陆规范)
-    ("储存", "保存", "Save: 储存→保存"),
-    # Report - 报告 → 报表 (in ERP context, Report = 报表 not 报告)
-    ("报告", "报表", "Report: 报告→报表"),
-    # Masters - 大师 → 主数据 (Master Data, not "大师")
-    ("大师", "主数据", "Masters: 大师→主数据"),
-    # Settings - 设定 → 设置 (台湾用语 → 大陆规范)
-    ("设定", "设置", "Settings: 设定→设置"),
-    # Note: "家" 单字替换太危险（影响"家庭"、"家具"等正确翻译），
-    # 所以 "Home → 家" 的修正通过 professional_glossary 覆盖处理。
-]
-
-
-def fix_batch_terminology():
-    """
-    Fix systematic translation errors across the entire zh.csv.
-
-    Scans all translations and applies word-level replacements to correct
-    widespread mistranslations:
-    - 储存 → 保存 (Save)
-    - 报告 → 报表 (Report)
-    - 大师 → 主数据 (Masters)
-    - 设定 → 设置 (Settings)
-
-    Returns: number of entries modified
-    """
-    csv_path = get_csv_path()
-    existing = load_app_translations()
-
-    modified = {}
-    count = 0
-    for key, value in existing.items():
-        new_value = value
-        for wrong, correct, _desc in BATCH_TERM_REPLACEMENTS:
-            new_value = new_value.replace(wrong, correct)
-        if new_value != value:
-            modified[key] = new_value
-            count += 1
-
-    if count > 0:
-        # Merge modified entries back (overwrite=True to replace wrong values)
-        _append_to_csv(modified, overwrite=True)
-        frappe.logger(APP_NAME).info(
-            f"Fixed {count} entries with batch terminology replacements"
-        )
-
-    return count
-
+    return results
