@@ -24,6 +24,7 @@ from typing import Dict, Iterable, List, Optional, Sequence
 
 __all__ = [
     "CsvEntry",
+    "detect_lineterminator",
     "read_csv_entries",
     "write_csv_entries",
     "read_csv_translations",
@@ -90,18 +91,38 @@ def entries_to_dict(entries: Iterable[CsvEntry]) -> Dict[str, str]:
     return {entry.key: entry.msgstr for entry in entries}
 
 
+def detect_lineterminator(path: Path | str, default: str = "\n") -> str:
+    """Return the line terminator a translation CSV currently uses.
+
+    Rewriting a 16k line data file with different line endings would produce a
+    whole-file diff, so the existing style is preserved.
+    """
+    try:
+        with open(path, "rb") as handle:
+            chunk = handle.read(8192)
+    except OSError:
+        return default
+    if b"\r\n" in chunk:
+        return "\r\n"
+    if b"\n" in chunk:
+        return "\n"
+    return default
+
+
 def write_csv_entries(
     path: Path | str,
     entries: Sequence[CsvEntry],
-    lineterminator: str = "\n",
+    lineterminator: Optional[str] = None,
 ) -> None:
     """Write entries to a translation CSV.
 
-    ``lineterminator="\\n"`` matches ``frappe.translate.write_csv_file`` and
-    keeps the file diff-friendly (the framework never writes CRLF).
+    When ``lineterminator`` is None the existing file's line ending is kept
+    (new files use ``\n``, matching ``frappe.translate.write_csv_file``).
     """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    if lineterminator is None:
+        lineterminator = detect_lineterminator(path)
     with open(path, "w", encoding="utf-8", newline="") as handle:
         writer = csv.writer(handle, lineterminator=lineterminator)
         for entry in entries:
