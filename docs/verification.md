@@ -100,7 +100,25 @@ erpnext / hrms 完全失效；同时存在 1 个**会删除 16886 条人工词�
    （`translate.py`、`gettext/translate.py`、`sessions.py`、`db_query.py`、`bench_helper.py`、
    `model/sync.py`、`database/database.py`）。
 
+4. **真实上游端到端验证**：把官方 `develop` 分支的 `locale/zh.po` + `locale/main.pot`
+   （frappe / erpnext / hrms / helpdesk）与本 App 的 16886 条词条库放进同一个仿真 bench，
+   运行 `get_coverage_report()`（结果如下，扫描耗时 0.3 秒）：
+
+   | app | 布局 | 可翻译字符串 | 官方已译 | 本 App 覆盖 | 仍缺失 |
+   |-----|------|-------------|---------|------------|--------|
+   | frappe | po+pot | 7992 | 5905 | 5887 | **1960** |
+   | erpnext | po+pot | 11167 | 8079 | 8152 | **2984** |
+   | hrms | po+pot | 2294 | 2101 | 2012 | **271** |
+   | helpdesk | po+pot | 1622 | 730 | 366 | **880** |
+   | payments | 无文件 | 0 | 0 | 0 | 0 |
+   | **合计** | | **23075** | | | **6095** |
+
+   说明：旧代码在同样环境下对 erpnext / hrms 只会返回 0（找不到 `locale/zh.po` 时的旧假设在
+   develop 分支恰好成立、在 v15 分支完全不成立），也就是说这次修复让扫描在两条版本线上都可用。
+   表中「仍缺失」即为后续 `custom-translations-scan` + `auto-translate` 的真实工作量。
+
 ## 7. 对独立审计结论的复核（含 1 处纠正）
+
 
 | 审计结论 | 我的复核 |
 |----------|---------|
