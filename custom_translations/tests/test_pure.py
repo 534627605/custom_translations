@@ -1,5 +1,6 @@
 """Unit tests for the dependency-free helpers (no frappe needed)."""
 
+import json
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -9,6 +10,7 @@ from custom_translations.sources import (
     discover_app,
     extract_msgids,
     extract_msgids_from_dir,
+    extract_msgids_from_json,
     read_official_translations,
     source_inventory,
 )
@@ -190,3 +192,106 @@ class TestValidation(unittest.TestCase):
         self.assertFalse(is_acceptable("Hello %(name)s", "你好"))
         issues = validate("{{ _('x') }} {0}", "x")
         self.assertTrue(any(issue.code == "placeholder" for issue in issues))
+
+
+class TestV17Extraction(unittest.TestCase):
+    """The v17 keyword set and the v17 JSON extractors.
+
+    frappe v17 declares `PYTHON_KEYWORDS = DEFAULT_KEYWORDS | {"_lt", "N_"}`
+    (frappe/gettext/extractors/python.py) and registers JSON extractors in
+    babel_extractors.csv. A source scan must match, or the inventory silently
+    under-reports.
+    """
+
+    def test_all_v17_keywords_are_extracted(self):
+        text = (
+            'a = _("A")\nb = __("B")\nc = _lt("C")\nd = N_("D")\n'
+            'e = gettext("E")\nf = ngettext("F", "F2", n)\n'
+            'g = pgettext("ctx", "G")\nh = npgettext("ctx", "H", "H2", n)\n'
+            'i = frappe._("I")\nj = frappe.__("J")\n'
+        )
+        self.assertEqual(
+            extract_msgids(text),
+            {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
+        )
+
+    def test_pgettext_uses_the_second_argument_as_msgid(self):
+        self.assertEqual(extract_msgids('_("x")'), {"x"})
+        self.assertEqual(extract_msgids('pgettext("the context", "Open")'), {"Open"})
+
+    def test_template_literals_triple_quotes_and_concatenation(self):
+        text = (
+            'a = __(`Hello ${name}`)\n'
+            'b = _("""triple""")\n'
+            'c = _("con" "cat")\n'
+            "d = _('single quoted')\n"
+        )
+        self.assertEqual(
+            extract_msgids(text),
+            {"Hello ${name}", "triple", "concat", "single quoted"},
+        )
+
+    def test_non_translation_calls_are_still_ignored(self):
+        self.assertEqual(extract_msgids('some_("no")\n_.each(items)\nmy_N_("no")'), set())
+
+    def test_doctype_json_inventory(self):
+        doctype = {
+            "name": "Sales Order",
+            "description": "Order received from a customer",
+            "fields": [
+                {"fieldname": "status", "fieldtype": "Select", "label": "Status",
+                 "options": "Draft\nSubmitted"},
+                {"fieldname": "naming_series", "fieldtype": "Select", "label": "Series",
+                 "options": "SO-.YYYY.-"},
+            ],
+            "links": [{"group": "Accounting"}],
+            "permissions": [{"role": "Sales User"}],
+        }
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "sales_order.json"
+            path.write_text(json.dumps(doctype), encoding="utf-8")
+            found = extract_msgids_from_json(path)
+        self.assertIn("Sales Order", found)
+        self.assertIn("Order received from a customer", found)
+        self.assertIn("Status", found)
+        self.assertIn("Draft", found)
+        self.assertIn("Accounting", found)
+        self.assertIn("Sales User", found)
+        # naming_series options must never be translated
+        self.assertNotIn("SO-.YYYY.-", found)
+
+    def test_workspace_and_report_json(self):
+        workspace = {
+            "doctype": "Workspace",
+            "label": "Accounting",
+            "charts": [{"label": "Sales"}],
+            "links": [{"label": "Invoices", "description": "All invoices"}],
+        }
+        report = {"doctype": "Report", "report_name": "Trial Balance"}
+        with TemporaryDirectory() as tmp:
+            wpath = Path(tmp) / "workspace.json"
+            wpath.write_text(json.dumps(workspace), encoding="utf-8")
+            rpath = Path(tmp) / "report.json"
+            rpath.write_text(json.dumps(report), encoding="utf-8")
+            self.assertEqual(
+                extract_msgids_from_json(wpath),
+                {"Accounting", "Sales", "Invoices", "All invoices"},
+            )
+            self.assertEqual(extract_msgids_from_json(rpath), {"Trial Balance"})
+
+    def test_json_scanning_is_limited_to_translation_folders(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "doctype" / "thing").mkdir(parents=True)
+            (root / "fixtures").mkdir()
+            (root / "doctype" / "thing" / "thing.json").write_text(
+                json.dumps({"name": "Thing", "fields": [{"label": "Thing Label"}]}),
+                encoding="utf-8",
+            )
+            (root / "fixtures" / "other.json").write_text(
+                json.dumps({"name": "Not scanned", "fields": [{"label": "Nope"}]}),
+                encoding="utf-8",
+            )
+            found = extract_msgids_from_dir(root)
+        self.assertIn("Thing Label", found)
+        self.assertNotIn("Nope", found)

@@ -149,3 +149,28 @@ erpnext / hrms 完全失效；同时存在 1 个**会删除 16886 条人工词�
 重写：`utils.py`、`commands.py`、`hooks.py`、`setup.py`、`README.md`。
 数据：`translations/zh.csv`（66 条修正）。
 配置：`config.py`（新增 `scan_on_boot` / `scan_interval_seconds`）、`config.example.json`。
+
+
+## 10. v17 复核（用户反馈：开发线已到 v17，v16 已定版）
+
+按 v17 重新核对后确认 **本 App 的策略不需要改**，但**源码扫描器需要对齐 v17 的关键词与 JSON 抽取**：
+
+| 检查项 | v17 实测结果 | 结论 |
+|--------|-------------|------|
+| `develop` 版本 | frappe / erpnext / hrms 均为 **17.0.0-dev** | 确认用户所述 |
+| v16 线 | frappe **16.51.0**、erpnext **16.50.0**（已定版且高频小版本） | 同时支持 |
+| v15 线 | frappe / erpnext **15.122.0**（仍在发版） | 同时支持 |
+| `translations/<lang>.csv` 是否仍加载 | `get_translations_from_apps` 与 v15/v16 完全一致，**仍然加载** | CSV 覆盖策略在 v17 有效 |
+| PO/POT 路径 | `PO_DIR="locale"`、`POT_FILE="main.pot"`、MO 在 `sites/assets/locale/<locale>/LC_MESSAGES/<app>.mo` | 探测路径无需改 |
+| 中文文件名 | v16/v17 均为 `zh.po` + `zh_TW.po` | 已排除繁体 |
+| **提取关键词** | v17 新增 `_lt`、`N_`（`PYTHON_KEYWORDS = DEFAULT_KEYWORDS \\| {...}`） | **已补齐**（原先只认 `_`/`__`） |
+| **JSON 抽取** | v17 新增 doctype / workspace / report / sidebar / list_filter 等 JSON 抽取器 | **已实现 doctype / workspace / report**（含 Select 选项排除表） |
+
+影响面：**v15 的 erpnext / hrms 没有 POT**，其可翻译字符串清单完全依赖源码扫描；
+不补 JSON 抽取会明显低估库存量（ERPNext 大量界面文案在 DocType JSON 的 `label` 里）。
+本次已补，并新增 7 个针对性测试（关键词、pgettext 取参、模板串/三引号/拼接、JSON 抽取、目录白名单）。
+
+同时记录了 v17 新增的官方迁移命令 `bench migrate-csv-to-po` / `update-po-files` / `create-po-file`，
+若未来官方移除 CSV 加载，可用它把本 App 的词条库迁移为 `locale/zh.po`（届时本 App 的扫描仍然可用）。
+
+测试总数：**72 passed**。

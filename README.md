@@ -20,19 +20,24 @@ Frappe / ERPNext 官方中文翻译存在以下问题：
 
 这是本 App 与其它同类工具最大的区别：**不假设任何固定路径**。
 
-| App | v14 / v15（release 线） | develop / v16（新线） | 官方中文缺口 |
-|-----|------------------------|----------------------|-------------|
-| frappe | `frappe/translations/zh.csv` | `frappe/locale/zh.po` + `locale/main.pot` | 1835 / 7798 |
-| erpnext | `erpnext/translations/zh.csv` | `erpnext/locale/zh.po` + `locale/main.pot` | 2749 / 10831 |
-| hrms | `hrms/translations/zh.csv` | `hrms/locale/zh.po` + `locale/main.pot` | 151 / 2252 |
-| helpdesk | `helpdesk/locale/zh.po` | `helpdesk/locale/zh.po` | 649 / 1379 |
-| payments | 无翻译文件 | 无翻译文件 | 由本 App 的词条库覆盖 |
-| webshop | 无翻译文件 | 无翻译文件 | 由本 App 的词条库覆盖 |
-| telephony | 无翻译文件 | 无翻译文件 | 由本 App 的词条库覆盖 |
-| wiki | 无翻译文件（前端运行时取词） | 无翻译文件 | 由本 App 的词条库覆盖 |
+| App | v14 | v15（15.122.0，仍在发版） | v16（16.51.0，已定版） | v17 开发线（17.0.0-dev） | 官方中文缺口 |
+|-----|-----|---------------------------|------------------------|---------------------------|-------------|
+| frappe | `translations/zh.csv` | `locale/zh.po` **＋** `translations/zh.csv`（双轨） | `locale/zh.po` + `locale/main.pot` | 同 v16 | 1835 / 7798 |
+| erpnext | `translations/zh.csv` | `translations/zh.csv`（**无 locale 目录**） | `locale/zh.po` + `main.pot` | 同 v16 | 2749 / 10831 |
+| hrms | `translations/zh.csv` | `translations/zh.csv`（**无 locale 目录**） | `locale/zh.po` + `main.pot` | 同 v16 | 151 / 2252 |
+| helpdesk | — | — | `locale/zh.po` | 同 v16 | 649 / 1379 |
+| payments / webshop / telephony / wiki | 无 | 无 | 无 | **无** | 由本 App 的词条库覆盖 |
+
+> 三条版本线（v15 / v16 / v17）**同时存在且都在发版**，而同一 App 在不同线上用的翻译文件格式并不相同，
+> 这正是本 App 必须做多布局探测的原因。v17 仍支持加载 `<app>/translations/<lang>.csv`
+> （`frappe.translate.get_translations_from_apps` 未变），所以本 App 的 CSV 覆盖策略在 v17 上依然有效。
 
 扫描时会依次探测 `<app>/translations/`、`<app>/locale/`、`<app>/translations/locale/`（App 模块目录与源码根目录都探测），并识别 `zh.po` / `zh_CN.po` / `zh_Hans.po` / `zh.csv` / `main.pot` 等文件名。
-对于完全没有 PO/POT 的 App（payments / webshop / telephony / wiki），会退化为**源码扫描**：直接解析 App 自身的 `.py/.js/.html/.vue` 里的 `_("...")` / `__("...")` 调用，得到可翻译字符串清单。
+对于完全没有 PO/POT 的 App（payments / webshop / telephony / wiki），会退化为**源码扫描**：
+解析 App 自身的 `.py/.js/.html/.vue` 里的翻译调用 —— 关键词与 frappe v17 官方提取器保持一致
+（`_` / `__` / `_lt` / `N_` / `gettext` / `ngettext` / `pgettext` / `npgettext` 等，含三引号与 JS 反引号模板串），
+并按 v17 的做法额外解析 DocType / Workspace / Report 的 JSON（Select 选项会排除
+`naming_series`、`number_format`、`icon` 等不可翻译项）。
 
 ## 核心能力
 

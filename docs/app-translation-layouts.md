@@ -684,3 +684,80 @@ Every place where the current hardcoded `locale/zh.po` assumption breaks, with t
 - 因此任何只认一种布局的实现都会在另一条版本线上失效；本 App 现已同时支持 CSV / PO / POT，
   并对 payments / webshop / telephony / wiki（永无翻译文件）退化为源码扫描。
 
+
+
+---
+
+## 附录 2：v17 复核（开发线已到 17.0.0-dev）
+
+> 用户反馈「开发线到 v17、v16 已定版并有大量小版本」，重新核对结果如下。
+
+### A. 版本现状（`__version__` 逐分支读取）
+
+| 仓库 | version-14 | version-15 | version-16（已定版） | develop（v17 开发线） |
+|------|-----------|-----------|--------------------|---------------------|
+| frappe | 14.x | **15.122.0** | **16.51.0** | **17.0.0-dev** |
+| erpnext | 14.x | **15.122.0** | **16.50.0** | **17.0.0-dev** |
+| hrms | 14.x | 15.x | 16.x | **17.0.0-dev** |
+| helpdesk | — | — | — | 1.22.2（release 从 `main` 发，最新 v1.30.2） |
+| wiki | — | — | — | 3.4.0 |
+| payments / webshop / telephony | — | — | — | 0.0.1（无版本化 release） |
+
+> **更正前文附录 1**：erpnext 并非「正式线仍在 v15」——它 **v15 与 v16 两条线同时在发版**
+> （v15.122.0 / v16.50.0 均在 2026-10-06~07 发布）。
+
+### B. v17 的翻译文件位置（逐分支实测）
+
+| App | version-15 | version-16 | develop(v17) |
+|-----|-----------|-----------|--------------|
+| frappe | `locale/zh.po` **＋** `translations/zh.csv`（双轨） | 仅 `locale/zh.po` | 仅 `locale/zh.po` |
+| erpnext | 仅 `translations/zh.csv` | 仅 `locale/zh.po` | 仅 `locale/zh.po` |
+| hrms | 仅 `translations/zh.csv` | 仅 `locale/zh.po` | 仅 `locale/zh.po` |
+| helpdesk | — | — | `locale/zh.po` |
+| payments / webshop / telephony / wiki | 无 | 无 | **无** |
+
+中文文件名在 v16 / v17 均为 `zh.po` + `zh_TW.po`（繁体单独文件，扫描时必须排除，本 App 已排除）。
+
+### C. v17 框架侧确认（对本案最关键的三点）
+
+1. **`translations/<lang>.csv` 仍然被支持**。v17 的 `frappe/translate.py`：
+
+   ```python
+   for app in apps or frappe.get_installed_apps(_ensure_on_bench=True):
+       translations.update(get_translations_from_csv(lang, app) or {})
+       translations.update(get_translations_from_mo(lang, app) or {})
+   ```
+
+   与 v15/v16 完全一致 → **本 App 的 CSV 覆盖策略在 v17 上依然成立**，不需要改成只发 PO。
+
+2. **PO/POT 路径常量未变**：`PO_DIR = "locale"`、`POT_FILE = "main.pot"`、
+   `get_mo_path() = sites/assets/locale/<locale>/LC_MESSAGES/<app>.mo` → `sources.py` 的探测路径无需调整。
+
+3. **提取关键词新增**：`PYTHON_KEYWORDS = DEFAULT_KEYWORDS | {"_lt": None, "N_": None}`，
+   JS 关键词为 `__`，并且 v17 新增了 **JSON 抽取器**（`babel_extractors.csv` 注册了
+   doctype / workspace / report / sidebar / list_filter / kanban_board / desktop_icon /
+   onboarding_step / web_form / custom_field 等）。
+
+   → 已据此升级 `sources.py` 的源码扫描器：关键词覆盖
+   `_ __ _lt N_ gettext ngettext pgettext npgettext dgettext dngettext ugettext ungettext`
+   与 `frappe._` / `frappe.__`；支持三引号与 JS 反引号模板串；`pgettext` 系列按第 2 个参数取 msgid；
+   并新增 DocType / Workspace / Report JSON 抽取（Select 选项按 frappe 的
+   `EXCLUDE_SELECT_OPTIONS` 排除 `naming_series` / `number_format` / `icon` 等）。
+
+   影响面：**v15 的 erpnext / hrms 没有 POT**，其「可翻译字符串」清单完全依赖源码扫描；
+   不补 JSON 抽取会明显低估（ERPNext 大量界面文案在 DocType JSON 的 label 里）。
+
+### D. v17 新增的官方翻译命令（对用户有用的迁移路径）
+
+v17 `frappe/commands/gettext.py` 提供：
+
+| 命令 | 作用 |
+|------|------|
+| `bench generate-pot-file --app <app>` | 从源码生成 `locale/main.pot` |
+| `bench compile-po-to-mo --app <app>` | 编译 PO → MO（本 App 的 `custom-translations-sync` 仍用此命令，v17 有效） |
+| **`bench migrate-csv-to-po --app <app>`** | **把旧的 `translations/*.csv` 迁移为 `locale/*.po`**（v16/v17 的官方迁移路径） |
+| `bench update-po-files --app <app>` | 用 POT 更新 PO（保留已有译文） |
+| `bench create-po-file --locale zh --app <app>` | 新建语言 PO |
+
+因此：如果将来官方把 CSV 加载也移除，用户可先用 `bench migrate-csv-to-po` 把本 App 的
+`translations/zh.csv` 迁成 `locale/zh.po`（本 App 的 `sources.py` 已同时支持两种布局，届时仍可扫描）。

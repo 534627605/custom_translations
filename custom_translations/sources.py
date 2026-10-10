@@ -46,6 +46,8 @@ __all__ = [
     "source_inventory",
     "extract_msgids",
     "extract_msgids_from_dir",
+    "extract_msgids_from_json",
+    "TRANSLATION_KEYWORDS",
     "SUPPORTED_LANG",
 ]
 
@@ -201,37 +203,94 @@ def read_official_translations(
     return translations
 
 
+# --------------------------------------------------------------------------- #
+# Source string extraction (inventory for apps that ship no POT/PO)
+# --------------------------------------------------------------------------- #
+#
+# The keyword list mirrors frappe's own extractor configuration, which changed
+# in v17 (`frappe/gettext/extractors/python.py`):
+#
+#     PYTHON_KEYWORDS = DEFAULT_KEYWORDS | {"_lt": None, "N_": None}
+#     JS keywords     = ("__",)
+#
+# and the JSON extractors registered in `babel_extractors.csv`.
+# Keeping the same keyword set means our inventory matches what
+# `bench generate-pot-file` would produce.
 
-# --------------------------------------------------------------------------- #
-# Source string extraction (inventory for CSV-only apps)
-# --------------------------------------------------------------------------- #
+#: Translation call keywords, longest first (regex alternation is ordered).
+TRANSLATION_KEYWORDS: Tuple[str, ...] = (
+    "npgettext",
+    "ngettext",
+    "pgettext",
+    "dngettext",
+    "dgettext",
+    "ungettext",
+    "ugettext",
+    "gettext",
+    "__",
+    "_lt",
+    "N_",
+    "_",
+)
+
+#: Position of the msgid argument (all others default to 0)
+_KEYWORD_MSGID_INDEX: Dict[str, int] = {
+    "pgettext": 1,
+    "npgettext": 1,
+    "dgettext": 1,
+    "dngettext": 1,
+}
+
+_CALL_RE = re.compile(
+    r"(?:(?:frappe|self)\s*\.\s*)?(" + "|".join(TRANSLATION_KEYWORDS) + r")\s*\("
+)
+_PRECEDING_RE = re.compile(r"[\w.]")
+
+#: JSON folders whose files carry translatable strings (see babel_extractors.csv)
+JSON_TRANSLATION_DIRS: Tuple[str, ...] = ("doctype", "workspace", "report")
+
+#: DocType select options that must never be translated (frappe extractors/utils.py)
+EXCLUDE_SELECT_OPTIONS: Tuple[str, ...] = (
+    "naming_series",
+    "number_format",
+    "float_precision",
+    "currency_precision",
+    "minimum_password_score",
+    "icon",
+)
+
 
 def _read_string_literals(text: str, pos: int) -> Optional[str]:
-    """Read a (possibly implicitly concatenated) string literal at ``pos``."""
+    """Read a (possibly implicitly concatenated) string literal at ``pos``.
+
+    Supports single/double quotes, triple quotes and JS backticks (template
+    literals), all of which appear in Frappe sources.
+    """
     length = len(text)
     pieces: List[str] = []
     found = False
     while pos < length:
         while pos < length and text[pos] in " \t\r\n":
             pos += 1
-        if pos >= length or text[pos] not in "\"'":
+        if pos >= length or text[pos] not in "\"'`":
             break
         quote = text[pos]
-        pos += 1
+        triple = quote != "`" and text.startswith(quote * 3, pos)
+        opener = quote * 3 if triple else quote
+        pos += len(opener)
         buffer: List[str] = []
         closed = False
         while pos < length:
-            char = text[pos]
-            if char == "\\" and pos + 1 < length:
-                buffer.append(char)
+            if not triple and text[pos] == "\\" and pos + 1 < length:
+                buffer.append(text[pos])
                 buffer.append(text[pos + 1])
                 pos += 2
                 continue
-            if char == quote:
+            if text.startswith(opener, pos):
                 closed = True
-                pos += 1
+                pos += len(opener)
                 break
-            buffer.append(char)
+            buffer.append(text[pos])
             pos += 1
         if not closed:
             break
@@ -240,6 +299,43 @@ def _read_string_literals(text: str, pos: int) -> Optional[str]:
     if not found:
         return None
     return "".join(pieces)
+
+
+def _skip_to_argument(text: str, pos: int, index: int) -> int:
+    """Return the offset of the ``index``-th argument inside a call.
+
+    Used for ``pgettext``-style calls where the msgid is the 2nd argument.
+    """
+    if index == 0:
+        return pos
+    length = len(text)
+    depth = 0
+    seen = 0
+    quote: Optional[str] = None
+    while pos < length:
+        char = text[pos]
+        if quote:
+            if char == "\\":
+                pos += 2
+                continue
+            if char == quote:
+                quote = None
+            pos += 1
+            continue
+        if char in "\"'`":
+            quote = char
+        elif char in "([{":
+            depth += 1
+        elif char in ")]}":
+            if depth == 0:
+                return -1
+            depth -= 1
+        elif char == "," and depth == 0:
+            seen += 1
+            if seen == index:
+                return pos + 1
+        pos += 1
+    return -1
 
 
 def _unescape_python(value: str) -> str:
@@ -259,13 +355,23 @@ def _unescape_python(value: str) -> str:
 
 
 def extract_msgids(text: str) -> Set[str]:
-    """Extract every ``_("...")`` / ``__("...")`` string of a source file."""
+    """Extract every translatable string of a source file.
+
+    Handles ``_()``, ``__()``, ``_lt()``, ``N_()``, ``gettext()``/``ngettext()``
+    and the context variants ``pgettext()``/``npgettext()``, with dotted forms
+    such as ``frappe.__()``, implicit concatenation, triple-quoted strings and
+    JS template literals.
+    """
     found: Set[str] = set()
     for match in _CALL_RE.finditer(text):
         start = match.start()
         if start > 0 and _PRECEDING_RE.match(text[start - 1]):
             continue
-        raw = _read_string_literals(text, match.end())
+        keyword = match.group(1)
+        position = _skip_to_argument(text, match.end(), _KEYWORD_MSGID_INDEX.get(keyword, 0))
+        if position < 0:
+            continue
+        raw = _read_string_literals(text, position)
         if raw is None:
             continue
         value = _unescape_python(raw)
@@ -274,8 +380,81 @@ def extract_msgids(text: str) -> Set[str]:
     return found
 
 
+def _add_json_strings(target: Set[str], value) -> None:
+    if isinstance(value, str) and value.strip():
+        target.add(value)
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            _add_json_strings(target, item)
+
+
+def extract_msgids_from_json(path: Path | str) -> Set[str]:
+    """Extract translatable strings from Frappe DocType / Workspace / Report JSON.
+
+    Mirrors ``frappe.gettext.extractors`` (v17 added JSON extraction, so a
+    source scan that ignores JSON under-reports the inventory).
+    """
+    import json as _json
+
+    found: Set[str] = set()
+    try:
+        data = _json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, ValueError, UnicodeDecodeError):
+        return found
+    if not isinstance(data, dict):
+        return found
+
+    doctype = data.get("doctype")
+
+    if doctype == "Workspace":
+        _add_json_strings(found, data.get("label"))
+        for key in ("charts", "number_cards", "quick_lists", "shortcuts"):
+            for item in data.get(key) or []:
+                if isinstance(item, dict):
+                    _add_json_strings(found, item.get("label"))
+        for link in data.get("links") or []:
+            if isinstance(link, dict):
+                _add_json_strings(found, link.get("label"))
+                _add_json_strings(found, link.get("description"))
+        return found
+
+    if doctype == "Report":
+        _add_json_strings(found, data.get("report_name"))
+        return found
+
+    # DocType JSON: no `doctype` key, but a `fields` list and a `name`.
+    if "fields" in data and data.get("name"):
+        _add_json_strings(found, data.get("name"))
+        _add_json_strings(found, data.get("description"))
+        for field in data.get("fields") or []:
+            if not isinstance(field, dict):
+                continue
+            _add_json_strings(found, field.get("label"))
+            _add_json_strings(found, field.get("description"))
+            if (
+                field.get("fieldtype") in ("Select", "Autocomplete")
+                and field.get("fieldname") not in EXCLUDE_SELECT_OPTIONS
+            ):
+                options = field.get("options")
+                if isinstance(options, str):
+                    for option in options.split("\n"):
+                        _add_json_strings(found, option)
+        for link in data.get("links") or []:
+            if isinstance(link, dict):
+                _add_json_strings(found, link.get("group"))
+        for perm in data.get("permissions") or []:
+            if isinstance(perm, dict):
+                _add_json_strings(found, perm.get("role"))
+    return found
+
+
+def _is_translation_json(path: Path) -> bool:
+    """Only DocType/Workspace/Report JSON carry translatable strings."""
+    return path.suffix == ".json" and any(part in JSON_TRANSLATION_DIRS for part in path.parts)
+
+
 def extract_msgids_from_dir(module_dir: Path | str) -> Set[str]:
-    """Extract source strings from every Python/JS/HTML/Vue file of an app."""
+    """Extract source strings from every Python/JS/HTML/Vue/JSON file of an app."""
     found: Set[str] = set()
     root = Path(module_dir)
     if not root.is_dir():
@@ -285,18 +464,22 @@ def extract_msgids_from_dir(module_dir: Path | str) -> Set[str]:
             name for name in dirnames if name not in SKIP_DIRS and not name.startswith(".")
         ]
         for filename in filenames:
-            if not filename.endswith(SOURCE_EXTENSIONS):
-                continue
             path = Path(dirpath) / filename
             try:
                 if path.stat().st_size > 2_000_000:
                     continue
-                text = path.read_text(encoding="utf-8", errors="ignore")
             except OSError:
                 continue
-            if "_(" not in text:
-                continue
-            found |= extract_msgids(text)
+            if filename.endswith(SOURCE_EXTENSIONS):
+                try:
+                    text = path.read_text(encoding="utf-8", errors="ignore")
+                except OSError:
+                    continue
+                if "_(" not in text:
+                    continue
+                found |= extract_msgids(text)
+            elif _is_translation_json(path):
+                found |= extract_msgids_from_json(path)
     return found
 
 
