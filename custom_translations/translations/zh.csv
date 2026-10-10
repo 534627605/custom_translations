@@ -321,7 +321,7 @@ A6,A6
 A7,A7
 A8,A8
 A9,A9
-AB+,AB +
+AB+,AB+
 AB-,AB-
 ACC-PINV-.YYYY.-,ACC-PINV-.YYYY.-
 ALL,全部
@@ -803,7 +803,7 @@ Address Title is mandatory.,地址标题是强制性的。
 Address Type,地址类型
 Address and Contact,地址和联系方式
 Address and Contacts,地址和联系方式
-Address and other legal information you may want to put in the footer.,地址和其他法律资讯，您可能要放在页脚。
+Address and other legal information you may want to put in the footer.,地址和其他法律信息，您可能要放在页脚。
 Address needs to be linked to a Company. Please add a row for Company in the Links table.,地址必须关联公司，请在链接表中添加公司记录
 Address of Organizer,组织者地址
 Address used to determine Tax Category in transactions,业务交易用于决定税别的地址
@@ -1105,8 +1105,8 @@ Allow the following users to approve Leave Applications for block days.,授权�
 Allow this item to be used in purchase transactions.,允许此物料用于采购交易。
 Allow this item to be used in sales transactions.,允许此物料用于销售交易。
 Allow transferring raw materials even after the Required Quantity is fulfilled,允许超工单需求数量发原材料
-Allow user to login only after this hour (0-24),允许用户在几小时后登入（0 - 24）
-Allow user to login only before this hour (0-24),允许用户在几小时前登入（0 - 24）
+Allow user to login only after this hour (0-24),允许用户在几小时后登录（0 - 24）
+Allow user to login only before this hour (0-24),允许用户在几小时前登录（0 - 24）
 "Allow users to log in without a password, using a login link sent to their email",允许用户使用发送到邮箱的登录链接无密码登录
 Allowed,允许的
 Allowed Dimension,可使用的辅助核算
@@ -2513,7 +2513,7 @@ Cannot delete standard link. You can hide it if you want,无法删除标准链�
 Cannot delete system generated field <strong>{0}</strong>. You can hide it instead.,无法删除系统生成的字段 <strong>{0}</strong>。您可以改为隐藏它。
 Cannot delete {0},无法删除{0}
 Cannot delete {0} as it has child nodes,无法删除{0} ，因为它有子节点
-"Cannot disable perpetual inventory, as there are existing Stock Ledger Entries for the company {0}. Please cancel the stock transactions first and try again.",无法停用永续盘存制，因公司{0}存在库存分类账记录。请先取消库存交易再重试。
+"Cannot disable perpetual inventory, as there are existing Stock Ledger Entries for the company {0}. Please cancel the stock transactions first and try again.",无法禁用永续盘存制，因公司{0}存在库存分类账记录。请先取消库存交易再重试。
 Cannot disassemble more than produced quantity.,拆解数量不得超过产出数量。
 Cannot edit Standard Dashboards,无法编辑标准仪表板
 "Cannot edit Standard Notification. To edit, please disable this and duplicate it",无法编辑标准通知。要进行编辑，请禁用并复制它
@@ -2704,7 +2704,7 @@ Check if material transfer entry is not required,如不需从工单触发工单�
 Check the Error Log for more information: {0},查看错误日志以获取更多信息：{0}
 Check this if the Update Value is a formula or expression (e.g. doc.amount * 2). Leave unchecked for plain text values.,如果更新值是公式或表达式（例如 doc.amount * 2），请勾选此项。对于纯文本值则不勾选。
 Check this if you don't want users to sign up for an account on your site. Users won't get desk access unless you explicitly provide it.,如果您不希望用户在您的站点上注册账户，请勾选此项。除非您明确提供，否则用户不会获得桌面访问权限。
-Check this if you want to force the user to select a series before saving. There will be no default if you check this.,如果要强制用户在保存之前选择了一系列，则勾选此项。如果您勾选此项，则将没有预设值。
+Check this if you want to force the user to select a series before saving. There will be no default if you check this.,如果要强制用户在保存之前选择了一系列，则勾选此项。如果您勾选此项，则将没有默认值。
 Check this to disallow fractions. (for Nos),禁止使用小数，请勾选此项(针对个，支，片等整数单位)。
 "Check to display the full numeric value (e.g., 1,234,567 instead of 1.2M).","勾选以显示完整数字（例如：1,234,567 而非 1.2M）。"
 Check {0} for more details,查看{0}获取详情
@@ -3413,7 +3413,7 @@ Credit ({0}),贷方（{0}）
 Credit Account,贷方科目
 Credit Amount,贷方
 Credit Amount in Account Currency,贷方(科目货币)
-Credit Amount in Reporting Currency,贷方金额（报表货币）
+Credit Amount in Reporting Currency,贷方金额（报告货币）
 Credit Amount in Transaction Currency,贷方(交易货币)
 Credit Balance,剩余信用额度
 Credit Card,信用卡
@@ -3764,7 +3764,7 @@ Debit A/C Number,借方账号
 Debit Account,借方科目
 Debit Amount,借方
 Debit Amount in Account Currency,借方(科目货币)
-Debit Amount in Reporting Currency,借方金额（报表货币）
+Debit Amount in Reporting Currency,借方金额（报告货币）
 Debit Amount in Transaction Currency,借方(交易货币)
 Debit Note,扣款
 Debit Note Amount,扣款金额
@@ -3808,7 +3808,7 @@ Default,默认
 Default Account,默认科目
 Default Accounts,默认科目
 Default Activity Cost exists for Activity Type - {0},作业类型 -  {0}的默认作业成本已存在
-Default Address Template cannot be deleted,预设地址模板不能被删除
+Default Address Template cannot be deleted,默认地址模板不能被删除
 Default Advance Account,默认预付账款科目
 Default Advance Paid Account,默认预付账款科目
 Default Advance Received Account,默认预收账款科目
@@ -3849,9 +3849,9 @@ Default Finance Book,默认账簿
 Default Finished Goods Warehouse,默认成品仓(收料仓)
 Default Holiday List,默认假期表
 Default In-Transit Warehouse,默认在途仓
-Default Inbox,预设收件匣
+Default Inbox,默认收件匣
 Default Income Account,默认收入科目
-Default Incoming,预设传入信箱
+Default Incoming,默认传入信箱
 Default Inventory Account,默认存货科目
 Default Item Group,默认物料组
 Default Item Manufacturer,默认物料制造商
@@ -3860,7 +3860,7 @@ Default Manufacturer Part No,默认制造商物料号
 Default Material Request Type,默认物料需求类型
 Default Naming,默认命名
 Default Operating Cost Account,默认额外费用科目(物料移动)
-Default Outgoing,预设传出
+Default Outgoing,默认传出
 Default Payable Account,默认应付科目
 Default Payment Discount Account,默认付款折扣科目
 Default Payment Request Message,默认收款申请消息
@@ -3868,7 +3868,7 @@ Default Payment Terms Template,默认付款条款模板
 Default Payroll Payable Account,默认应付薪资账户
 Default Portal Home,默认门户首页
 Default Price List,默认价格表
-Default Print Format,预设打印格式
+Default Print Format,默认打印格式
 Default Print Language,默认打印语言
 Default Priority,默认优先级
 Default Provisional Account,默认暂估费用科目
@@ -3883,8 +3883,8 @@ Default Sales Unit of Measure,默认销售单位
 Default Scrap Warehouse,默认报废仓
 Default Selling Cost Center,默认销售成本中心
 Default Selling Terms,默认销售条款
-Default Sending,预设发送
-Default Sending and Inbox,预设发送和收件匣
+Default Sending,默认发送
+Default Sending and Inbox,默认发送和收件匣
 Default Service Level Agreement,默认服务水平协议
 Default Service Level Agreement for {0} already exists.,{0}的默认服务级别协议已存在
 Default Shift,默认班次
@@ -3917,10 +3917,10 @@ Default settings for your stock-related transactions,库存相关业务默认设
 "Default tax templates for sales, purchase and items are created.",已创建销售、采购和物料的默认税务模板
 Default value for {0} must be in the list of options.,{0} 的默认值必须在选项列表中。
 Default {0},默认 {0}
-"Default: ""Contact Us""",预设：“联络我们”
+"Default: ""Contact Us""",默认：“联络我们”
 Default: 10 mins,默认：10分钟
 DefaultValue,预设值
-Defaults,预设
+Defaults,默认
 Defaults Updated,默认值已更新
 Defaults to `en`,默认为 `en`
 Defense,Defense
@@ -4131,7 +4131,7 @@ Difference In,差额在
 Difference Posting Date,差异记账日期
 Difference Qty,差额数量
 Difference Value,差异金额
-"Different ""States"" this document can exist in. Like ""Open"", ""Pending Approval"" etc.",本文件可存在的不同“状态”。如“开启”、“延后批准”等。
+"Different ""States"" this document can exist in. Like ""Open"", ""Pending Approval"" etc.",本文件可存在的不同“状态”。如“打开”、“延后批准”等。
 Different 'Source Warehouse' and 'Target Warehouse' can be set for each row.,每行可设置不同的'来源仓库'与'目标仓库'
 Different UOM for items will lead to incorrect (Total) Net Weight value. Make sure that Net Weight of each item is in the same UOM.,不同单位的物料会导致不正确的（总）净重值。请确保每个物料的净重使用同一个单位。
 Digits,数字
@@ -4868,7 +4868,7 @@ Enabling this ensures each Purchase Invoice has a unique value in Supplier Invoi
 Enabling this option will allow you to record - <br><br> 1. Advances Received in a <b>Liability Account</b> instead of the <b>Asset Account</b><br><br>2. Advances Paid in an <b>Asset Account</b> instead of the <b> Liability Account</b>,勾选后，收到预付款记负债而非资产科目，支付预付款记资产而非负债科目
 Enabling this will allow creation of multi-currency invoices against single party account in company currency,如果勾选，允许客户或供应商第一张发票货币为非主数据中的结算货币(默认为本币)
 Enabling this will change the way how cancelled transactions are handled.,勾选意味着系统将修改取消单据记账逻辑
-"Enabling this will register your site on a central relay server to send push notifications for all installed apps through Firebase Cloud Messaging. This server only stores user tokens and error logs, and no messages are saved.",启用此选项将在中央中继服务器上注册您的站点，以通过 Firebase Cloud Messaging 为所有已安装的应用发送推送通知。此服务器仅存储用户令牌和错误日志，不保存任何消息。
+"Enabling this will register your site on a central relay server to send push notifications for all installed apps through Firebase Cloud Messaging. This server only stores user tokens and error logs, and no messages are saved.",启用此选项将在中央中继服务器上注册您的站点，以通过 Firebase Cloud Messaging 为所有已安装的应用发送推送通知。此服务器仅存储用户令牌和错误日志，不存储任何消息。
 Enabling this will submit documents in background,启用此选项将在后台提交单据
 Encashment,折现
 Encashment Amount,折现金额
@@ -4947,7 +4947,7 @@ Enter the number of leaves you want to allocate for the period.,输入本期间�
 Enter the opening stock units.,输入期初库存数量
 Enter the quantity of the Item that will be manufactured from this Bill of Materials.,输入基于此物料清单生产的物料数量
 Enter the quantity to manufacture. Raw material Items will be fetched only when this is set.,输入生产数量。仅当设置此值时才会获取原材料
-Enter url parameter for message,输入url参数的讯息
+Enter url parameter for message,输入url参数的消息
 Enter url parameter for receiver nos,输入URL参数的接收器号
 Enter yearly benefit amounts,输入年度福利金额
 Enter your password,输入密码
@@ -5384,7 +5384,7 @@ Fields must be a list or tuple when as_list is enabled,启用 as_list 时，字�
 "Fields must be a string, list, tuple, pypika Field, or pypika Function",字段必须是字符串、列表、元组、pypika Field 或 pypika Function
 "Fields separated by comma (,) will be included in the ""Search By"" list of Search dialog box",字段以逗号分隔（，）将被列入“通过搜索”的搜索对话框的列表
 Fields will be copied over only at time of creation.,字段将仅在创建时复制。
-Fieldtype,FIELDTYPE
+Fieldtype,字段类型
 Fieldtype cannot be changed from {0} to {1},字段类型不能从 {0} 更改为 {1}
 Fieldtype cannot be changed from {0} to {1} in row {2},列{2}的字段类型不能从{0}改变为{1}
 File,文件
@@ -5484,7 +5484,7 @@ Finished Good Quantity ,产成品数量
 Finished Good Serial / Batch,产成品序列号/批次
 Finished Good UOM,产成品计量单位
 Finished Good {0} does not have a default BOM.,产成品{0}无默认物料清单
-Finished Good {0} is disabled.,产成品{0}已停用
+Finished Good {0} is disabled.,产成品{0}已禁用
 Finished Good {0} must be a stock item.,产成品{0}必须为库存物料
 Finished Good {0} must be a sub-contracted item.,产成品{0}必须为外协物料
 Finished Goods,成品
@@ -5563,7 +5563,7 @@ Folder Name,文件夹名称
 Folder name should not include '/' (slash),文件夹名称不应包含“/”（斜杠）
 Folder {0} is not empty,文件夹{0}非空
 Folio,账单
-Folio no.,Folio no。
+Folio no.,Folio no.
 Follow,关注
 Follow Calendar Months,遵循自然月
 Follow via Email,邮件关注
@@ -6109,7 +6109,7 @@ Grouped by <span style='font-weight:600;'>{0}</b>,按 <span style='font-weight:6
 Groups,组
 Growth View,增长视图
 Guests are not allowed to upload files for {0} Doctype,访客不允许为 {0} 单据类型上传文件
-Guidelines and policies on vulnerability reporting. Defaults to `https://frappe.io/security`,关于漏洞报表的指南和政策。默认为 `https://frappe.io/security`
+Guidelines and policies on vulnerability reporting. Defaults to `https://frappe.io/security`,关于漏洞报告的指南和政策。默认为 `https://frappe.io/security`
 H - F,H - F
 HEAD,HEAD
 HERE,此处
@@ -6296,7 +6296,7 @@ House rented dates required for exemption calculation,房租免税计算需提�
 House rented dates should be atleast 15 days apart,房租起止日期至少间隔15天
 How Pricing Rule is applied?,定价规则如何应用？
 How frequently?,频率？
-"How should this currency be formatted? If not set, will use system defaults",此货币使用何种格式？如果没有设置，将使用系统预设值。
+"How should this currency be formatted? If not set, will use system defaults",此货币使用何种格式？如果没有设置，将使用系统默认值。
 Hrs,时长(小时)
 Human Resources,人力资源
 Human-readable name intended for display to the end user.,用于显示给最终用户的可读名称。
@@ -6479,7 +6479,7 @@ Ignore Employee Time Overlap,忽略员工时间重叠
 Ignore Empty Stock,不包括无库存物料
 Ignore Exchange Rate Revaluation and Gain / Loss Journals,忽略汇率重估及损益日记账
 Ignore Existing Ordered Qty,忽略已采购数量
-Ignore Is Opening check for reporting,报表中忽略是开账凭证
+Ignore Is Opening check for reporting,忽略期初检查用于报表
 Ignore Pricing Rule,忽略动态定价规则
 Ignore Pricing Rule is enabled. Cannot apply coupon code.,已启用忽略定价规则，无法应用优惠券
 Ignore System Generated Credit / Debit Notes,隐藏系统生成的贷/借记单
@@ -6581,7 +6581,7 @@ In Words will be visible once you save the Sales Order.,大写金额将在销售
 "In case of any error during this background process, the system will add a comment about the error on this Payroll Entry and revert to the Submitted status",后台处理过程中若发生错误，系统将在薪资条目添加错误注释并恢复至已提交状态
 In mins,分钟
 In minutes,分钟
-In points. Default is 9.,以点为单位。预设值是9。
+In points. Default is 9.,以点为单位。默认值是9。
 "In row {0} of Appointment Booking Slots: ""To Time"" must be later than ""From Time"".",在预约预订时段的 {0} 行中：“结束时间”必须晚于“开始时间”。
 In seconds,秒
 In stock,有货
@@ -6721,7 +6721,7 @@ Individual Stock Ledger Entry cannot be cancelled.,单个库存分类账分录�
 Industry,行业
 Industry Type,行业类型
 Info,信息
-Info:,资讯：
+Info:,信息：
 Information,信息
 Initial Email Notification Sent,第一封电子邮件通知已发送
 Initial Sync Count,初始同步计数
@@ -6851,7 +6851,7 @@ Interviews (This Week),面试次数（本周）
 Intro Video URL,介绍视频 URL
 Introduce your company to the website visitor.,对网站访客介绍贵公司。
 Introduction,介绍
-Introductory information for the Contact Us Page,联络我们页面的介绍资讯
+Introductory information for the Contact Us Page,联络我们页面的介绍信息
 Introspection URI,内省 URI
 Invalid,无效
 "Invalid ""depends_on"" expression",“depends_on”表达式无效
@@ -7089,7 +7089,7 @@ Is Current,当前
 Is Custom,是否自定义
 Is Custom Field,是自定义字段
 Is Customer Provided Item,是受托加工材料
-Is Default,是预设
+Is Default,是默认
 Is Default Account,默认户头
 Is Default Language,是否默认语言
 Is Discounted,已贴现
@@ -7862,7 +7862,7 @@ Log in to access this page.,登录以访问此页面。
 Log out,退出登录
 Log the selling and buying rate of an Item,物料的销售价和采购价
 Logged Out,已登出
-Login,登入
+Login,登录
 Login Activity,登录活动
 Login After,登录后
 Login Before,登录前
@@ -7893,7 +7893,7 @@ Login with {0},使用 {0} 登录
 Logo,Logo
 Logo URI,Logo URI
 Logo URL,Logo URL
-Logout,登出
+Logout,退出登录
 Logout All Sessions,退出所有会话
 Logout All Sessions on Password Reset,重置密码时退出所有会话
 Logout From All Devices After Changing Password,更改密码后从所有设备退出
@@ -8244,10 +8244,10 @@ Merged,已合并
 Merging is only possible between Group-to-Group or Leaf Node-to-Leaf Node,合并是唯一可能的组到组或叶节点到叶节点
 "Merging is only possible if following properties are same in both records. Is Group, Root Type, Company and Account Currency",合并要求两条记录的以下属性相同：是否组、根类型、公司和账户货币
 Merging {0} of {1},正在合并{1}的{0}
-Message,讯息
-Message Examples,讯息范例
+Message,消息
+Message Examples,消息范例
 Message ID,消息ID
-Message Parameter,讯息参数
+Message Parameter,消息参数
 Message Sent,消息已发送
 Message Type,消息类型
 Message clipped,消息已截断
@@ -8258,7 +8258,7 @@ Message to be displayed on successful completion,成功完成后显示的消息
 Message to show,信息显示
 Message will be sent to the users to get their status on the Project,发送给用户以收集项目进度
 Message-id,邮件ID
-Messages,讯息
+Messages,消息
 Messages greater than 160 characters will be split into multiple messages,超过160字符的消息将被分割为多条消息
 Meta,元
 Meta Description,元描述
@@ -9570,7 +9570,7 @@ POS Opening Entry has been cancelled. Please refresh the page.,POS期初凭证�
 POS Payment Method,销售点付款方式
 POS Profile,POS配置
 POS Profile - {0} has multiple open POS Opening Entries. Please close or cancel the existing entries before proceeding.,POS配置 - {0}存在多个未结POS期初凭证。请先关闭或取消现有凭证再继续操作
-POS Profile - {0} is currently open. Please close the POS or cancel the existing POS Opening Entry before cancelling this POS Closing Entry.,POS配置 - {0}当前处于开启状态。请先关闭POS或取消现有POS期初凭证，再取消本POS结账凭证
+POS Profile - {0} is currently open. Please close the POS or cancel the existing POS Opening Entry before cancelling this POS Closing Entry.,POS配置 - {0}当前处于打开状态。请先关闭POS或取消现有POS期初凭证，再取消本POS结账凭证
 POS Profile User,POS配置文件用户
 POS Profile doesn't match {},销售点配置不匹配{}
 POS Profile is mandatory to mark this invoice as POS Transaction.,需配置POS参数文件才可将本发票标记为POS交易。
@@ -10179,7 +10179,7 @@ Please create purchase receipt or purchase invoice for the item {0},请为物料
 "Please delete Product Bundle {0}, before merging {1} into {2}",在合并{1}到{2}前，请先删除产品套装{0}
 Please delete the Employee {0} to cancel this document,请先删除员工{0}以取消该单据
 Please delete the field from {0} or add the required doctype.,请从 {0} 中删除字段或添加所需单据类型。
-Please disable workflow temporarily for Journal Entry {0},请暂时停用日记账凭证{0}的工作流。
+Please disable workflow temporarily for Journal Entry {0},请暂时禁用日记账凭证{0}的工作流。
 Please do not book expense of multiple assets against one single Asset.,请勿将多个资产的费用记入单一资产
 Please do not change the template headings.,请不要更改模板标题。
 Please do not create more than 500 items at a time,请不要一次创建超过500个物料
@@ -10353,7 +10353,7 @@ Please select a row to create a Reposting Entry,请选择行以创建重新过�
 Please select a supplier for fetching payments.,请选择一个供应商以获取付款台账信息
 Please select a transaction.,请选择一个交易。
 Please select a valid Purchase Order that is configured for Subcontracting.,请选择配置为委外的有效采购订单
-Please select a valid csv file with data,请选择有合格资料的csv档案
+Please select a valid csv file with data,请选择有合格数据的csv文件
 Please select a valid date filter,请选择有效的日期筛选条件
 Please select a value for {0} quotation_to {1},请选择一个值{0} quotation_to {1}
 Please select an Applicant,请选择申请人
@@ -10582,9 +10582,9 @@ Preferred Email,首选邮箱
 Preferred Language,首选语言
 Preferred Shipping Address,偏好的送货地址
 Prefix,前缀
-Prepared Report,准备报表
-Prepared Report Analytics,预备报表分析
-Prepared Report User,预备报表用户
+Prepared Report,预生成报表
+Prepared Report Analytics,预生成报表分析
+Prepared Report User,预生成报表用户
 Prepared report render failed,预备报表渲染失败
 Preparing Report,正在准备报表
 Prepend the template to the email message,将模板前置到邮件消息
@@ -10821,7 +10821,7 @@ Profitability Analysis,盈利能力分析
 Progress,进展
 Progress % for a task cannot be more than 100.,为任务进度百分比不能超过100个。
 Progress (%),进展(%)
-Project,专案
+Project,项目
 Project Collaboration Invitation,项目合作邀请
 Project Id,项目号
 Project Manager,项目经理
@@ -11579,7 +11579,7 @@ Report Type,报表类型
 Report Type is mandatory,报表类型必填
 Report View,报表视图
 Report an Issue,提交一个问题
-Report bug,报表错误
+Report bug,报告缺陷
 Report cannot be set for Single types,报表不能单类型设置
 "Report has no data, please modify the filters or change the Report Name",报表无数据，请修改筛选条件或更改报表名称
 "Report has no numeric fields, please change the Report Name",报表无数值字段，请更改报表名称
@@ -11594,9 +11594,9 @@ Report {0} deleted,报表 {0} 已删除
 Report {0} is disabled,报表{0}无效
 Report {0} saved,报表 {0} 已保存
 Report:,报表：
-Reporting Currency,报表货币
-Reporting Currency Exchange Not Found,未找到报表货币汇率
-Reporting Currency Exchange Rate,报表货币汇率
+Reporting Currency,报告货币
+Reporting Currency Exchange Not Found,未找到报告货币汇率
+Reporting Currency Exchange Rate,报告货币汇率
 Reports,报表
 Reports & Masters,报表与主数据
 Reports To,汇报对象
@@ -11742,7 +11742,7 @@ Reset Service Level Agreement,重置服务水平协议
 Reset To Default,重置为默认
 Reset sorting,重置排序
 Reset to default,重置为默认
-Reset to defaults,重置为预设值
+Reset to defaults,重置为默认值
 Reset your password,重置你的密码
 Resetting Service Level Agreement.,重置服务水平协议。
 Resignation Letter Date,辞职信日期
@@ -12384,7 +12384,7 @@ Sales Partner Type,业务伙伴类型
 Sales Partners Commission,业务伙伴佣金
 Sales Payment Summary,销售收款汇总
 Sales Person,销售员
-Sales Person <b>{0}</b> is disabled.,销售员<b>{0}</b>已被停用。
+Sales Person <b>{0}</b> is disabled.,销售员<b>{0}</b>已被禁用。
 Sales Person Commission Summary,业务员佣金汇总表
 Sales Person Name,业务员姓名
 Sales Person Target Variance Based On Item Group,业务员物料组业绩达成分析
@@ -12431,7 +12431,7 @@ Saturday,星期六
 Save,保存
 Save Anyway,仍然保存
 Save As,另存为
-Save Changes and Load New Invoice,保存更改并载入新发票
+Save Changes and Load New Invoice,保存更改并加载新发票
 Save Customizations,保存自定义
 Save Draft,保存草稿
 Save Report,保存报表
@@ -12547,7 +12547,7 @@ Search properties...,搜索属性...
 Search results for,为。。。。寻找结果
 Search the docs (Press / to focus),搜索文档（按 / 聚焦）
 Search...,搜索...
-Searching ...,正在搜寻...
+Searching ...,正在搜索...
 Second,秒
 Second Email,第二封邮件
 Secondary Party,次要业务伙伴代码
@@ -12736,7 +12736,7 @@ Select your weekly off day,选择每周休息日
 Select {0},选择{0}
 "Select, to make the customer searchable with these fields",设置客户首选联系人后，可以使用手机号过滤客户
 Selected,已选择
-Selected POS Opening Entry should be open.,选定的POS期初条目应为开启状态。
+Selected POS Opening Entry should be open.,选定的POS期初条目应为打开状态。
 Selected Price List should have buying and selling fields checked.,价格表主数据中应勾选采购和销售。
 Selected Print Format does not exist.,所选打印格式不存在。
 Selected Serial and Batch Bundle entries have been fixed.,所选序列号和批次捆绑条目已修复。
@@ -12923,7 +12923,7 @@ Service Item,服务物料
 Service Item Qty,服务物料数量
 Service Item Qty / Finished Good Qty,服务物料数量/产成品数量
 Service Item UOM,服务物料单位
-Service Item {0} is disabled.,服务物料{0}已停用
+Service Item {0} is disabled.,服务物料{0}已禁用
 Service Item {0} must be a non-stock item.,服务物料{0}必须为非库存物料
 Service Items,委外加工费明细
 Service Level Agreement,服务水平协议
@@ -13004,7 +13004,7 @@ Set all private,全部设为私有
 Set all public,全部设为公开
 Set as Closed,设置为关闭
 Set as Completed,设为已完成
-Set as Default,设为预设
+Set as Default,设为默认
 Set as Default Theme,设为默认主题
 Set as Lost,设置为未成交
 Set as Open,设置为打开状态
@@ -13049,7 +13049,7 @@ Setting Account Type helps in selecting this Account in transactions.,设置科�
 Setting Item Locations...,设置物料位置...
 Setting defaults,设置默认值
 Setting the account as a Company Account is necessary for Bank Reconciliation,银行对账功能仅限本公司银行户头
-Setting this Address Template as default as there is no other default,设置此地址模板为预设当没有其它的预设值
+Setting this Address Template as default as there is no other default,设置此地址模板为默认当没有其它的默认值
 Setting up Global Search documents.,正在设置全局搜索单据。
 Setting up company,创建公司
 Setting up your system,设置您的系统
@@ -13191,7 +13191,7 @@ Show Failed Logs,显示出错信息
 Show Fieldname (click to copy on clipboard),显示字段名（点击复制到剪贴板）
 Show First Document Tour,显示首个单据导览
 Show Form Tour,显示表单导览
-Show Full Error and Allow Reporting of Issues to the Developer,显示完整错误并允许向开发人员报表问题
+Show Full Error and Allow Reporting of Issues to the Developer,显示完整错误并允许向开发者报告问题
 Show Full Form?,显示完整表单？
 Show Full Number,显示完整数字
 Show Future Payments,显示未来(报表记账日期后)付款金额
@@ -13652,7 +13652,7 @@ Storage Usage By Table,按表的存储使用
 Store Attached PDF Document,存储附加的 PDF 单据
 Store the API secret securely. It won't be displayed again.,请安全地存储 API 密钥。它不会再次显示。
 Stores,仓库
-Stores the JSON of last known versions of various installed apps. It is used to show release notes.,保存最后安装版本之应用程序的JSON。用来显示发行说明。
+Stores the JSON of last known versions of various installed apps. It is used to show release notes.,存储已安装应用最后已知版本的JSON数据，用于显示版本说明
 Stores the datetime when the last reset password key was generated.,存储上次生成密码重置密钥的日期时间。
 Straight Line,直线法
 Straight rows of keys are easy to guess,键的直排容易被猜中
@@ -13662,7 +13662,7 @@ Strong,强
 Structures have been assigned successfully,结构分配成功
 Style,风格
 Style Settings,样式设置
-"Style represents the button color: Success - Green, Danger - Red, Inverse - Black, Primary - Dark Blue, Info - Light Blue, Warning - Orange",风格代表按钮的颜色：成功 - 绿色，危险 - 红，逆 - 黑色，主要 - 深蓝色，资讯 - 浅蓝，警告 - 橙
+"Style represents the button color: Success - Green, Danger - Red, Inverse - Black, Primary - Dark Blue, Info - Light Blue, Warning - Orange",风格代表按钮的颜色：成功 - 绿色，危险 - 红，逆 - 黑色，主要 - 深蓝色，信息 - 浅蓝，警告 - 橙
 Stylesheet,样式表
 Sub Assemblies,半成品
 Sub Assemblies & Raw Materials,子装配件与原材料
@@ -14379,7 +14379,7 @@ This action is only allowed for {},此操作仅允许用于 {}
 This action will prevent making changes to the linked appraisal feedback/goals.,此操作将阻止修改关联的考核反馈/目标
 This action will stop future billing. Are you sure you want to cancel this subscription?,此操作将停止未来的结算。您确定要取消此订阅吗？
 This action will unlink this account from any external service integrating ERPNext with your bank accounts. It cannot be undone. Are you certain ?,此操作将取消此账户与将ERPNext与您的银行账户集成的任何外部服务的链接。它无法撤销。你确定吗 ？
-This asset category is marked as non-depreciable. Please disable depreciation calculation or choose a different category.,本资产类别标记为不可折旧。请停用折旧计算或选择其他类别。
+This asset category is marked as non-depreciable. Please disable depreciation calculation or choose a different category.,本资产类别标记为不可折旧。请禁用折旧计算或选择其他类别。
 This cannot be undone,此操作无法撤销
 This card is visible only to Administrator and System Managers by default. Set a DocType to share with users who have read access.,此卡片默认仅对管理员和系统管理员可见。设置单据类型以与有读取权限的用户共享。
 This card will be available to all Users if this is set,如果设置此项，此卡片将对所有用户可用
@@ -15097,7 +15097,7 @@ Unable to find score starting at {0}. You need to have standing scores covering 
 Unable to find the time slot in the next {0} days for the operation {1}. Please increase the 'Capacity Planning For (Days)' in the {2}.,未来{0}天内未找到工序{1}的可用时段，请在{2}中增加'产能计划周期（天）'
 Unable to find variable:,无法找到变量：
 Unable to load camera.,无法加载相机。
-Unable to load: {0},无法载入： {0}
+Unable to load: {0},无法加载： {0}
 Unable to open attached file. Did you export it as CSV?,无法打开附加的文件。你导出为CSV？
 Unable to read file format for {0},无法读取{0}的文件格式
 Unable to retrieve your location,无法获取您的位置
@@ -15350,10 +15350,10 @@ User '{0}' already has the role '{1}',用户“{0}”已经拥有了角色“{1}
 User Activity Report,用户活动报表
 User Activity Report Without Sort,用户活动报表（无排序）
 User Agent,用户代理
-User Cannot Create,无法建立使用者
-User Cannot Search,无法搜寻使用者
+User Cannot Create,无法建立用户
+User Cannot Search,无法搜索用户
 User Changed,用户已更改
-User Defaults,使用者预设
+User Defaults,用户默认
 User Details,用户详情
 User Doctype Permissions,用户单据类型权限
 User Document Type,用户单据类型
@@ -15363,13 +15363,13 @@ User Forum,用户论坛
 User Group,用户组
 User Group Member,用户组成员
 User Group Members,用户组成员
-User ID,使用者 ID
+User ID,用户 ID
 User ID Property,用户 ID 属性
 User ID not set for Employee {0},员工设置{0}为设置用户ID
 User Id,用户ID
 User Id Field,用户 ID 字段
 User Id Field is mandatory in the user type {0},用户类型 {0} 中用户 ID 字段是必填的
-User Image,使用者图片
+User Image,用户图片
 User Invitation,用户邀请
 User Menu,用户菜单
 User Name,用户名
@@ -15784,7 +15784,7 @@ Website Themes Available,可用网站主题
 Website User,网站用户
 Website Users,网站用户
 Website Visits,网站访问
-"Website, email or phone where vulnerabilities can be reported. Defaults to `https://security.frappe.io`",可以报表漏洞的网站、邮件或电话。默认为 `https://security.frappe.io`
+"Website, email or phone where vulnerabilities can be reported. Defaults to `https://security.frappe.io`",可报告漏洞的网站、邮件或电话。默认为 `https://security.frappe.io`
 Website:,网站:
 Websocket,Websocket
 Wednesday,星期三
@@ -16126,7 +16126,7 @@ You don't have permission to access the {0} DocType.,您无权访问 {0} 单据�
 You don't have permission to access this file,您没有权限访问该文件
 You don't have permission to create Report records.,您无权创建报表记录。
 You don't have permission to create report for {0},您无权为 {0} 创建报表
-You don't have permission to get a report on: {0},你无权得到一份报表：{0}
+You don't have permission to get a report on: {0},您无权获取 {0} 的报表
 You don't have permission to read/attach the file {0}.,您无权读取/附加文件 {0}。
 You don't have the permissions to access this document,您没有访问此文件的权限
 You had {} errors while creating opening invoices. Check {} for more details,创建期初发票时出现{}个错误，请检查{}获取详情
@@ -16658,7 +16658,7 @@ yyyy-mm-dd,年 - 月 - 日
 {0} is on or after {1},{0} 在 {1} 当天或之后
 {0} is on or before {1},{0} 在 {1} 当天或之前
 {0} is one of {1},{0} 是 {1} 之一
-{0} is open. Close the POS or cancel the existing POS Opening Entry to create a new POS Opening Entry.,{0}处于开启状态。请关闭POS或取消现有POS期初凭证以创建新的POS期初凭证。
+{0} is open. Close the POS or cancel the existing POS Opening Entry to create a new POS Opening Entry.,{0}处于打开状态。请关闭POS或取消现有POS期初凭证以创建新的POS期初凭证。
 {0} is required,{0}是必需的
 {0} is required.,{0} 是必填的。
 {0} is set,{0} 已设置
