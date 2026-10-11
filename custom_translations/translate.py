@@ -186,6 +186,9 @@ class OpenAiCompatClient:
         self.model = config.get("model")
         self.provider = (config.get("provider") or "").lower()
         self.timeout = timeout
+        # Retry configuration from config
+        self.max_attempts = int(config.get("retry_attempts") or 3)
+        self.retry_delay = int(config.get("retry_delay") or 5)
 
     def complete(self, system_prompt: str, user_prompt: str, *, json_mode: bool = True) -> str:
         import requests
@@ -205,21 +208,52 @@ class OpenAiCompatClient:
         if json_mode and self.provider == "deepseek":
             payload["response_format"] = {"type": "json_object"}
 
-        response = requests.post(
-            self.endpoint,
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-            },
-            json=payload,
-            timeout=self.timeout,
-        )
-        response.raise_for_status()
-        data = response.json()
-        try:
-            return data["choices"][0]["message"]["content"].strip()
-        except (KeyError, IndexError, TypeError) as exc:
-            raise ApiError(f"unexpected response shape: {str(data)[:200]}") from exc
+        # Retry logic for transient failures
+        attempt = 0
+        last_error: Optional[Exception] = None
+        while attempt < self.max_attempts:
+            try:
+                response = requests.post(
+                    self.endpoint,
+                    headers={
+                        "Authorization": f"Bearer {self.api_key}",
+                        "Content-Type": "application/json",
+                    },
+                    json=payload,
+                    timeout=self.timeout,
+                )
+                response.raise_for_status()
+                data = response.json()
+                try:
+                    return data["choices"][0]["message"]["content"].strip()
+                except (KeyError, IndexError, TypeError) as exc:
+                    raise ApiError(f"unexpected response shape: {str(data)[:200]}") from exc
+            except requests.exceptions.Timeout as exc:
+                last_error = exc
+                attempt += 1
+                if attempt < self.max_attempts:
+                    time.sleep(self.retry_delay)
+            except requests.exceptions.ConnectionError as exc:
+                last_error = exc
+                attempt += 1
+                if attempt < self.max_attempts:
+                    time.sleep(self.retry_delay)
+            except requests.exceptions.HTTPError as exc:
+                # Check for transient 5xx or 429 errors
+                if exc.response and exc.response.status_code in (429, 500, 502, 503, 504):
+                    last_error = exc
+                    attempt += 1
+                    if attempt < self.max_attempts:
+                        time.sleep(self.retry_delay)
+                else:
+                    raise
+            except Exception as exc:  # noqa: BLE001 - provider errors are opaque
+                last_error = exc
+                attempt += 1
+                if attempt < self.max_attempts:
+                    time.sleep(self.retry_delay)
+
+        raise ApiError(f"max retries ({self.max_attempts}) exceeded: {last_error}")
 
 
 def _parse_translations(content: str, expected: int) -> List[str]:
@@ -271,6 +305,11 @@ def _call_with_retries(
     sleeper=time.sleep,
     on_retry=None,
 ) -> str:
+    """Wrapper around client.complete that adds logging and optional callbacks.
+    
+    The actual retry logic is now in OpenAiCompatClient.complete(). This function
+    just provides a thin wrapper for backwards compatibility and optional callbacks.
+    """
     last_error: Optional[Exception] = None
     for attempt in range(attempts):
         try:
@@ -301,13 +340,15 @@ def translate_entries(
     ``translations``, everything else is reported in ``rejected`` with reasons.
     """
     result = TranslationResult()
-    unique: List[str] = []
+    # Build an ordered list of unique entries (preserving original order)
     seen: set = set()
+    ordered_entries: List[str] = []
     for entry in entries:
         if entry and entry not in seen:
             seen.add(entry)
-            unique.append(entry)
-    if not unique:
+            ordered_entries.append(entry)
+
+    if not ordered_entries:
         return result
 
     client = client or OpenAiCompatClient(config)
@@ -317,8 +358,8 @@ def translate_entries(
 
     pending: Dict[str, str] = {}
 
-    for start in range(0, len(unique), batch_size):
-        batch = unique[start : start + batch_size]
+    for start in range(0, len(ordered_entries), batch_size):
+        batch = ordered_entries[start : start + batch_size]
         items = "\n".join(f"{index + 1}. {text}" for index, text in enumerate(batch))
         user_prompt = _USER_TEMPLATE.format(
             count=len(batch),

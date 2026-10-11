@@ -68,6 +68,7 @@ __all__ = [
     "detect_missing_translations_bootinfo",
     "scheduled_translation_scan",
     "on_translation_update",
+    "detect_site_version",
 ]
 
 
@@ -517,6 +518,38 @@ def _enqueue_auto_translate(missing) -> bool:
     except Exception as exc:  # noqa: BLE001
         frappe.logger(APP_NAME).warning(f"Could not enqueue auto-translation: {exc}")
         return False
+
+
+def detect_app_versions() -> Dict[str, str]:
+    """Return ``{app: __version__}`` for the installed upstream apps.
+
+    Reads each app's Python package ``__version__`` attribute - the same value
+    ``bench version`` reports.  Apps that are not installed (or fail to
+    import) are simply omitted, so this function never raises.
+    """
+    import importlib
+
+    versions: Dict[str, str] = {}
+    for app in get_installed_apps(include_self=False) or ("frappe", "erpnext", "hrms", "helpdesk"):
+        try:
+            module = importlib.import_module(app)
+        except Exception:  # noqa: BLE001 - app not importable in this env
+            continue
+        version = str(getattr(module, "__version__", "") or "")
+        if version:
+            versions[app] = version
+    return versions
+
+
+def detect_site_version() -> str:
+    """Version of the frappe framework running this bench (e.g. ``16.8.0``).
+
+    Historically this read ``site_config['frappe_version']``, but that key
+    does not exist in site_config.json, and the fallback ``frappe.get_var``
+    is not a real API - the function could only ever return ``""``.  The
+    framework package version is available offline and always correct.
+    """
+    return detect_app_versions().get("frappe", "")
 
 
 def detect_missing_translations_bootinfo(bootinfo=None):

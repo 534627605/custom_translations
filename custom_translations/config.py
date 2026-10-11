@@ -59,12 +59,14 @@ DEFAULT_PROVIDERS = {
 # Defaults for optional settings
 DEFAULT_BATCH_SIZE = 10
 DEFAULT_MAX_LENGTH = 500
+DEFAULT_RETRY_ATTEMPTS = 3
+DEFAULT_RETRY_DELAY = 5  # seconds
 
 #: How long the boot-time scan result is cached (seconds)
 DEFAULT_SCAN_INTERVAL = 6 * 60 * 60
 
 #: Config keys that must be coerced to int / bool
-_INT_KEYS = ("batch_size", "max_length", "scan_interval_seconds")
+_INT_KEYS = ("batch_size", "max_length", "scan_interval_seconds", "retry_attempts", "retry_delay")
 _BOOL_KEYS = ("auto_translate", "scan_on_boot")
 
 
@@ -102,6 +104,8 @@ def load_config() -> dict:
         "model": "",
         "batch_size": DEFAULT_BATCH_SIZE,
         "max_length": DEFAULT_MAX_LENGTH,
+        "retry_attempts": DEFAULT_RETRY_ATTEMPTS,
+        "retry_delay": DEFAULT_RETRY_DELAY,
         "auto_translate": False,
         "scan_on_boot": True,
         "scan_interval_seconds": DEFAULT_SCAN_INTERVAL,
@@ -134,6 +138,8 @@ def load_config() -> dict:
         "CUSTOM_TRANSLATIONS_MODEL": "model",
         "CUSTOM_TRANSLATIONS_BATCH_SIZE": "batch_size",
         "CUSTOM_TRANSLATIONS_MAX_LENGTH": "max_length",
+        "CUSTOM_TRANSLATIONS_RETRY_ATTEMPTS": "retry_attempts",
+        "CUSTOM_TRANSLATIONS_RETRY_DELAY": "retry_delay",
         "CUSTOM_TRANSLATIONS_AUTO_TRANSLATE": "auto_translate",
         "CUSTOM_TRANSLATIONS_SCAN_ON_BOOT": "scan_on_boot",
         "CUSTOM_TRANSLATIONS_SCAN_INTERVAL": "scan_interval_seconds",
@@ -169,6 +175,14 @@ def load_config() -> dict:
         config["max_length"] = int(config.get("max_length") or DEFAULT_MAX_LENGTH)
     except (TypeError, ValueError):
         config["max_length"] = DEFAULT_MAX_LENGTH
+    try:
+        config["retry_attempts"] = int(config.get("retry_attempts") or DEFAULT_RETRY_ATTEMPTS)
+    except (TypeError, ValueError):
+        config["retry_attempts"] = DEFAULT_RETRY_ATTEMPTS
+    try:
+        config["retry_delay"] = int(config.get("retry_delay") or DEFAULT_RETRY_DELAY)
+    except (TypeError, ValueError):
+        config["retry_delay"] = DEFAULT_RETRY_DELAY
 
     # Read-only flag: is auto-translation ready to use?
     config["is_configured"] = bool(

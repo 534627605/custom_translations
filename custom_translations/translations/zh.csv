@@ -210,7 +210,7 @@ ${values.doctype_name} has been added to queue for optimization,${values.doctype
 "<div class=""alert"">Please don't update it as it can mess up your form. Use the Customize Form View and Custom Fields to set properties!</div>","<div class=""alert"">请不要更新它，否则可能会破坏您的表单。请使用自定义表单视图和自定义字段来设置属性！</div>"
 "<div class=""columnHeading"">Other Details</div>","<div class=""columnHeading"">其他详细信息</div>"
 "<div class=""ql-editor read-mode""><p>Request a file containing your personally identifiable information (PII) that is saved on our system. The file will be in JSON format and is sent to you by email. If you would like to have your PII deleted from our system, please make a <a href=""/request-to-delete-data"" rel=""noopener noreferrer"">request to delete data</a>.</p></div>","<div class=""ql-editor read-mode""><p>请求一份包含我们系统上保存的您的个人身份信息（PII）的文件。该文件为JSON格式，将通过电子邮件发送给您。如果您希望从我们系统中删除您的PII，请提交<a href=""/request-to-delete-data"" rel=""noopener noreferrer"">数据删除请求</a>。</p></div>"
-"<div class=""ql-editor read-mode""><p>Send a request to delete your account and personally identifiable information (PII) that is stored on our system. You will receive an email to verify your request. Once the request is verified we will take care of deleting your PII. If you just want to check what PII we have stored, you can <a href=""/request-data"" rel=""noopener noreferrer"">request your data</a>.</p></div>","<div class=""ql-editor read-mode""><p>发送请求以删除您的账户以及我们系统上存储的个人身份信息（PII）。您将收到一封用于验证请求的电子邮件。验证通过后，我们将负责删除您的PII。如果您只想查看我们存储了哪些PII，可以<a href=""/request-data"" rel=""noopener noreferrer"">请求您的数据</a>。</p></div>"
+"<div class=""ql-editor read-mode""><p>Send a request to delete your account and personally identifiable information (PII) that is stored on our system. You will receive an email to verify your request. Once the request is verified we will take care of deleting your PII. If you just want to check what PII we have stored, you can <a href=""/request-data"" rel=""noopener noreferrer"">request your data</a>.</p></div>","<div class=""ql-editor read-mode""><p>发送请求以删除您的账号以及我们系统上存储的个人身份信息（PII）。您将收到一封用于验证请求的电子邮件。验证通过后，我们将负责删除您的PII。如果您只想查看我们存储了哪些PII，可以<a href=""/request-data"" rel=""noopener noreferrer"">请求您的数据</a>。</p></div>"
 "<div class=""text-muted text-center"">No Matching Bank Transactions Found</div>","<div class=""text-muted text-center"">未找到匹配的银行交易</div>"
 "<div class=""text-muted text-center"">{0}</div>","<div class=""text-muted text-center"">{0}</div>"
 "<div id=""stock-levels-placeholder""></div>","<div id=""stock-levels-placeholder""></div>"
@@ -296,7 +296,7 @@ A list of resources which the Client App will have access to after the user allo
 A little about you,关于您的一点信息
 A logical Warehouse against which stock entries are made.,创建物料移动所依赖的逻辑仓库。
 A naming series conflict occurred while creating serial numbers. Please change the naming series for the item {0}.,创建序列号时发生命名系列冲突。请更改项目 {0} 的命名系列。
-A new account has been created for you at {0},已经在{0}为您创建一个新的账户
+A new account has been created for you at {0},已经在{0}为您创建一个新的账号
 A new appointment has been created for you with {0},已为您创建与{0}的新预约
 A new fiscal year has been automatically created.,已自动创建新的会计年度。
 A quality inspection must be completed before generating a Delivery Note for this item.,在为此项目生成 Delivery Note 之前，必须完成质量检验。
@@ -396,7 +396,7 @@ Account Currency,科目货币
 Account Currency (From),源科目货币
 Account Currency (To),目标科目货币
 Account Data,账户数据
-Account Deletion Settings,账户删除设置
+Account Deletion Settings,账号删除设置
 Account Detail Level,账户明细级别
 Account Details,账户信息
 Account Group,科目组
@@ -1452,7 +1452,7 @@ As of {0},截至 {0}
 As on Date,随着对日
 As per Stock UOM,按库存单位
 As per your assigned Salary Structure you cannot apply for benefits,根据您的薪资结构，无法申请此福利
-"As per your request, your account and data on {0} associated with email {1} has been permanently deleted",根据您的要求，您在 {0} 上与邮件 {1} 关联的账户和数据已被永久删除
+"As per your request, your account and data on {0} associated with email {1} has been permanently deleted",根据您的要求，您在 {0} 上与邮件 {1} 关联的账号和数据已被永久删除
 "As the field {0} is enabled, the field {1} is mandatory.",由于字段{0}已启用，字段{1}为必填项
 "As the field {0} is enabled, the value of the field {1} should be more than 1.",由于字段{0}已启用，字段{1}值必须大于1
 "As there are existing submitted transactions against item {0}, you can not change the value of {1}.",由于存在针对物料{0}的已提交交易，不可修改{1}的值
@@ -1785,7 +1785,7 @@ Automatically Add Filtered Item To Cart,自动添加过滤出的物料到购物�
 Automatically Assign Documents to Users,自动将单据分配给用户
 Automatically Create New Batch,自动创建新批
 Automatically applied a filter for recent data. You can disable this behavior from the list view settings.,已自动应用近期数据的筛选条件。您可以从列表视图设置中禁用此行为。
-Automatically delete account within (hours),在（小时）内自动删除账户
+Automatically delete account within (hours),在（小时）内自动删除账号
 "Automatically fetches all assets allocated to the employee, if any",自动获取员工所有已分配资产（如有）
 Automatically post balancing accounting entry,自动过账平衡会计凭证
 Automatically update Last Sync of Checkin,自动更新签到最后同步时间
@@ -1961,12 +1961,12 @@ Balance must be,余额方向
 Bank,银行
 Bank / Cash Account,银行/现金科目
 Bank A/C No.,银行账号
-Bank Account,银行户头
+Bank Account,银行账户
 Bank Account Details,银行账户明细
 Bank Account Info,银行账户信息
-Bank Account No,银行帐号
-Bank Account Subtype,银行户头子类型
-Bank Account Type,银行户头类型
+Bank Account No,银行账号
+Bank Account Subtype,银行账户子类型
+Bank Account Type,银行账户类型
 Bank Account {} in Bank Transaction {} is not matching with Bank Account {},银行交易{}中的银行账户{}与银行账户{}不匹配
 Bank Accounts,银行账户
 Bank Balance,银行存款余额
@@ -2943,7 +2943,7 @@ Company Address,公司地址
 Company Address Display,公司地址
 Company Address Name,公司地址名称
 Company Address is missing. You don't have permission to update it. Please contact your System Manager.,公司地址信息缺失。您无权限更新该信息，请联系系统管理员。
-Company Bank Account,公司银行户头
+Company Bank Account,公司银行账户
 Company Billing Address,公司发票地址
 Company Contact Person,公司联系人
 Company Description,公司介绍
@@ -3047,7 +3047,7 @@ Configure the default Price List when creating a new Purchase transaction. Item 
 "Configure various aspects of how document naming works like naming series, current counter.",配置单据命名的各个方面，如命名系列、当前计数器。
 Confirm,确认
 Confirm Access,确认访问
-Confirm Deletion of Account,确认删除账户
+Confirm Deletion of Account,确认删除账号
 Confirm New Password,确认新密码
 Confirm Request,确认请求
 Confirm before resetting posting date,重置过账日期前请确认
@@ -3281,7 +3281,7 @@ Cover Letter,求职信
 Cr,贷方
 Create,创建
 Create & Continue,创建并继续
-Create Account,创建账户
+Create Account,创建账号
 Create Additional Salary,创建附加薪资
 Create Address,创建地址
 Create Appraisals,创建绩效考核
@@ -3533,7 +3533,7 @@ Custom DocPerm,自定义单据权限
 Custom Document Types (Select Permission),自定义单据类型（选择权限）
 Custom Documents,自定义单据
 Custom Field,自定义字段
-Custom Field {0} is created by the Administrator and can only be deleted through the Administrator account.,自定义字段 {0} 由管理员创建，只能通过管理员账户删除。
+Custom Field {0} is created by the Administrator and can only be deleted through the Administrator account.,自定义字段 {0} 由管理员创建，只能通过管理员账号删除。
 Custom Fields can only be added to a standard DocType.,自定义字段只能添加到标准单据类型。
 Custom Fields cannot be added to core DocTypes.,无法将自定义字段添加到核心单据类型。
 Custom Footer,自定义页脚
@@ -3949,7 +3949,7 @@ Delayed Item Report,迟交物料报表
 Delayed Order Report,延迟订单报表
 Delayed Tasks Summary,逾期任务汇总
 Delete,删除
-Delete Account,删除账户
+Delete Account,删除账号
 Delete Attachment,删除附件
 Delete Background Exported Reports After (Hours),在（小时）后删除后台导出的报表
 Delete Bins,删除库位
@@ -4385,7 +4385,7 @@ Don't Import,不导入
 Don't Override Status,不要覆盖状态
 Don't Send Emails,不发送邮件
 "Don't encode HTML tags like &lt;script&gt; or just characters like &lt; or &gt;, as they could be intentionally used in this field",不要编码 HTML 标签如 &lt;script&gt; 或仅字符如 &lt; 或 &gt;，因为它们可能在此字段中被有意使用
-Don't have an account?,还没有账户？
+Don't have an account?,还没有账号？
 Done,完成
 Donut,圆环图
 Doors,车门数
@@ -5065,7 +5065,7 @@ Exchange Gain / Loss,汇兑损益
 Exchange Gain / Loss Account,汇兑损益科目
 Exchange Gain Or Loss,汇兑损益
 Exchange Gain/Loss,汇兑损益
-Exchange Gain/Loss amount has been booked through {0},自动生成了汇兑损益日记帐凭证{0}
+Exchange Gain/Loss amount has been booked through {0},自动生成了汇兑损益日记账凭证{0}
 Exchange Rate,汇率
 Exchange Rate Revaluation,汇率重估
 Exchange Rate Revaluation Account,汇率重估科目
@@ -6165,7 +6165,7 @@ Has Subcontracted,已外包
 Has Unit Price Items,包含单价物料
 Has Variants,有多种规格
 Has Web View,具有Web视图
-Have an account? Login,有一个账户？登录
+Have an account? Login,有账号？登录
 Head of Marketing and Sales,营销和销售主管
 Header,页首
 Header HTML,页眉 HTML
@@ -7075,7 +7075,7 @@ Is Carry Forward,是否结转
 Is Cash or Non Trade Discount,是现金或非贸易折扣
 Is Child Table,是子表
 Is Company,是公司？
-Is Company Account,是本公司户头
+Is Company Account,是本公司账户
 Is Compensatory,是否为补休
 Is Compensatory Leave,是否为调休假
 Is Complete,是否完成
@@ -7090,7 +7090,7 @@ Is Custom,是否自定义
 Is Custom Field,是自定义字段
 Is Customer Provided Item,是受托加工材料
 Is Default,是默认
-Is Default Account,默认户头
+Is Default Account,默认账户
 Is Default Language,是否默认语言
 Is Discounted,已贴现
 Is Dynamic URL?,是动态 URL？
@@ -7718,8 +7718,8 @@ Less Than Or Equal To,小于等于
 Let us continue with the onboarding,让我们继续入门引导
 Let's Get Started,让我们开始吧
 Let's avoid repeated words and characters,让我们避免重复的字和字符
-Let's set up your account,让我们设置您的账户
-Let's setup your account.,让我们设置您的账户。
+Let's set up your account,让我们设置您的账号
+Let's setup your account.,让我们设置您的账号。
 Let's take you back to onboarding,让我们回到入门引导
 Letter,信件
 Letter Head,信头
@@ -7780,7 +7780,7 @@ Link To,链接到
 Link To in Row,行中的链接到
 Link Type,链接类型
 Link Type in Row,行中的链接类型
-Link a new bank account,关联新的银行户头
+Link a new bank account,关联新的银行账户
 Link existing Quality Procedure.,链接现有的质量程序。
 "Link for About Us Page is ""/about"".","关于我们页面的链接为 ""/about""。"
 "Link that is the website home page. Standard Links (home, login, products, blog, about, contact)",网站首页的链接。标准链接（首页、登录、产品、博客、关于、联系）
@@ -8470,7 +8470,7 @@ Must specify a Query to run,必须指定一个欲执行查询
 Mute Email,静音电子邮件
 Mute Sounds,关闭声音
 Mx,女士/先生
-My Account,我的账户
+My Account,我的账号
 My Advances,我的预支
 My Claims,我的报销
 My Device,我的设备
@@ -8972,7 +8972,7 @@ Not allowed to create accounting dimension for {0},不允许为{0}创建会计�
 Not allowed to create custom Virtual DocType.,不允许创建自定义虚拟单据类型。
 Not allowed to print cancelled documents,不允许打印文件取消
 Not allowed to print draft documents,不允许打印文件草案
-Not allowed to update stock transactions older than {0},库存变动日期不能早于库存设置-库存变动锁账天数 {0} 限定的最晚可动帐日期
+Not allowed to update stock transactions older than {0},库存变动日期不能早于库存设置-库存变动锁账天数 {0} 限定的最晚可动账日期
 Not allowed via controller permission check,通过控制器权限检查不允许
 Not authorized since {0} exceeds limits,由于{0}超出限额，未获授权
 Not authorized to edit frozen Account {0},无权修改冻结科目{0}
@@ -9004,7 +9004,7 @@ Note: This Cost Center is a Group. Cannot make accounting entries against groups
 Note: This will be shared with user.,注意：这将与用户共享。
 "Note: To merge the items, create a separate Stock Reconciliation for the old item {0}",注：要合并物料，请为旧物料{0}创建单独的库存对账
 Note: Total allocated leaves {0} shouldn't be less than already approved leaves {1} for the period,注意：期间总分配假期{0}不得少于已批准假期{1}
-Note: Your request for account deletion will be fulfilled within {0} hours.,注意：您的账户删除请求将在 {0} 小时内完成。
+Note: Your request for account deletion will be fulfilled within {0} hours.,注意：您的账号删除请求将在 {0} 小时内完成。
 "Note: Your salary slip is password protected, the password to unlock the PDF is of the format {0}.",注意：工资条PDF密码格式为{0}
 Notes,备注
 Notes HTML,备注HTML
@@ -9731,7 +9731,7 @@ Party Account,往来单位科目
 Party Account Currency,往来单位科目货币
 Party Account No. (Bank Statement),往来单位银行账号(银行对账)
 Party Account {0} currency ({1}) and document currency ({2}) should be same,往来单位主数据中定义的结算货币需与业务交易货币相同
-Party Bank Account,往来单位银行户头
+Party Bank Account,往来单位银行账户
 Party Details,往来单位信息
 Party Full Name,交易方全称
 Party IBAN (Bank Statement),往来单位iban(银行对账)
@@ -9740,7 +9740,7 @@ Party Item Code,交易方物料编码
 Party Link,业务伙伴关联
 Party Mismatch,交易方不匹配
 Party Name,往来单位名称
-Party Name/Account Holder (Bank Statement),往来单位名/银行户头(银行对账)
+Party Name/Account Holder (Bank Statement),往来单位名/银行账户(银行对账)
 Party Not Required,无需交易方
 Party Specific Item,客户/供应商可交易物料
 Party Type,往来类型
@@ -10125,7 +10125,7 @@ Please add a Temporary Opening account in Chart of Accounts,请在会计科目�
 Please add a subject to your email,请在您的电子邮件中添加主题
 Please add a valid comment.,请添加有效的评论。
 Please add at least one naming series.,请添加至少一个命名系列。
-Please add the Bank Account column,请包括银行户头Bank Account字段
+Please add the Bank Account column,请包括银行账户Bank Account字段
 Please add the account to root level Company - {0},请将账户添加至根级公司-{0}
 Please add the account to root level Company - {},请将账户添加至根级公司-{}
 Please add {1} role to user {0}.,请为用户{0}添加{1}角色
@@ -12188,10 +12188,10 @@ Row {0}: UOM Conversion Factor is mandatory,行{0}：单位转换系数是必需
 Row {0}: Workstation or Workstation Type is mandatory for an operation {1},行号{0}：工序{1}必须指定工作站或工作站类型
 Row {0}: user has not applied the rule {1} on the item {2},第{0}行: 用户未为物料 {2} 选择规则 {1}
 Row {0}: {1},行号{0}：{1}
-Row {0}: {1} account already applied for Accounting Dimension {2},行 {0}: {1} 帐户已经应用于会计尺寸 {2}
+Row {0}: {1} account already applied for Accounting Dimension {2},行 {0}: {1} 账户已经应用于会计尺寸 {2}
 Row {0}: {1} is required in the expenses table to book an expense claim.,行号{0}：费用表中需填写{1}以登记费用报销
 Row {0}: {1} must be greater than 0,第{0}行：{1}必须大于0
-Row {0}: {1} {2} cannot be same as {3} (Party Account) {4},行 {0}: {1} {2} 不能与 {3} (组队帐户) {4}
+Row {0}: {1} {2} cannot be same as {3} (Party Account) {4},行 {0}: {1} {2} 不能与 {3} (组队账户) {4}
 Row {0}: {1} {2} does not match with {3},行{0}：{1} {2}不相匹配{3}
 Row {0}: {2} Item {1} does not exist in {2} {3},行 {0}: {2} 项目 {1} 在 {2} {3} 中不存在
 "Row {1}: Quantity ({0}) cannot be a fraction. To allow this, disable '{2}' in UOM {3}.",第{1}行:数量 ({0}不可以是小数， 要允许小数，请在计量单位{3}主数据中取消勾选'{2}'
@@ -12695,7 +12695,7 @@ Select an existing format to edit or start a new format.,选择现有格式进�
 Select an image of approx width 150px with a transparent background for best results.,选择约宽150像素的透明背景图像以获得最佳效果。
 Select an invoice to load summary data,选择发票以加载汇总数据
 Select an item from each set to be used in the Sales Order.,从每组中选择一个物料用于销售订单。
-Select atleast 1 record for printing,选择打印ATLEAST 1纪录
+Select atleast 1 record for printing,选择打印ATLEAST 1记录
 Select atleast 2 actions,至少选择 2 个操作
 Select company first,首先选择公司
 Select company name first.,请先选择公司
@@ -12707,7 +12707,7 @@ Select or drag across time slots to create a new event.,选择或拖动整个时
 Select records for assignment,用于分配选择记录
 Select records for removing assignment,选择要移除分配的记录
 Select template item,选择模板物料
-Select the Bank Account to reconcile.,选择银行户头
+Select the Bank Account to reconcile.,选择银行账户
 Select the Default Workstation where the Operation will be performed. This will be fetched in BOMs and Work Orders.,选择执行工序的默认工作站。此信息将用于物料清单和工单。
 Select the Employee for which you want to allocate leaves.,选择需要分配假期的员工
 Select the Employee.,选择员工
@@ -12847,7 +12847,7 @@ Serial No (In/Out),序列号（入/出）
 Serial No / Batch,序列号/批号
 Serial No Already Assigned,序列号已分配
 Serial No Count,序列号计数
-Serial No Ledger,序列号台帐
+Serial No Ledger,序列号台账
 Serial No Range,序列号范围
 Serial No Reserved,已预留序列号
 Serial No Service Contract Expiry,序列号合同期满
@@ -13045,10 +13045,10 @@ Sets 'Target Warehouse' in each row of the items table.,为物料明细行设置
 Sets 'Warehouse' in each row of the Items table.,为物料明细行设置仓码
 Setting,设置
 Setting Account Type helps in selecting this Account in transactions.,设置科目类型有助于在交易中选择该科目。
-"Setting Events to {0}, since the Employee attached to the below Sales Persons does not have a User ID{1}",设置事件为{0}，因为关联到业务员的员工无用户帐号 {1}
+"Setting Events to {0}, since the Employee attached to the below Sales Persons does not have a User ID{1}",设置事件为{0}，因为关联到下列业务员的员工没有用户账号{1}
 Setting Item Locations...,设置物料位置...
 Setting defaults,设置默认值
-Setting the account as a Company Account is necessary for Bank Reconciliation,银行对账功能仅限本公司银行户头
+Setting the account as a Company Account is necessary for Bank Reconciliation,银行对账功能仅限本公司银行账户
 Setting this Address Template as default as there is no other default,设置此地址模板为默认当没有其它的默认值
 Setting up Global Search documents.,正在设置全局搜索单据。
 Setting up company,创建公司
@@ -13244,7 +13244,7 @@ Show Variants,显示多规格物料
 Show Warehouse-wise Stock,显示仓库级库存
 Show Warnings,显示警告
 Show Weekends,显示周末
-Show account deletion link in My Account page,在我的账户页面显示账户删除链接
+Show account deletion link in My Account page,在我的账号页面显示账号删除链接
 Show all Versions,显示所有版本
 Show all activity,显示所有活动
 Show as cc,显示为CC
@@ -13638,7 +13638,7 @@ Stock cannot be updated because the invoice contains a drop shipping item. Pleas
 Stock has been unreserved for work order {0}.,已取消工单{0}的库存预留
 Stock not available for Item {0} in Warehouse {1}.,物料 {0} 在仓库 {2} 中无可预留数量
 Stock transactions before {0} are frozen,早于{0}的库存事务已冻结
-Stock transactions that are older than the mentioned days cannot be modified.,补录单据过账日期不得早于今天-锁帐天数，如今天9月20号，锁账天数10，则系统不允许过账日期早于9月10号
+Stock transactions that are older than the mentioned days cannot be modified.,补录单据过账日期不得早于今天-锁账天数，如今天9月20号，锁账天数10，则系统不允许过账日期早于9月10号
 Stock will be reserved on submission of <b>Purchase Receipt</b> created against Material Request for Sales Order.,关联销售订单的<b>采购入库</b>提交时自动创建销售订单库存预留单
 Stock/Accounts can not be frozen as processing of backdated entries is going on. Please try again later.,因成本价追溯调整后台处理中，不允许冻结库存科目。请稍后再试
 Stone,石材
@@ -16207,8 +16207,8 @@ Your Name,你的名字
 Your Name (required),您的姓名（必填）
 Your PDF is ready for download,您的 PDF 已准备好下载
 Your Shortcuts,您的快捷方式
-Your account has been deleted,您的账户已被删除
-Your account has been locked and will resume after {0} seconds,您的账户已被锁定，并将在{0}秒后恢复
+Your account has been deleted,您的账号已被删除
+Your account has been locked and will resume after {0} seconds,您的账号已被锁定，并将在{0}秒后恢复
 Your assignment on {0} {1} has been removed by {2},您在 {0} {1} 上的分配已被 {2} 移除
 Your browser does not support the audio element.,您的浏览器不支持音频元素。
 Your browser does not support the video element.,您的浏览器不支持视频元素。
@@ -16453,7 +16453,7 @@ via Salary Component sync,通过薪资组件同步
 via {0},通过 {0}
 vim,vim
 vscode,vscode
-wants to access the following details from your account,想要访问您账户的以下详细信息
+wants to access the following details from your account,想要访问您账号的以下详细信息
 when clicked on element it will focus popover if present.,点击元素时如果存在弹出层则聚焦到弹出层。
 wkhtmltopdf,wkhtmltopdf
 wkhtmltopdf 0.12.x (with patched qt).,wkhtmltopdf 0.12.x（含修补的 qt）。
@@ -16884,3 +16884,624 @@ yyyy-mm-dd,年 - 月 - 日
 {} {} is not affecting bank account {},{} {}未影响银行账户{}
 {} {} open for this position.,该职位有{}个{}空缺
 ← Back to upload files,← 返回上传文件
+1 row from {0}:User removed row from child table,来自 {0}的 1 行
+1 row to {0}:User added row to child table,1 行至 {0}
+"<div class=""well"">\n    Edit list of Series in the box. Rules:\n    <ul>\n        <li>Each Series Prefix on a new line.</li>\n        <li>Allowed special characters are ""/"" and ""-""</li>\n        <li>\n            Optionally, set the number of digits in the series using dot (.)\n            followed by hashes (#). For example, "".####"" means that the series\n            will have four digits. Default is five digits.\n        </li>\n        <li>\n            You can also use variables in the series name by putting them\n            between (.) dots\n            <br>\n            Supported Variables:\n            <ul>\n                <li><code>.YYYY.</code> - Year in 4 digits</li>\n                <li><code>.YY.</code> - Year in 2 digits</li>\n                <li><code>.MM.</code> - Month</li>\n                <li><code>.DD.</code> - Day of month</li>\n                <li><code>.WW.</code> - Week of the year</li>\n                <li>\n                    <code>.{fieldname}.</code> - fieldname on the document e.g.\n                    <code>branch</code>\n                </li>\n                <li><code>.FY.</code> - Fiscal Year (requires ERPNext to be installed)</li>\n                <li><code>.ABBR.</code> - Company Abbreviation (requires ERPNext to be installed)</li>\n            </ul>\n        </li>\n    </ul>\n    Examples:\n    <ul>\n        <li>INV-</li>\n        <li>INV-10-</li>\n        <li>INVK-</li>\n        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>\n    </ul>\n</div>\n<br>\n","<div class=""well"">\n    在框中编辑系列列表。规则：\n    <ul>\n        <li>每个系列前缀占一行。</li>\n        <li>允许的特殊字符为“/”和“-”</li>\n        <li>\n            可选地，使用点 (.)\n            后跟井号 (#) 来设置系列中的位数。例如，“.####”表示系列\n            将有四位数字。默认值为五位数字。\n        </li>\n        <li>\n            您还可以在系列名称中使用变量，方法是将它们放在\n            (.) 点之间\n            <br>\n            支持的变量：\n            <ul>\n                <li><code>.YYYY。</code> - 4 位数字的年份</li>\n                <li><code>.YY。</code> - 2 位数字的年份</li>\n                <li><code>.MM.</code> - 月份</li>\n                <li><code>.DD.</code> - 月份中的日期</li>\n                <li><code>.WW.</code> - 一年中的周数</li>\n                <li><code>.FY.</code> - 财政年度</li>\n                <li><code>.ABBR.</code> - 公司缩写</li>\n                <li>\n                    <code>.{fieldname}.</code> - 文档上的字段名称，例如\n                    <code>分支</code>\n                </li>\n            </ul>\n        </li>\n    </ul>\n    示例：\n    <ul>\n        <li>INV-</li>\n        <li>INV-10-</li>\n        <li>INVK-</li>\n        <li>INV-.YYYY.-.{branch}.-.MM.-.####</li>\n    </ul>\n</div>\n<br>\n"
+"<h3>Custom CSS Help</h3>\n\n<p>Notes:</p>\n\n<ol>\n<li>All field groups (label + value) are set attributes <code>data-fieldtype</code> and <code>data-fieldname</code></li>\n<li>All values are given class <code>value</code></li>\n<li>All Section Breaks are given class <code>section-break</code></li>\n<li>All Column Breaks are given class <code>column-break</code></li>\n</ol>\n\n<h4>Examples</h4>\n\n<p>1. Left align integers</p>\n\n<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>\n\n<p>1. Add border to sections except the last section</p>\n\n<pre><code>.section-break { padding: 30px 0px; border-bottom: 1px solid #eee; }\n.section-break:last-child { padding-bottom: 0px; border-bottom: 0px;  }</code></pre>\n","<h3>自定义 CSS 帮助</h3>\n\n<p>注释：</p>\n\n<ol>\n<li>所有字段组(标签 + 值)都设置了属性<code>data-fieldtype</code>和<code>data-fieldname</code></li>\n<li>所有值都有类<code>value</code></li>\n<li>所有分隔段均为<code>section-break</code>类</li>\n<li>所有分隔列均为<code>column-break</code>类</li>\n</ol>\n\n<h4>示例</h4>\n\n<p>1.左对齐整数</p>\n\n<pre><code>[data-fieldtype=""Int""] .value { text-align: left; }</code></pre>\n\n<p>1.为除最后一节外的各节添加边框</p>\n\n<pre><code>.section-break { padding：30px 0px; border-bottom：1px solid #eee; }\n.section-break:last-child { padding-bottom：0px; border-bottom：0px; }</code></pre>\n"
+"<h3>Print Format Help</h3>\n<hr>\n<h4>Introduction</h4>\n<p>Print Formats are rendered on the server side using the Jinja Templating Language. All forms have access to the <code>doc</code> object which contains information about the document that is being formatted. You can also access common utilities via the <code>frappe</code> module.</p>\n<p>For styling, the Boostrap CSS framework is provided and you can enjoy the full range of classes.</p>\n<hr>\n<h4>References</h4>\n<ol>\n	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja Templating Language</a></li>\n	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS Framework</a></li>\n</ol>\n<hr>\n<h4>Example</h4>\n<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;\n&lt;div class=""row""&gt;\n	&lt;div class=""col-md-3 text-right""&gt;Customer Name&lt;/div&gt;\n	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=""row""&gt;\n	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;\n	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;\n&lt;/div&gt;\n&lt;table class=""table table-bordered""&gt;\n	&lt;tbody&gt;\n		&lt;tr&gt;\n			&lt;th&gt;Sr&lt;/th&gt;\n			&lt;th&gt;Item Name&lt;/th&gt;\n			&lt;th&gt;Description&lt;/th&gt;\n			&lt;th class=""text-right""&gt;Qty&lt;/th&gt;\n			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;\n			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;\n		&lt;/tr&gt;\n		{%- for row in doc.items -%}\n		&lt;tr&gt;\n			&lt;td style=""width: 3%;""&gt;{{ row.idx }}&lt;/td&gt;\n			&lt;td style=""width: 20%;""&gt;\n				{{ row.item_name }}\n				{% if row.item_code != row.item_name -%}\n				&lt;br&gt;Item Code: {{ row.item_code}}\n				{%- endif %}\n			&lt;/td&gt;\n			&lt;td style=""width: 37%;""&gt;\n				&lt;div style=""border: 0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;\n			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;\n			&lt;td style=""width: 15%; text-align: right;""&gt;{{\n				row.get_formatted(""rate"", doc) }}&lt;/td&gt;\n			&lt;td style=""width: 15%; text-align: right;""&gt;{{\n				row.get_formatted(""amount"", doc) }}&lt;/td&gt;\n		&lt;/tr&gt;\n		{%- endfor -%}\n	&lt;/tbody&gt;\n&lt;/table&gt;</code></pre>\n<hr>\n<h4>Common Functions</h4>\n<table class=""table table-bordered"">\n	<tbody>\n		<tr>\n			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>\n			<td>Get document value formatted as Date, Currency, etc. Pass parent <code>doc</code> for currency type fields.</td>\n		</tr>\n		<tr>\n			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>\n			<td>Get value from another document.</td>\n		</tr>\n	</tbody>\n</table>\n","<h3>打印格式帮助</h3>\n<hr>\n<h4>简介</h4>\n<p>打印格式是使用 Jinja 模板语言在服务器端渲染的。所有表单都可以访问<code>doc</code>对象，该对象包含正在格式化的文档的相关信息。你还可以通过<code>frappe</code>模块访问常用工具。</p>\n<p>在样式设计方面，我们提供了 Boostrap CSS 框架，你可以使用全部的类。</p>\n<hr>\n<h4>参考资料</h4>\n<ol>\n	<li><a href=""http://jinja.pocoo.org/docs/templates/"" target=""_blank"">Jinja 模板语言</a></li>\n	<li><a href=""http://getbootstrap.com"" target=""_blank"">Bootstrap CSS 框架</a></li>\n</ol>\n<hr>\n<h4>示例</h4>\n<pre><code>&lt;h3&gt;{{ doc.select_print_heading or ""Invoice"" }}&lt;/h3&gt;\n&lt;div class=""row""&gt;\n	&lt;div class=""col-md-3 text-right""&gt;客户姓名&lt;/div&gt;\n	&lt;div class=""col-md-9""&gt;{{ doc.customer_name }}&lt;/div&gt;\n&lt;/div&gt;\n&lt;div class=""row""&gt;\n	&lt;div class=""col-md-3 text-right""&gt;Date&lt;/div&gt;\n	&lt;div class=""col-md-9""&gt;{{ doc.get_formatted(""invoice_date"") }}&lt;/div&gt;\n&lt;/div&gt;\n&lt;table class=""table table- border"" trbodybordered""&gt;\n	&lt;tbody&gt;\n		&lt;tr&gt;\n			&lt;th&gt;Sr&lt;/th&gt;\n			&lt;th&gt;Item Name&lt;/th&gt;\n			&lt;th&gt;Description&lt;/th&gt;\n			&lt;th class=""text- right"" Qty /th th class=""text- right"" Qtyright""&gt;Qty&lt;/th&gt;\n			&lt;th class=""text-right""&gt;Rate&lt;/th&gt;\n			&lt;th class=""text-right""&gt;Amount&lt;/th&gt;\n		&lt;/tr&gt;\n		{%- for row in doc.items -%}\n		&lt;tr&gt;\n			&lt;td style=""width：3%;""&gt;{{ row.idx }}&lt;/td&gt;\n			&lt;td style=""width: 20%;""&gt;\n				{{ row.item_name }}\n				{% if row.item_code != row.item_name -%}\n				&lt;br&gt;项目代码： {{ row.item_code}}\n				{%- endif %}\n			&lt;/td&gt;\n			&lt;td style=""width: 37%;""&gt;\n				&lt;div style=""border：0px;""&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;\n			&lt;td style=""width: 10%; text-align: right;""&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;\n			&lt;td style=""width: 15%; text-align: right;""&gt;{{\n				row.get_formatted(""rate"", doc) }}&lt;/td&gt;\n			&lt;td style=""width: 15%; text-align: right;""&gt;{{\n				row.get_formatted(""amount"", doc) }}&lt;/td&gt;\n		&lt;/tr&gt;\n		{%- endfor -%}\n	&lt;/tbody&gt;\n&lt;/table&gt;</code></pre>\n<hr>\n<h4>常用函数</h4>\n<table class=""table table-bordered"">\n	<tbody>\n		<tr>\n			<td style=""width: 30%;""><code>doc.get_formatted(""[fieldname]"", [parent_doc])</code></td>\n			<td>获取格式为日期、货币等的文档值。对于货币类型字段，请传递父<code>doc</code>。</td>\n		</tr>\n		<tr>\n			<td style=""width: 30%;""><code>frappe.db.get_value(""[doctype]"", ""[name]"", ""fieldname"")</code></td>\n			<td>从另一个文档获取值。</td>\n		</tr>\n	</tbody>\n</table>\n"
+"<h4>Default Template</h4>\n<p>Uses <a href=""http://jinja.pocoo.org/docs/templates/"">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>\n<pre><code>{{ address_line1 }}&lt;br&gt;\n{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}\n{{ city }}&lt;br&gt;\n{% if state %}{{ state }}&lt;br&gt;{% endif -%}\n{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}\n{{ country }}&lt;br&gt;\n{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}\n{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}\n{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}\n</code></pre>","<h4>默认模板</h4>\n<p>使用<a href=""http://jinja.pocoo.org/docs/templates/"">Jinja 模板</a>，地址的所有字段（包括自定义字段（如有））均可用</p>\n<pre><code>{{ address_line1 }}&lt;br&gt;\n{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}\n{{ city }}&lt;br&gt;\n{% if state %}{{ state }}&lt;br&gt;{% endif -%}\n{% if pincode %} 密码：  {{ pincode }}&lt;br&gt;{% endif -%}\n{{ country }}&lt;br&gt;\n{% if phone %}电话： {{ phone }}&lt;br&gt;{% endif -%}\n{% if fax %}传真： {{ fax }}&lt;br&gt;{% endif -%}\n{% if email_id %}电子邮件： {{ email_id }}&lt;br&gt;{% endif -%}\n</code></pre>"
+"<h4>Email Reply Example</h4>\n\n<pre>Order Overdue\n\nTransaction {{ name }} has exceeded Due Date. Please take necessary action.\n\nDetails\n\n- Customer: {{ customer }}\n- Amount: {{ grand_total }}\n</pre>\n\n<h4>How to get fieldnames</h4>\n\n<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>\n\n<h4>Templating</h4>\n\n<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">read this documentation.</a></p>\n","<h4>电子邮件回复示例</h4>\n\n<pre>订单逾期\n\n交易 {{ name }} 已超过到期日。请采取必要行动。\n\n详情\n\n- 客户： {{ customer }}\n- 金额： {{ grand_total }}\n</pre>\n\n<h4>如何获取字段名</h4>\n\n<p>您可以在电子邮件模板中使用的字段名是发送电子邮件的文档中的字段。您可以通过设置 &gt; 自定义表单视图并选择文档类型（如销售发票）来查找任何文档的字段。</p>\n\n<h4>模板</h4>\n\n<p>模板使用 Jinja 模板语言编译。要了解有关 Jinja 的更多信息，请<a class=""strong"" href=""http://jinja.pocoo.org/docs/dev/templates/"">阅读此文档。</a></p>\n"
+"<p>To interact with above HTML you will have to use `root_element` as a parent selector.</p><p>For example:</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// here root_element is provided by default\nlet some_class_element = root_element.querySelector('.some-class');\nsome_class_element.textContent = ""New content"";\n</code></pre>","<p>要与上述 HTML 交互，您必须使用 `root_element` 作为父选择器。</p><p>例如：</p><pre class=""p-3 bg-gray-100 border-radius rounded-sm mb-0"" style=""width: fit-content;""><code>// 这里默认提供 root_element\nlet some_class_element = root_element.querySelector('.some-class');\nsome_class_element.textContent = ""New content"";\n</code></pre>"
+"<pre><code>doc.grand_total &gt; 0</code></pre>\n\n<p>Conditions should be written in simple Python. Please use properties available in the form only.</p>\n<p>Allowed functions:\n</p><ul>\n<li>frappe.db.get_value</li>\n<li>frappe.db.get_list</li>\n<li>frappe.session</li>\n<li>frappe.utils.now_datetime</li>\n<li>frappe.utils.get_datetime</li>\n<li>frappe.utils.add_to_date</li>\n<li>frappe.utils.now</li>\n</ul>\n<p>Example: </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>","<pre><code>doc.grand_total &gt; 0</code></pre>\n\n<p>条件应使用简单的 Python 语言编写。请仅使用表单中可用的属性。</p>\n<p>允许使用的函数：\n</p><ul>\n<li>frappe.db.get_value</li>\n<li>frappe.db.get_list</li>\n<li>frappe.session</li>\n<li>frappe.utils.now_datetime</li>\n<li>frappe.utils.get_datetime</li>\n<li>frappe.utils.add_too_date</li>\n<li>frappe.utils.now</li>\n</ul>\n<p>示例： </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>"
+A new account has been created for you at {0}.,已为您创建新账号{0}.
+Add Tags:Button in list view actions menu,添加标签
+Add {0}:Primary action in list view,添加{0}
+Amending:Freeze message while amending a document,修订中
+Apply Assignment Rule:Button in list view actions menu,应用分配规则
+Ar:Number system,阿拉伯语
+Are you sure you want to delete the column? All the fields in the column will be moved to the previous column.:Confirmation dialog message,确定要删除列吗？该列中的所有字段将移至前一列。
+Are you sure you want to delete the section? All the columns along with fields in the section will be moved to the previous section.:Confirmation dialog message,确定要删除节吗？该节中的所有列及字段将移至前一节。
+Are you sure you want to delete the tab? All the sections along with fields in the tab will be moved to the previous tab.:Confirmation dialog message,确定要删除标签页吗？该标签页中的所有节及字段将移至前一标签页。
+Assign To:Button in list view actions menu,执行人
+B:Number system,B
+BCC:Email Recipients,暗送
+CC:Email Recipients,抄送
+Cancel:Button in list view actions menu,取消
+Cancel:Secondary button in warning dialog,取消
+Cancel {0} documents?:Title of confirmation dialog,确定要取消{0}个文档吗？
+Cancelling:Freeze message while cancelling a document,正在取消
+Change:Coins,更改
+Clear Assignment:Button in list view actions menu,清除分配
+Collapse:Shrink code field.,收起
+Complete Setup:Finish the setup wizard,完成设置
+Confirm:Confirm gravatar deletion prompt,确认
+Confirm:Title of confirmation dialog,确认
+Copy Apps Version,复制应用版本
+Cr:Number system,贷方
+Create New:Create a new document from list view,新建
+Customize:Button in list view menu,定制
+Customize Quick Filters:Customize qucik filters of List View,自定义快速筛选
+Days:Duration,天
+Delete:Button in list view actions menu,删除
+Delete:Button in web form,删除
+Delete Column:Title of confirmation dialog,删除列
+Delete Section:Title of confirmation dialog,删除节段
+Delete Tab:Title of confirmation dialog,删除标签页
+Delete attachment,删除附件
+Delete column:Button text,删除列
+Delete entire column with fields:Button text,删除包含字段的整列
+Delete entire section with fields:Button text,删除包含字段的整个节段
+Delete entire tab with fields:Button text,删除包含字段的整个标签页
+Delete section:Button text,删除节段
+Delete tab:Button text,删除标签页
+Delete {0} item permanently?:Title of confirmation dialog,永久删除 {0} 项？
+Delete {0} items permanently?:Title of confirmation dialog,永久删除 {0} 项？
+Dinars:Currency,第纳尔
+Discard:Button in web form,丢弃
+Discard:Discard Email,丢弃
+Dismiss:Stop showing the onboarding widget.,忽略
+Download:Export report,下载
+Edit:Button in list view actions menu,编辑
+Edit:Button in web form,编辑
+Edit:Edit grid row,编辑
+Edit DocType:Button in list view menu,修改单据类型
+Edit your response:Button in web form,编辑您的回复
+Enter Value:Title of prompt dialog,输入值
+Error:Title of error message in web form,错误
+Expand:Enlarge code field.,展开
+Export:Button in list view actions menu,导出
+Export Report: {0}:Export report,导出报表：{0}
+"For help see <a href=""https://frappeframework.com/docs/user/en/guides/portal-development/web-forms"" target=""_blank"" rel=""noopener noreferrer"">Client Script API and Examples</a>","如需帮助，请参阅 <a href=""https://frappeframework.com/docs/user/en/guides/portal-development/web-forms"" target=""_blank"" rel=""noopener noreferrer"">客户端脚本 API 和示例</a>"
+Free:Image Cropper,免费
+From:Email Sender,从
+Hours:Duration,小时
+ID:Label of name column in report,编号
+"If no Print Format is selected, the default template for this report will be used.",如果未选择打印格式，将使用此报表的默认模板。
+Import:Button in list view menu,导入
+Invalid values for fields::Error message in web form,字段包含无效值：
+K:Number system,千
+Kanban Settings:Button in kanban view menu,看板设置
+Kh:Number system,高棉语
+L:Number system,升
+Left:alignment,左对齐
+List Settings:Button in list view menu,列表设置
+Load More Communications:Form timeline,加载更多沟通记录
+Login Required,需要登录
+M:Number system,百万
+Mandatory fields required::Error message in web form,需要以下必填字段：
+Message:Default title of the message dialog,信息
+Minutes:Duration,会议记录
+N/A:Number not available,不适用
+Navigate list down:Description of a list view shortcut,向下导航列表
+Navigate list up:Description of a list view shortcut,向上导航列表
+New Role Name,新角色名称
+New role created successfully.,新角色创建成功。
+Next:Go to next slide,下一个
+No:Checkbox is not checked,否
+No:Dismiss confirmation dialog,否
+"No permission to '{0}' {1}:{0} = verb, {1} = object",无权限'{0}' {1}
+No results found,未找到匹配结果
+No.:Title of the 'row number' column,编号
+Normal,普通
+Not Set:Field value is not set,空值
+Open:Access,待处理
+Open list item:Description of a list view shortcut,打开列表项
+Please enter the password for: <b>{0}</b>:Email Account,请输入<b>{0}</b>的密码
+Previous:Go to previous slide,上一个
+Print:Button in list view actions menu,打印
+References,参考
+Refreshing:Document count in list view,正在刷新
+Replicate Role,复制角色
+Replicating Role...,正在复制角色...
+Restrictions:Title of message showing restrictions in list view,限制条件
+Right:alignment,右对齐
+Role Permissions Manager:Button in list view menu,角色权限管理
+Saving:Freeze message while saving a document,保存
+Seconds:Duration,秒
+See previous responses:Button in web form,查看之前的响应
+Select list item:Description of a list view shortcut,选择列表项
+Select multiple list items:Description of a list view shortcut,选择多个列表项
+Send:Send Email,发送
+Set:Field value is set,设置
+Show Users,显示用户
+Submit:Button in list view actions menu,提交
+Submit:Button in web form,提交
+Submit:Primary action in dialog,提交
+Submit:Primary action of prompt dialog,提交
+Submit:Submit password for Email Account,提交
+Submit another response:Button in web form,提交其他响应
+Submit {0} documents?:Title of confirmation dialog,是否提交{0}个文档？
+Submitting:Freeze message while submitting a document,提交中
+T:Number system,T
+This card is visible only to Administrator and System Managers by default. Set a DocType to share with users who have read access.:Number Card,默认情况下，此卡片仅对管理员和系统经理可见。请设置文档类型以与具有读取权限的用户共享。
+To:Email Recipients,收件人
+Updating:Freeze message while updating a document,更新
+Used,已使用
+User Permissions:Button in list view menu,用户权限限制
+View your response:Button in web form,查看您的响应
+Yes:Approve confirmation dialog,是
+Yes:Checkbox is checked,是
+You:Name of the current user. For example: You edited this 5 hours ago.,您
+You attached {0}:Form timeline,您已附加{0}
+You cancelled this document:Form timeline,您已取消此文档
+You cancelled this document {1}:Form timeline,您已取消此文档{1}
+You changed {0} to {1}:Form timeline,您已将{0}改为{1}
+You created this document {0}:Form timeline,您于{0}创建本文档
+You removed attachment {0}:Form timeline,您移除了附件{0}
+You submitted this document:Form timeline,您提交了此文档
+You submitted this document {0}:Form timeline,您于{0}提交了此文档
+cancelled this document,取消了本单据
+d:Days (Field: Duration),天
+empty:Comparison value is empty,空
+h:Hours (Field: Duration),小时
+m:Minutes (Field: Duration),月
+s:Seconds (Field: Duration),秒
+submitted this document,提交了本单据
+{0} attached {1}:Form timeline,{0}附加了{1}
+{0} cancelled this document {1}:Form timeline,{0}于{1}取消了此文档
+{0} changed {1} to {2}:Form timeline,{0}将{1}更改为{2}
+{0} created this document {1}:Form timeline,{0}于{1}创建本文档
+{0} liked,{0}点赞
+{0} only.:Money in words,仅{0}
+{0} removed attachment {1}:Form timeline,{0}移除了附件{1}
+{0} rows from {1}:User removed rows from child table,{0}行来自{1}
+{0} rows to {1}:User added rows to child table,{0}行至{1}
+{0} submitted this document {1}:Form timeline,{0}于{1}提交了此文档
+{0} unread notifications,{0} 条未读通知
+{0}.:Money in words,{0}.
+(none),(无)
+As of {0}:Do MMM YYYY,截至 {0}
+Auto Assign,自动分配
+Body,正文
+Convert to Group:Warehouse,转换为组
+Convert to Ledger:Warehouse,转换为分类账
+From Date cannot be greater than To Date.,开始日期不能晚于结束日期.
+General Ledger:Warehouse,会计总账
+Get Supplier Group Details,获取供应商组信息
+Group by Item,按物料分组
+It is needed to fetch Item Details.,以获取物料详细信息。
+Item qty can not be updated as raw materials are already processed.,因原材料已处理，物料数量不可更新
+Item {} does not exist.,物料{}不存在
+Linking to Supplier Failed. Please try again.,供应商关联失败，请重试
+Manufacturing Quantity is mandatory,请填写生产数量
+Multiple Loyalty Programs found for Customer {}. Please select manually.,发现客户{}存在多个忠诚度计划，请手动选择
+"Multiple Price Rules exists with same criteria, please resolve conflict by assigning priority. Price Rules: {0}",如果相同条件有多条规则存在，请分配优先级解决冲突。动态定价规则：{0}
+New credit limit is less than current outstanding amount for the customer. Credit limit has to be atleast {0},新信用额度低于客户当前未结金额，信用额度必须至少为{0}
+Once the Work Order is Closed. It can't be resumed.,不能恢复已关闭工单
+Overbilling of {} ignored because you have {} role.,因您具有{}角色，{}超计费已被忽略
+Pay:Amount,付款
+Please add atleast one Serial No / Batch No,请至少添加一个序列号/批次号
+Please check your email to confirm the appointment.,请检查您的电子邮件以确认预约.
+Please enable {} in {} to allow same item in multiple rows,请在{}中启用{}以允许同一物料多行显示
+Please ensure {} account is a Balance Sheet account.,请确保{}账户为资产负债表账户
+Please ensure {} account {} is a Receivable account.,请确保{}账户{}为应收账户
+Please select Subcontracting Order instead of Purchase Order {0},请选择委外订单而非采购订单{0}
+Please select a valid Purchase Order that has Service Items.,请选择包含服务项目的有效采购订单
+Please set a Cost Center for the Asset or set an Asset Depreciation Cost Center for the Company {},请为资产设置成本中心或为公司{}设置资产折旧成本中心
+Please set default Cash or Bank account in Mode of Payment {},请在付款方式{}设置默认现金或银行账户
+Please set default Cash or Bank account in Mode of Payments {},请在付款方式{}设置默认现金或银行账户
+Please set default Exchange Gain/Loss Account in Company {},请在公司{}设置默认汇兑损益账户
+Posting Date cannot be future date,记账日期不能是未来的日期
+Posting date and posting time is mandatory,记账日期和记账时间必填
+Purchase Orders {0} are un-linked,采购订单{0}已取消关联
+Rejected Warehouse and Accepted Warehouse cannot be same.,拒收仓库与验收仓库不能相同
+Row #{}: Finance Book should not be empty since you're using multiple.,行号#{}：使用多财务账簿时不可为空
+Row #{}: Please use a different Finance Book.,行号#{}：请使用其他财务账簿
+Row #{}: You cannot add positive quantities in a return invoice. Please remove item {} to complete the return.,行号#{}：退货发票中不可添加正数数量，请移除物料{}以完成退货
+Row #{}: {} {} doesn't belong to Company {}. Please select valid {}.,行号#{}：{} {}不属于公司{}，请选择有效的{}
+Row {0}# Item {1} not found in 'Raw Materials Supplied' table in {2} {3},行号{0}# 在{2} {3}的'供应原材料'表中未找到物料{1}
+Row {0}: Please select an valid BOM for Item {1}.,行号{0}：请为物料{1}选择有效的物料清单（BOM）
+Row {0}: {1}:Financial Report Template,行号{0}：{1}
+Rows: {0} in {1} section are Invalid. Reference Name should point to a valid Payment Entry or Journal Entry.,行数： {0} {1} 部分无效。参考名称应指向有效的付款条目或日记条目。
+Serial No {0} does not exists,序列号{0}不存在
+Show balances in Chart of Accounts,在会计科目表中显示余额
+Stock Entries already created for Work Order {0}: {1},工单 {0} 现有入库单 {1} 总入库数量已超工单数量，不可再创建新入库单
+Stock quantity not enough for Item Code: {0} under warehouse {1}. Available quantity {2} {3}.,物料编码{0}在仓库{1}中库存不足。可用数量为{2}{3}
+Target Asset {0} needs to be composite asset,目标资产{0}需为组合资产
+Tax Withholding,税款代扣代缴
+The Process Loss Qty has reset as per job cards Process Loss Qty,已基于工单生产任务单最大制程损耗重置了制程损耗数量
+The total Issue / Transfer quantity {0} in Material Request {1}  cannot be greater than allowed requested quantity {2} for Item {3},物料申请{1}中物料{3}的发放/转移数量{0}不能超过允许申请量{2}
+"There are two options to maintain valuation of stock. FIFO (first in - first out) and Moving Average. To understand this topic in detail please visit <a href='https://docs.frappe.io/erpnext/user/manual/en/calculation-of-valuation-rate-in-fifo-and-moving-average' target='_blank'>Item Valuation, FIFO and Moving Average.</a>",库存计价有两种方法：先进先出（FIFO）和移动平均。详情请参阅<a href='https://docs.frappe.io/erpnext/user/manual/en/calculation-of-valuation-rate-in-fifo-and-moving-average' target='_blank'>物料计价方法</a>
+There must be atleast 1 Finished Good in this Stock Entry,至少须有一行勾选了是成品的明细行
+This {} will be treated as material transfer.,此{}将被视为物料转移
+You can't make any changes to Job Card since Work Order is closed.,因生产工单已关闭，生产任务单不能再变更
+You cannot create/amend any accounting entries till this date.,不允许创建/修改早于此日期的会计凭证
+You cannot repost item valuation before {},物料成本价追溯调整不允许早于 {}
+{0} is not running. Cannot trigger events for this Document,{0} 未运行。无法触发该文档的事件
+{0} to {1}:Do MMMM YYYY,{0}到{1}
+Left:Employee,已离职
+{0} balance:Leave Type,{0}余额
+% SLA Fulfilled,SLA达成率
+% of tickets created that were resolved within SLA,在SLA时限内解决的工单创建百分比
+- Default Ticket Status<br>,- 默认工单状态<br>
+- Ticket Reopen Status<br>,- 工单重开状态<br>
+- {0} as Default Status<br>,- {0}作为默认状态<br>
+- {0} as Reopen Status<br>,- {0}作为重开状态<br>
+"0 is no feedback, 1 is Like, 2 is Dislike",0表示无反馈，1表示满意，2表示不满意
+<br>Please update HD Settings to use a different status before disabling this status.,<br>请在禁用此状态前，更新HD设置以使用其他状态。
+<br>Please update the SLA(s) to use a different status before disabling this status.,<br>请在禁用此状态前，更新SLA以使用其他状态。
+"<div class=""ql-editor read-mode""><p>Let us know if we solved your issue well. It’ll help us serve you better next time.</p></div>","<div class=""ql-editor read-mode""><p>请告知我们是否妥善解决了您的问题。这将帮助我们下次为您提供更好的服务。</p></div>"
+"<span class=""h3"" style=""""><a href=""/helpdesk"">Visit Helpdesk</a></span>","<span class=""h3"" style=""""><a href=""/helpdesk"">访问服务台</a></span>"
+"<span class=""h4"">Helpdesk Configuration<br></span>","<span class=""h4"">服务台配置<br></span>"
+Access denied,访问被拒绝
+Acknowledgement,确认响应
+Action Required,需要处理
+Add Assignee,添加负责人
+Add Filter...,添加筛选器...
+Add Sort,添加排序
+Add a condition,添加条件
+Add a custom condition,添加自定义条件
+Add condition,添加条件
+Add condition group,添加条件组
+Add filter,添加筛选器
+Add one to get started.,添加一个开始.
+Add time targets around support milestones like first reply and resolution times.,在支持里程碑前后添加时间目标，例如首次回复和分辨时间.
+"Add, manage agents and assign roles to them.",添加、管理客服人员并为其分配角色。
+Agent Configuration,客服人员配置
+Agent Manager,客服经理
+Agent Name,客服姓名
+Allow anyone to create tickets,允许任何人创建工单
+Amber,琥珀色
+Appears in the left sidebar. Recommended size is minimum 32x32 px in PNG or SVG.,显示于左侧边栏，推荐PNG或SVG格式，最小尺寸32x32像素.
+Appears next to the title in your browser tab. Recommended size is minimum 32x32 px in PNG or ICO.,显示于浏览器标签页标题旁，推荐PNG或ICO格式，最小尺寸32x32像素.
+Apply on new page,在新页面应用
+Apply to customer portal,应用于客户门户
+Are you sure you want to change tabs? Unsaved changes will be lost.,是否确认切换标签页？未保存的更改将会丢失。
+Are you sure you want to go back? Unsaved changes will be lost.,是否确认返回？未保存的修改将会丢失。
+Are you sure you want to reset the content? Current content will be overridden.,是否确认重置内容？当前内容将被覆盖。
+Article,知识库文章
+Assignee Rules,负责人分配规则
+Assignees,负责人列表
+Assignment Rules automatically route tickets to the right team members based on predefined conditions.,分配规则根据预设条件自动将工单路由至正确的团队成员。
+Assignment Schedule,分配计划
+Assignment rule,分配规则
+At least one enabled status for <u>{0}</u> category must be enabled.,<u>{0}</u>类别中必须至少启用一个状态。
+At least one feedback option must be enabled for rating {0},必须为{0}评级启用至少一个反馈选项
+Auto update status,自动更新状态
+Auto-close after (Days),自动关闭时限（天数）
+Auto-generated from the portal view — do not edit directly unless you know what you're doing! ,从门户视图自动生成——除非您明确操作目的，否则请勿直接编辑！
+Automatically Close Tickets when,自动关闭工单条件
+Average feedback rating per day is around {0} stars,每日平均反馈评分约为{0}星
+Average tickets per day is around {0},每日平均工单数约为{0}
+Avg. Feedback Rating,平均反馈评分
+Avg. First Response,平均首次响应
+Avg. Resolution,平均解决
+Avg. time taken to first respond to a ticket,首次响应工单的平均耗时
+Avg. time taken to resolve a ticket,解决工单的平均耗时
+Base Support Rotation,基础支持轮换
+Brand name,品牌名称
+Branding,品牌标识
+Call duration in seconds,通话时长（秒）
+Caller,主叫方
+Canceled,已取消
+Cannot delete the default SLA. At least one SLA must be marked as default.,无法删除默认SLA。必须至少有一个SLA标记为默认。
+Cannot disable this status as it is linked in HD Settings:<br><br>,无法禁用此状态，因其在HD设置中被引用：<br><br>
+Cannot disable this status as it is linked in the following SLAs:<br><br>,无法禁用此状态，因其在以下SLA中被引用：<br><br>
+Cannot enable rule without adding users in it,未添加用户时无法启用规则。
+Cannot merge General category,无法合并通用类别
+Category deleted successfully.,类别删除成功.
+Category must have atleast one article,类别必须至少包含一篇文章
+Category updated successfully.,类别更新成功.
+Change status,变更状态
+Channels,渠道
+Choose how tickets are distributed among selected assignees.,选择工单在选定负责人间的分配方式。
+Choose the days of the week when this rule should be active.,选择本周内规则生效的具体日期。
+Choose the email service provider you want to configure.,请选择需要配置的邮件服务提供商。
+Choose which tickets are affected by this assignment rule.,选择受本分配规则影响的工单范围。
+Choose which tickets are affected by this un-assignment rule.,选择受本取消分配规则影响的工单范围。
+Choose who receives the tickets.,选择工单接收人。
+Clear Sort,清除排序
+Clear all Filter,清除所有筛选
+Closed or rated tickets cannot be updated by non-agents,非客服人员无法更新已关闭或已评分工单
+Commented By,评论人
+Confirm Password,确认密码
+Confirm overwrite,确认覆盖
+Could not an email due to: {0},无法发送邮件，原因：{0}
+Could not send an acknowledgement email due to: {0},无法发送确认邮件，原因：{0}
+"Could not send feedback email,due to: {0}",无法发送反馈邮件，原因：{0}
+Create View,创建视图
+Customize your email notification preferences to stay informed about important updates and activities.,自定义邮件通知偏好设置，及时了解重要更新和活动。
+Day count for auto closing tickets cannot be negative or zero,自动关闭工单的天数不能为负数或零
+Default SLA,默认SLA
+Default Ticket Status,默认工单状态
+Default calling medium for logged in user,当前用户的默认呼叫媒介
+Default medium,默认媒介
+Default priority,默认优先级
+Default template can not be deleted,无法删除默认模板
+Default ticket status,默认工单状态
+Default ticket type,默认工单类型
+Define who receives the tickets and how they’re distributed among agents.,定义工单接收人及其在客服人员间的分配方式。
+Delete View,删除视图
+Description Template,描述模板
+Description Weight,描述权重
+Do not apply filters and restrictions to agents of this team,不向本团队成员应用筛选器和限制
+Do not restrict tickets without a Team,不限制无团队的工单
+Duplicate Assignment Rule,复制分配规则
+Edit Call Log,编辑通话记录
+Edit Email,编辑邮件
+Email Accounts,邮件账户
+Email Content,邮件内容
+Email Notifications,邮件通知
+Email account updated successfully,邮件账户更新成功。
+Email settings updated successfully.,电子邮件设置已成功更新.
+Empty - Choose a field to sort by,空 - 选择排序字段
+Enable feedback for Customer Portal,为客户门户启用反馈功能
+Enter a name for this HD Service Holiday List.,请输入此HD服务假日列表的名称。
+Enter brand name,请输入品牌名称
+Error moving article to category,移动文章至类别时出错
+Exotel,Exotel
+Export All {0} Record(s),导出全部{0}条记录
+"Failed to create email account, Invalid credentials",邮件账户创建失败，凭证无效
+"Failed to update email account, Invalid credentials",邮件账户更新失败，凭证无效
+Favicon,网站图标
+Feedback ,反馈 
+Feedback (Extra),反馈（附加）
+Feedback (Option),反馈（选项）
+Feedback Already Exists,反馈已存在
+Feedback Rating,反馈评分
+Feedback Trend,反馈趋势
+Feedback email has been sent to the customer,反馈邮件已发送至客户
+Field (fieldname),字段（字段名）
+Field `{0}` does not exist in Ticket,字段`{0}`在工单中不存在
+Field `{0}` is not allowed in Ticket Template,字段`{0}`不允许在工单模板中使用
+Find out all of the variables that can be used in the content,查看可在内容中使用的所有变量
+First Response Time for Tickets,工单首次响应时间
+General category can't be deleted,无法删除通用类别
+General category name can't be changed,无法更改通用类别名称
+Group By Field,分组字段
+Guest,访客
+HD Agent,HD客服
+HD Article,HD知识库文章
+HD Article Category,HD文章类别
+HD Article Feedback,HD文章反馈
+HD Customer,HD客户
+HD Email Feedback,HD邮件反馈
+HD Form Script,HD表单脚本
+HD Holiday,HD假日
+HD Notification,HD通知
+HD Service Day,HD服务日
+HD Service Holiday List,HD服务假日列表
+HD Service Level Agreement,HD服务等级协议
+HD Service Level Priority,HD服务等级优先级
+HD Settings,HD设置
+HD Stopword,HD停用词
+HD Synonym,HD同义词
+HD Synonyms,HD同义词
+HD Team,HD团队
+HD Team Member,HD团队成员
+HD Ticket,HD工单
+HD Ticket Activity,HD工单活动
+HD Ticket Comment,HD工单评论
+HD Ticket Feedback Option,HD工单反馈选项
+HD Ticket Priority,HD工单优先级
+HD Ticket Status,HD工单状态
+HD Ticket Template,HD工单模板
+HD Ticket Template Field,HD工单模板字段
+HD Ticket Type,HD工单类型
+HD View,HD视图
+Headings Weight,标题权重
+HelpDesk,服务台
+Helpdesk,服务台
+Helpdesk Reports,服务台报表
+Hey,您好
+Hide ,隐藏 
+Hide from customer,对客户隐藏
+"I understand, add conditions",我已知悉，继续添加条件
+"If enabled, a ticket creation acknowledgement email will be sent to the user right after creating an email ticket",若启用，创建邮件工单后将立即向用户发送工单创建确认邮件
+"If enabled, an email is sent to all of the recipients associated with an agent's reply",若启用，客服回复时将向所有相关收件人发送邮件
+"If enabled, an email will be sent to all of the assigned agents after a reply from one of the contacts",若启用，任一联系人回复后将向所有指派客服发送邮件
+"If enabled, anyone will be able to create tickets (without any permission). ",若启用，任何人都能创建工单（无需任何权限）。
+"If enabled, feedback email will be sent to the customer when you mark a ticket as the status selected below.\n",若启用，当您将工单标记为下方所选状态时，将向客户发送反馈邮件。\n
+"If enabled, the feedback dialog will be shown, when a user tries to close a ticket. \n",若启用，当用户尝试关闭工单时将显示反馈对话框。\n
+Ignore Restrictions,忽略限制
+"Image to be used in various places, including Login and Signup pages. An image with transparent background and 160 x 32 is preferred",用于登录和注册页面等多个场景的图片。推荐使用透明背景且尺寸为160 x 32的图片
+Inbound Call,呼入通话
+Instantly send e-mail,立即发送邮件
+Integer value,整数值
+"Invalid fields, check if all are filled in and values are correct.",字段数据无效，请检查是否已填写所有必填项且数值正确。
+Invalid notification,无效通知
+Invite,邀请
+Invite agent,邀请客服
+Invite by email,通过邮件邀请
+Is Customer Portal,是否为客户门户
+Is name setup skipped,是否跳过名称设置
+Is pinned,是否置顶
+Is setup complete,设置是否完成
+Label (customer view),标签（客户视图）
+Last 3 Months,过去3个月
+Last 60 Days,过去60天
+Last user assigned by this rule,本规则最后分配的用户
+Learn about conditions,了解条件设置
+Listen,收听
+Load Default Columns,加载默认列
+Log a Call,记录通话
+Login to Frappe Cloud,登录 Frappe Cloud
+"Lower the Integer value, higher is the priority of the issue",整数值越低，问题优先级越高
+Make Private,设为私有
+Make Public,设为公开
+Make a Call,拨打电话
+Manage your email signature.,管理您的电子邮件签名.
+Merged With,合并至
+Misc,杂项
+Name Weight,名称权重
+Name is required,必须填写名称
+"Name shown on the customer portal<br> (e.g., Replied → Awaiting Response).",客户门户显示的名称<br>（例如：已回复 → 等待响应）。
+New Assignment Rule,新建分配规则
+New Assignment Rule Name,新分配规则名称
+New Call Log,新建通话记录
+New Team,新建团队
+No Team,无团队
+No email account found,未找到电子邮件账户
+No new notifications,无新通知
+Old Condition,原有条件
+Only one default view is allowed per user for {0},每个用户对于{0}仅允许一个默认视图
+Only the 'color' and 'order' fields of the 'Closed' status can be modified.,仅可修改“已关闭”状态的“颜色”和“排序”字段。
+Open: SLA continues. <br>\nPaused: SLA is paused. <br>\nResolved: SLA timer stops.,打开：SLA继续计时。 <br>\n暂停：SLA暂停计时。 <br>\n已解决：SLA计时器停止。
+Outbound Call,呼出通话
+"Parent field, child field, and parent-child mapping are required.",必须填写父字段、子字段及父子映射关系。
+Password updated successfully.,密码更新成功.
+Pending Invites,待处理邀请
+Pin View,固定视图
+Please add this priority in the <a href='/app/hd-service-level-agreement'>required SLA documents</a>,请在<a href='/app/hd-service-level-agreement'>所需SLA文档</a>中添加此优先级
+Please add {0} priority in {1} SLA,请在{1} SLA中添加{0}优先级
+Prefer knowledge base,偏好知识库
+Preferences,偏好设置
+Priority <u>{0}</u> must be included in the SLA {1}.,必须在SLA {1}中包含优先级<u>{0}</u>。
+Public Views,公开视图
+Published On,发布于
+Rate Your Support Experience,评价您的支持体验
+Rated Tickets,已评分工单
+Rating must be between 0.2 and 1.0,评分必须在0.2至1.0之间
+Rating {0} is not allowed,不允许{0}评分
+Reaction,反应
+Record Calls,录制通话
+Recurring holidays,重复假日
+Reference Ticket,参考工单
+Regenerate Search Index,重新生成搜索索引
+Remove image,移除图片
+Reply From Agent,客服回复
+Reply From Contact,联系人回复
+Required,必填
+Reset Content,重置内容
+Reset content,重置内容
+Reset to Default,恢复默认
+Restrict agent assignment to selected Team,将客服分配限制在选定团队内
+Restrict tickets by Team,按团队限制工单
+Role updated successfully,角色更新成功。
+Route Name,路由名称
+Rows,行
+SLA,服务级别协议
+SLA Creation,SLA创建
+SLA Mapping,SLA映射
+SLA Status,SLA状态
+Save Changes,保存更改
+Saved Views,已保存视图
+Search Index Regenerated,搜索索引已重新生成
+Search Score,搜索评分
+Search fields...,搜索字段...
+Search index not available. Please contact administrator.,搜索索引不可用。请联系管理员。
+Search query must be at least 2 characters,搜索查询必须至少2个字符
+Select Range,选择范围
+Send Invites,发送邀请
+Send feedback when,发送反馈时机
+Sent to the user right after creating an email ticket.,创建邮件工单后立即发送给用户.
+Sent to the user who has raised the ticket after the ticket is closed or resolved.,工单关闭或解决后发送给提交用户.
+Set Resolution Time for Priority {0} in row {1}.,请在第{1}行为优先级{0}设置解决时间。
+Setting <strong>{0}</strong> as the default SLA removes <strong>{1}</strong> as the default SLA. You’ll need to add a condition in <strong>{1}</strong> for the SLA to work.,设置 <strong>{0}</strong> 设为默认SLA将移除 <strong>{1}</strong> 的默认SLA状态。您需要在 <strong>{1}</strong> 中添加条件才能使SLA生效。
+Setting up,系统配置中
+Settings updated successfully.,设置已成功更新.
+Setup Email,设置邮件
+Share Feedback,分享反馈
+Show ,显示 
+Show end users a different view,向最终用户显示不同视图
+"Simple Python Expression, Example: doc.status == 'Open' and doc.ticket_type == 'Bug'",简单Python表达式，示例：doc.status == 'Open' and doc.ticket_type == 'Bug'
+Skip e-mail workflow,跳过邮件工作流
+Some error occurred while renaming assignment rule,重命名分配规则时发生错误
+Some error occurred while updating assignment rule,更新分配规则时发生错误
+Source and target category cannot be same,源类别和目标类别不能相同
+Source and target ticket cannot be same,源工单和目标工单不能相同
+Source ticket does not exist,源工单不存在
+Split and Merge,拆分与合并
+"Standard Form Scripts can't be modified, duplicate the script instead.",标准表单脚本无法修改，请复制该脚本进行修改。
+Start Time can't be greater than or equal to End Time in row <u>{0}</u>.,第<u>{0}</u>行的开始时间不能大于或等于结束时间。
+Status ,状态 
+Status Category,状态类别
+Status is required,状态为必填项
+"Status of the ticket, when a customer replies on the ticket with this SLA.\n\nIf not selected, the value will be takes from HD Settings DocType.",客户回复使用此SLA的工单时的工单状态。\n\n若未选择，该值将从HD设置文档类型中获取。
+"Status of the ticket, when a customer replies on the ticket.",客户回复工单时的工单状态。
+"Status of the ticket, when it is created in the system with this SLA.\nIf not selected, the value will be taken from HD Settings DocType",在系统中使用此SLA创建工单时的工单状态。\n若未选择，该值将从HD设置文档类型中获取
+"Status of the ticket, when it is created in the system.",在系统中创建工单时的工单状态。
+Subject Weight,主题权重
+Subject is required,必须填写主题
+Support Policy,支持政策
+Synonyms,同义词
+System types can not be deleted,无法删除系统类型
+Tampered Access,篡改访问
+Target ticket does not exist,目标工单不存在
+Teal,青蓝色
+Team Restrictions,团队限制
+Teams,团队
+Telephony,电话系统
+Template Name,模板名称
+The 'Closed' status cannot be renamed.,无法重命名“已关闭”状态。
+The status for sending feedback must be of <u>Resolved</u> category.,发送反馈的状态必须属于<u>已解决</u>类别。
+This doctype will be deprecated in the future,本文档类型将在未来弃用
+"This field is used to send an email instantly without adding it into the queue. If this field is checked, the email will be sent immediately after clicking the ""Send"" button, instead of being added to the email queue for later processing.",此字段用于立即发送邮件而不加入队列。若勾选此字段，邮件将在点击“发送”按钮后立即发送，而非加入邮件队列等待后续处理。
+"This field is used to skip email-related workflows for tickets. If this field is checked, no emails will be sent related to tickets, such as new ticket creation, status updates, or notifications.",此字段用于跳过工单的邮件相关工作流。若勾选此字段，将不会发送与工单相关的邮件，如新工单创建、状态更新或通知。
+This ticket (#{0}) has been merged with ticket <a href = '/helpdesk/tickets/{1}'>#{1}</a>.,本工单（#{0}）已与工单<a href = '/helpdesk/tickets/{1}'>#{1}</a>合并。
+This ticket has been split to a new ticket. Please follow up on ticket <a href={0}>#{1}</a>.,本工单已拆分为新工单。请跟进工单<a href={0}>#{1}</a>。
+Ticket,工单
+Ticket Analytics,工单分析
+Ticket Configuration,工单配置
+Ticket Merged,工单已合并
+Ticket Not Found,工单未找到
+Ticket Priority,工单优先级
+Ticket Reopen status,工单重开状态
+Ticket Routing,工单路由
+Ticket Split From,工单拆分自
+Ticket Summary,工单摘要
+Ticket Trend,工单趋势
+Ticket Type,工单类型
+Ticket does not exist.,工单不存在。
+Ticket must be resolved with a feedback,工单必须附带反馈才能解决
+Ticket not found,工单未找到
+Ticket not found for the provided key.,未找到对应提供密钥的工单。
+Ticket not found.,工单未找到.
+Ticket-Search Analysis,工单搜索分析
+Tickets,工单
+Tickets by Channel,按渠道统计工单
+Tickets by Priority,按优先级统计工单
+Tickets by Team,按团队统计工单
+Tickets by Type,按类型统计工单
+Tickets can only be assigned to agents,工单仅可分配给客服人员
+Timezone,时区
+Title Slug,标题别名
+Title is required,标题为必填项
+"To know more about setting up email accounts, click",了解更多邮件账户设置信息，请点击
+Top Result,置顶结果
+Total Ticket,工单总数
+Total number of tickets created,创建的工单总数
+Twilio,Twilio
+URL/Method,URL/方法
+Unauthorized Access,未授权访问
+Unauthorized access.,未授权访问。
+Unpin View,取消固定视图
+Unsaved,未保存
+Unsaved changes,未保存的修改
+Untitled,未命名
+Update Account,更新账户
+Update status to,更新状态至
+Upload image,上传图片
+Uploading {0}%,上传进度{0}%
+"When enabled, the ticket status will automatically change to the status selected below whenever the agent responds to a ticket.\n",启用后，每当客服响应工单时，工单状态将自动更改为下方所选状态。\n
+Word,词语
+You are not allowed to view this dashboard data.,您无权查看此仪表板数据。
+You are not permitted to access this resource.,您无权访问此资源
+You are not permitted to add a comment,您无权添加评论
+You are now offline.,您已离线.
+You are now online.,您已上线.
+You can change the default calling medium from the settings,可在设置中修改默认呼叫媒介
+You cannot disable the default SLA.,您无法禁用默认SLA。
+You cannot set more than one Default Priority.,您无法设置多个默认优先级。
+You have already provided feedback for this ticket.,您已为本工单提供过反馈。
+You must set one SLA as Default. Please check the Default SLA option.,您必须设置一个SLA为默认。请勾选默认SLA选项。
+assignees,负责人列表
+average,平均值
+back to email event list,返回邮件事件列表
+changes from,来自的更改
+customize {0},自定义{0}
+days,天
+deleted,已删除
+excellent,优秀
+group_by,分组依据
+has made a call,进行了通话
+has reached out,已联系
+here,此处
+hrs,时长(小时)
+in,包括
+kanban,看板
+list,列表
+stars,星级
+synonym,同义词
+ticket,工单
+views,视图

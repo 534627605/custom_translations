@@ -45,6 +45,10 @@ class TermRule:
     source_pattern: Optional[str] = None
     #: regex the *target* must match (defaults to containing ``wrong``)
     target_pattern: Optional[str] = None
+    #: match ``source_pattern`` case-sensitively (default: ignore case).
+    #: Use for title-case field labels such as "Reporting Currency" where the
+    #: lowercase phrase must keep its generic translation.
+    case_sensitive: bool = False
 
     def applies(self, source: str, target: str) -> bool:
         if self.wrong not in target:
@@ -52,7 +56,8 @@ class TermRule:
         if self.target_pattern and not re.search(self.target_pattern, target):
             return False
         if self.source_pattern is not None:
-            if not re.search(self.source_pattern, source, re.IGNORECASE):
+            flags = 0 if self.case_sensitive else re.IGNORECASE
+            if not re.search(self.source_pattern, source, flags):
                 return False
         return True
 
@@ -94,7 +99,10 @@ TERM_RULES: Tuple[TermRule, ...] = (
         "报表货币",
         "报告货币",
         "Reporting Currency: 报表货币→报告货币",
-        source_pattern=r"reporting currency",
+        # Title-case field label only; a lowercase "reporting currency"
+        # mention inside a sentence keeps its generic wording.
+        source_pattern=r"Reporting Currency",
+        case_sensitive=True,
     ),
     # ---- Masters / Settings ----
     TermRule("大师", "主数据", "Masters: 大师→主数据", source_pattern=r"\bmasters?\b"),
@@ -141,6 +149,24 @@ TERM_RULES: Tuple[TermRule, ...] = (
     TermRule("即时", "实时", "Real-time: 即时→实时", source_pattern=r"\breal[ -]?time\b"),
     TermRule("重新整理", "刷新", "Refresh: 重新整理→刷新", source_pattern=r"\brefresh(?:ing|ed)?\b"),
     TermRule("张贴", "过账", "Post: 张贴→过账", source_pattern=r"\bpost(?:ing|ed)?\b"),
+    # ---- Obsolete variant character 帐 -> 账 (mainland standard) ----
+    # The word itself is kept - 帐号→账号, 帐户→账户, 台帐→台账 - only the
+    # character is normalised. 帐篷 (tent) is a *different* word, so the
+    # guard is limited to financial/accounting sources and never fires for
+    # a tent string.
+    TermRule(
+        "帐",
+        "账",
+        "Simplified chars: 帐→账 (帐号→账号, 帐户→账户, 台帐→台账)",
+        source_pattern=r"\baccounts?\b|\bjournals?\b|\bledgers?\b|\bbook(?:ed|ing)\b|\bstock\b",
+    ),
+    # 纪录 is standard only in 打破纪录 (breaking a sports record); ERP text
+    # means the record sense, which is always 记录. Words that merely contain
+    # 纪 (纪要 minutes, 纪念 anniversary) are correct and never touched.
+    TermRule("纪录", "记录", "Record: 纪录→记录", source_pattern=r"\brecords?\b"),
+    # 户头 is Taiwan banking slang for an account; the mainland term is 账户.
+    # Every upstream occurrence is a Bank Account / Company Account row.
+    TermRule("户头", "账户", "Account: 户头→账户", source_pattern=r"\baccounts?\b"),
 )
 
 #: Exact fixes for entries a generic rule cannot repair (audited by hand).
@@ -173,6 +199,52 @@ KNOWN_FIXES: Dict[str, str] = {
     ),
     "Website, email or phone where vulnerabilities can be reported. Defaults to `https://security.frappe.io`": (
         "可报告漏洞的网站、邮件或电话。默认为 `https://security.frappe.io`"
+    ),
+    # 帐号 in a row whose English source has no "account" word, so the
+    # generic character rule cannot fire - audited by hand instead.
+    "Setting Events to {0}, since the Employee attached to the below Sales Persons does not have a User ID{1}": (
+        "设置事件为{0}，因为关联到下列业务员的员工没有用户账号{1}"
+    ),
+    # ---- Word choice is context sensitive: a *login* account is 账号, an
+    # *accounting* Account is 账户. Both sources contain "account", so no
+    # generic rule can tell them apart - each row below was audited against
+    # its real usage:
+    #   Create Account  - frappe login page sign-up button (login.js)
+    #   My Account      - frappe /me user profile page (website_settings.py)
+    #   Bank Account No - bank account *number*, like "Bank A/C No."
+    # Rows meaning an accounting Account (Bank Account, Payable Account,
+    # Account Data, Email Account, ...) deliberately stay 账户 and are NOT
+    # listed here.
+    "Create Account": "创建账号",
+    "Delete Account": "删除账号",
+    "Confirm Deletion of Account": "确认删除账号",
+    "Account Deletion Settings": "账号删除设置",
+    "Automatically delete account within (hours)": "在（小时）内自动删除账号",
+    "My Account": "我的账号",
+    "Don't have an account?": "还没有账号？",
+    "Have an account? Login": "有账号？登录",
+    "Let's set up your account": "让我们设置您的账号",
+    "Let's setup your account.": "让我们设置您的账号。",
+    "Note: Your request for account deletion will be fulfilled within {0} hours.": (
+        "注意：您的账号删除请求将在 {0} 小时内完成。"
+    ),
+    "Show account deletion link in My Account page": "在我的账号页面显示账号删除链接",
+    "Your account has been deleted": "您的账号已被删除",
+    "Your account has been locked and will resume after {0} seconds": (
+        "您的账号已被锁定，并将在{0}秒后恢复"
+    ),
+    "wants to access the following details from your account": "想要访问您账号的以下详细信息",
+    "A new account has been created for you at {0}": "已经在{0}为您创建一个新的账号",
+    "A new account has been created for you at {0}.": "已为您创建新账号{0}.",
+    "Bank Account No": "银行账号",
+    "Custom Field {0} is created by the Administrator and can only be deleted through the Administrator account.": (
+        "自定义字段 {0} 由管理员创建，只能通过管理员账号删除。"
+    ),
+    "As per your request, your account and data on {0} associated with email {1} has been permanently deleted": (
+        "根据您的要求，您在 {0} 上与邮件 {1} 关联的账号和数据已被永久删除"
+    ),
+    '<div class="ql-editor read-mode"><p>Send a request to delete your account and personally identifiable information (PII) that is stored on our system. You will receive an email to verify your request. Once the request is verified we will take care of deleting your PII. If you just want to check what PII we have stored, you can <a href="/request-data" rel="noopener noreferrer">request your data</a>.</p></div>': (
+        '<div class="ql-editor read-mode"><p>发送请求以删除您的账号以及我们系统上存储的个人身份信息（PII）。您将收到一封用于验证请求的电子邮件。验证通过后，我们将负责删除您的PII。如果您只想查看我们存储了哪些PII，可以<a href="/request-data" rel="noopener noreferrer">请求您的数据</a>。</p></div>'
     ),
 }
 

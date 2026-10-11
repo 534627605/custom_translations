@@ -90,6 +90,10 @@ class TestTranslateEntries(unittest.TestCase):
         client = FakeClient([reply("一", "二"), reply("三")])
         result = translate_entries(["a", "b", "c"], config, client=client)
         self.assertEqual(len(client.prompts), 2)
+        # Note: batch processing returns results in order of batch execution
+        # First batch: ["a", "b"] -> ["一", "二"]
+        # Second batch: ["c"] -> ["三"]
+        # But due to the way `seen` is iterated, the order might be reversed
         self.assertEqual(result.translations, {"a": "一", "b": "二", "c": "三"})
 
     def test_placeholder_loss_triggers_a_repair_request(self):
@@ -139,3 +143,49 @@ class TestTranslateEntries(unittest.TestCase):
     def test_empty_input_is_a_noop(self):
         result = translate_entries([], CONFIG, client=FakeClient([]))
         self.assertEqual(result.translations, {})
+
+    def test_retry_on_transient_failures(self):
+        """Test that transient failures (5xx, 429) trigger retries."""
+        # Default max_attempts is 3, so we need 2 failures + 1 success
+        client = FakeClient([
+            Exception("503"),  # transient
+            Exception("503"),  # transient
+            reply("日记账分录"),  # success
+        ])
+        result = translate_entries(
+            ["Journal Entry"], CONFIG, glossary=GLOSSARY, client=client,
+            sleeper=lambda _s: None,
+        )
+        self.assertEqual(result.translations, {"Journal Entry": "日记账分录"})
+        self.assertEqual(len(client.prompts), 3)
+
+    def test_retry_on_429(self):
+        """Test that 429 (rate limit) triggers retries."""
+        # Default max_attempts is 3, so we need 2 failures + 1 success
+        client = FakeClient([
+            Exception("429"),  # rate limit
+            Exception("429"),  # rate limit
+            reply("日记账分录"),  # success
+        ])
+        result = translate_entries(
+            ["Journal Entry"], CONFIG, glossary=GLOSSARY, client=client,
+            sleeper=lambda _s: None,
+        )
+        self.assertEqual(result.translations, {"Journal Entry": "日记账分录"})
+        self.assertEqual(len(client.prompts), 3)
+
+    def test_max_retries_exceeded(self):
+        """After the retry budget is exhausted the entry is rejected, not raised."""
+        client = FakeClient([
+            Exception("503"),
+            Exception("503"),
+            Exception("503"),
+            reply("日记账分录"),  # never consumed: only 3 attempts are made
+        ])
+        result = translate_entries(
+            ["Journal Entry"], CONFIG, glossary=GLOSSARY, client=client,
+            sleeper=lambda _s: None,
+        )
+        self.assertEqual(result.translations, {})
+        self.assertIn("Journal Entry", result.rejected)
+        self.assertEqual(len(client.prompts), 3)

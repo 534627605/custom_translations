@@ -31,6 +31,7 @@ from custom_translations.utils import (
     load_app_translations,
     sync_to_po_files,
 )
+from custom_translations.sync_po import sync_po
 
 
 def _connect(ctx):
@@ -350,8 +351,35 @@ def sync_translations(ctx, apps, yes):
         click.echo(f"Filled {total} entries across {len(results)} PO file(s)")
 
 
+@click.command("custom-translations-sync-po")
+@click.option("--force", is_flag=True, help="Overwrite existing translations with upstream wording")
+@click.option("--app", "apps", multiple=True, help="Limit to specific apps (repeatable)")
+@click.pass_context
+def sync_po_cmd(ctx, force, apps):
+    """Import official Chinese translations from the local upstream apps.
+
+    Reads the Crowdin-maintained ``locale/zh.po`` catalogues that ship inside
+    the bench checkout (frappe, erpnext, hrms, helpdesk) and merges every
+    translated entry into this app's override CSV ``translations/zh.csv``.
+
+    * Existing (hand-curated) rows always win; ``--force`` lets upstream win.
+    * Untranslated/fuzzy PO entries are skipped.
+    * Run it again after ``bench update`` to pick up new upstream wording.
+
+    Usage:
+        bench --site <site> custom-translations-sync-po [--force] [--app erpnext]
+    """
+    _connect(ctx)
+    csv_fn = get_csv_path()
+    added = sync_po(csv_fn, force=force, apps=list(apps) if apps else None)
+    click.echo(f"Synced {added} new/updated translation entries into {csv_fn}")
+    if added:
+        click.echo(f"Run `bench --site {ctx.obj} clear-cache` to apply them in the browser")
+
+
 commands = [
     sync_translations,
+    sync_po_cmd,
     show_stats,
     show_config,
     coverage,
